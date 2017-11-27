@@ -20,13 +20,12 @@ import org.opencv.core.Mat;
 import java.io.IOException;
 
 
-@TeleOp(name="RAWR-XD CV Tester", group="Development")
+@TeleOp(name="TestOpMode", group="Development")
 
-public class RAWRXD_CVTester extends OpMode
+public class TestOpMode extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-
 
     private GlyphDetector glyphDetector = null;
     /*
@@ -35,37 +34,30 @@ public class RAWRXD_CVTester extends OpMode
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
-
+        telemetry.update();
 
         glyphDetector = new GlyphDetector();
         glyphDetector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
         glyphDetector.enable();
-
-
     }
 
     @Override
     public void init_loop() {
         telemetry.addData("Status", "Initialized. Gyro Calibration");
+        telemetry.update();
     }
 
     @Override
     public void start() {
         runtime.reset();
-
-
     }
 
     @Override
     public void loop() {
-
-
-
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Glyph Pos X", glyphDetector.ChosenGlyphPos);
         telemetry.addData("Glyph Pos Offest", glyphDetector.ChosenGlyphOffset);
-
-
+        telemetry.update();
     }
 
     /*
@@ -75,5 +67,4 @@ public class RAWRXD_CVTester extends OpMode
     public void stop() {
         glyphDetector.disable();
     }
-
 }
