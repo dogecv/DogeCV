@@ -27,7 +27,6 @@ public class RAWRXD_CVTester extends OpMode
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
 
-
     private GlyphDetector glyphDetector = null;
     /*
      * Code to run ONCE when the driver hits INIT
@@ -36,12 +35,9 @@ public class RAWRXD_CVTester extends OpMode
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-
         glyphDetector = new GlyphDetector();
         glyphDetector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
         glyphDetector.enable();
-
-
     }
 
     @Override
@@ -52,20 +48,13 @@ public class RAWRXD_CVTester extends OpMode
     @Override
     public void start() {
         runtime.reset();
-
-
     }
 
     @Override
     public void loop() {
-
-
-
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Glyph Pos X", glyphDetector.ChosenGlyphPos);
         telemetry.addData("Glyph Pos Offest", glyphDetector.ChosenGlyphOffset);
-
-
     }
 
     /*
@@ -75,5 +64,4 @@ public class RAWRXD_CVTester extends OpMode
     public void stop() {
         glyphDetector.disable();
     }
-
 }
