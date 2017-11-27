@@ -20,9 +20,9 @@ import org.opencv.core.Mat;
 import java.io.IOException;
 
 
-@TeleOp(name="RAWR-XD CV Tester", group="Development")
+@TeleOp(name="TestOpMode", group="Development")
 
-public class RAWRXD_CVTester extends OpMode
+public class TestOpMode extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
