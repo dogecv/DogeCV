@@ -1,6 +1,6 @@
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
-
+![Happy Customer](https://media.discordapp.net/attachments/373628631970217984/384547591154827266/image.png)
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
 
