@@ -1,18 +1,12 @@
 
 package org.firstinspires.ftc.teamcode.testing;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.detectors.*;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.teamcode.bots.RAWRXD_BOT;
-import org.firstinspires.ftc.teamcode.control.Controller;
 import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
