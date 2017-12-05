@@ -1,6 +1,8 @@
 
 
 <div align="center">
+    <img src="https://i.imgur.com/O2pqyMF.png"/>
+    <br></br>
   <p>
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
@@ -9,8 +11,9 @@
 
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
-![Happy Customer](https://media.discordapp.net/attachments/373628631970217984/384547591154827266/image.png)
-
+![Happy Customer](https://i.imgur.com/J1hnHR6.png)
+![Happy Customer](https://i.imgur.com/ZsNOK11.png)
+![Happy Customer](https://i.imgur.com/aHXaB0i.png)
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
@@ -18,6 +21,7 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 ## Known Issues
 - Only Works in Landscape
 - Diffrent Camera Specs can cause a crash
+- Glyph Detector Rotated
 
 ## Planned Features / TODO
 - Jewel Position Detector
@@ -28,6 +32,8 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 - HSV Calibrating
 - Fix Naming Conventions
 - Landscape Mode
+- Return 2D Coords instead of just X
+- Allow Resizing and Tuning
 - Adjustible Resolution
 
 
