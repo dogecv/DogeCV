@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @TeleOp(name="DogeCV Glyph Detector", group="DogeCV")
 
-public class DogeCVGlyph extends OpMode
+public class GlyphOpMode extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();

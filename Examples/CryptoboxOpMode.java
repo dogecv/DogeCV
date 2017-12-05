@@ -17,7 +17,7 @@ import java.io.IOException;
 
 @TeleOp(name="DogeCV Red Cryptobox Detector", group="DogeCV")
 
-public class DogeCVRedCrypto extends OpMode
+public class CryptoboxOpMode extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
