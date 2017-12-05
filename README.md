@@ -24,7 +24,7 @@
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
 ## Known Issues
-- Only Works in Landscape
+- Only Works in Portrait
 - Diffrent Camera Specs can cause a crash
 - Glyph Detector Rotated
 
