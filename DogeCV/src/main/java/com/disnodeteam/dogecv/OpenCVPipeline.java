@@ -123,6 +123,7 @@ public abstract class OpenCVPipeline implements CameraBridgeViewBase.CvCameraVie
      */
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+
         return processFrame(inputFrame.rgba(), inputFrame.gray());
     }
 

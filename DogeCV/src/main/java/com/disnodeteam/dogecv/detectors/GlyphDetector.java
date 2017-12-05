@@ -32,10 +32,7 @@ public class GlyphDetector extends OpenCVPipeline {
 
     public Size ImageSize = new Size(480, 360);
 
-    public boolean DebugShowPreprocessed = false;
-    public boolean DebugShowFiltered     = false;
     public boolean DebugDrawStats        = false;
-    public boolean DebugDrawCenter       = false;
     public boolean DebugDrawRects        = true;
 
     public double ScoreRatioWeight = 0.5;
@@ -47,6 +44,7 @@ public class GlyphDetector extends OpenCVPipeline {
 
     public Mat MatOverride = new Mat();
 
+    public boolean UseImportedImage = false;
 
     public void SetTestMat( int rId){
         try {
@@ -56,12 +54,15 @@ public class GlyphDetector extends OpenCVPipeline {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //hardwareMap.appContext, com.qualcomm.ftcrobotcontroller.R.drawable.test_cv, CvType.CV_8UC4);
+
     }
 
     @Override
     public Mat processFrame(Mat rgba, Mat gray) {
         Mat out = rgba.clone();
+        if(UseImportedImage){
+            out = MatOverride;
+        }
         Imgproc.resize(out,out, ImageSize);
 
         Mat processed = preProcessFrame(out);
@@ -195,7 +196,7 @@ public class GlyphDetector extends OpenCVPipeline {
         Imgproc.bilateralFilter(blurred,blat,11,17,17);
 
         Mat edges = new Mat();
-        Imgproc.Canny(blurred,edges,20,50.0);
+        Imgproc.Canny(blurred,edges,15,45.0);
 
         Mat structure = Imgproc.getStructuringElement(Imgproc.CV_SHAPE_RECT, new Size(10,10));
         Imgproc.morphologyEx(edges,edges,Imgproc.MORPH_CLOSE,structure);

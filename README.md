@@ -1,8 +1,23 @@
+
+
+<div align="center">
+  <p>
+    <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
+  </p>
+
+</div>
+
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 ![Happy Customer](https://media.discordapp.net/attachments/373628631970217984/384547591154827266/image.png)
+
+
 # DISCLAIMER
-### THIS REPO IS STILL UNDER DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
+### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
+
+# Known Issues
+- Only Works in Landscape
+- Diffrent Camera Specs can cause a crash
 
 ## Install (Credit to EnderCV)
 1. Download this repo, either by cloning from Git or using the zip download. 
@@ -17,7 +32,7 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 10. Click **OK** to exit the **Project Structure** dialog.
 ## Detectors
 
-### Glyph Detector (Working, In Development)
+### Glyph Detector (Detecting, Needs work)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -31,9 +46,25 @@ Currently This Detector Returns the Following:
 - `ChosenGlyphOffset` - The Distance of the chosen glyph from the center of the screen
 - `FoundRect` - Is there a glyph found?
 
-### Cryptobox Detector (In Development)
+### Cryptobox Detector (Working)
 This detector finds the position of each Colloumn inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. This also currently requires the full cryptobox to be in view. Im also finding a way to change this however it may take a while. I recommend using this as a one-time reading. Find the cryptobox positon, align or find the values to align, then move. 
+
+#### Detector Classes
+ - `CryptoboxDetectorRed` - Red Cryptobox Detector
+ - `CryptoboxDetectorBlue` - Blue Cryptobox Detector
+
+#### Parameters
+*none*
+
+#### Returned Data
+Currently This Detector Returns the Following:
+- `isCryptoBoxDetected()` - Is the full box detected?
+- `isColumnDetected()` - Is at least one column detected?
+- `getCryptoBoxLeftPosition()` - Get the left column position (int on x-axis)
+- `getCryptoBoxCenterPosition()` - Get the center column position (int on x-axis)
+- `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
+- `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
 ### Jewel Detector (In Development)
 This detector finds the orientations of the two Jewels, returning which one is left or right. This is HSV based so lighting and color will effect this detector.
