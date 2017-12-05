@@ -7,11 +7,12 @@
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
+  <i>Version 0.1 Last Updated 12/4/17</i>
 
 </div>
 
 # DogeCV
-A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
+**A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. **
 <img src="https://i.imgur.com/J1hnHR6.png" width="33%"/>
 <img src="https://i.imgur.com/ZsNOK11.png" width="33%"/>
 <img src="https://i.imgur.com/aHXaB0i.png" width="33%"/>
