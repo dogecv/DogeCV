@@ -7,7 +7,8 @@
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
-  <i>Version 0.1 Last Updated 12/4/17</i>
+    <br/>
+     <i>Version 0.1 Last Updated 12/4/17</i>
 
 </div>
 
