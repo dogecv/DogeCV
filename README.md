@@ -55,7 +55,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 10. Click **OK** to exit the **Project Structure** dialog.
 ## Detectors
 
-### Glyph Detector (Detecting, last Updated: 12/1/17)
+### Glyph Detector (Cleaning up, v0)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -69,9 +69,11 @@ Currently This Detector Returns the Following:
 - `ChosenGlyphOffset` - The Distance of the chosen glyph from the center of the screen
 - `FoundRect` - Is there a glyph found?
 
-### Cryptobox Detector (Working, Last Updated: 12/4/17)
+### Cryptobox Detector (Working, v1)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
+
+Im currently developing a new version of this detector as it is basic and prone to failure, however I decided to release this as it's better the nothing. 
 
 #### Detector Classes
  - `CryptoboxDetectorRed` - Red Cryptobox Detector
@@ -89,7 +91,7 @@ Currently This Detector Returns the Following:
 - `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
 - `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
-### Jewel Detector (In Development)
+### Jewel Detector (In Development v0)
 This detector finds the orientations of the two Jewels, returning which one is left or right. This is HSV based so lighting and color will effect this detector.
 
 
