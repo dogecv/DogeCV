@@ -61,7 +61,8 @@ public class GlyphDetector extends OpenCVPipeline {
     public Mat processFrame(Mat rgba, Mat gray) {
         Mat out = rgba.clone();
         if(UseImportedImage){
-            out = MatOverride;
+            out = MatOverride.clone();
+            rgba.release();
         }
         Imgproc.resize(out,out, ImageSize);
 

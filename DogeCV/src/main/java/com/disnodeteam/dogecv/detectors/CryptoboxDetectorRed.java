@@ -65,11 +65,14 @@ public class CryptoboxDetectorRed extends OpenCVPipeline {
 
         Imgproc.resize(raw,raw,new Size(480,360));
 
-        Mat tempBefore = raw.t();
+        if(!UseImportedImage){
+            Mat tempBefore = raw.t();
 
-        Core.flip(tempBefore, raw, 1); //mRgba.t() is the transpose
+            Core.flip(tempBefore, raw, 1); //mRgba.t() is the transpose
 
-        tempBefore.release();
+            tempBefore.release();
+        }
+
 
 
         List<MatOfPoint> contours = new ArrayList<>();
@@ -79,8 +82,8 @@ public class CryptoboxDetectorRed extends OpenCVPipeline {
 
 
 
-        Imgproc.erode(hsv,hsv,kernel);
-        Imgproc.dilate(hsv,hsv,kernel);
+        //Imgproc.erode(hsv,hsv,kernel);
+        //Imgproc.dilate(hsv,hsv,kernel);
         Imgproc.blur(hsv,hsv,new Size(6,6));
 
         Scalar lower1 = new Scalar(0,150,100);
@@ -156,11 +159,18 @@ public class CryptoboxDetectorRed extends OpenCVPipeline {
 
             ColumnDetected = boxes.size() > 1;
         }
-        Mat tempAfter = raw.t();
 
-        Core.flip(tempAfter, raw, 0); //mRgba.t() is the transpose
+        if(!UseImportedImage){
 
-        tempAfter.release();
+            Mat tempAfter = raw.t();
+
+            Core.flip(tempAfter, raw, 0); //mRgba.t() is the transpose
+
+            tempAfter.release();
+        }
+
+
+
 
 
         Imgproc.resize(raw,raw, new Size(1280,960));

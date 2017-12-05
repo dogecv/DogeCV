@@ -28,7 +28,7 @@ public class CryptoboxDetectorBlue extends OpenCVPipeline {
 
     private boolean CryptoBoxDetected = false;
     private boolean ColumnDetected = false;
-    private int[] CryptoBoxPositions = new int[2];
+    private int[] CryptoBoxPositions = new int[3];
 
     public void SetTestMat( int rId){
         try {
@@ -64,11 +64,13 @@ public class CryptoboxDetectorBlue extends OpenCVPipeline {
 
         Imgproc.resize(raw,raw,new Size(480,360));
 
-        Mat tempBefore = raw.t();
+        if(!UseImportedImage){
+            Mat tempBefore = raw.t();
 
-        Core.flip(tempBefore, raw, 1); //mRgba.t() is the transpose
+            Core.flip(tempBefore, raw, 1); //mRgba.t() is the transpose
 
-        tempBefore.release();
+            tempBefore.release();
+        }
 
 
         List<MatOfPoint> contours = new ArrayList<>();
@@ -78,8 +80,8 @@ public class CryptoboxDetectorBlue extends OpenCVPipeline {
 
 
 
-        Imgproc.erode(hsv,hsv,kernel);
-        Imgproc.dilate(hsv,hsv,kernel);
+        //Imgproc.erode(hsv,hsv,kernel);
+        //Imgproc.dilate(hsv,hsv,kernel);
         Imgproc.blur(hsv,hsv,new Size(6,6));
 
 
@@ -128,6 +130,10 @@ public class CryptoboxDetectorBlue extends OpenCVPipeline {
             Point center = drawSlot(1,boxes);
             Point right = drawSlot(2,boxes);
 
+            CryptoBoxPositions[0] = (int)left.x;
+            CryptoBoxPositions[1] = (int)center.x;
+            CryptoBoxPositions[2] = (int)right.x;
+
             Imgproc.putText(raw, "Left", new Point(left.x - 10, left.y - 20), 0,0.8, new Scalar(0,255,255),2);
             Imgproc.circle(raw,left,5,new Scalar(0,255,255), 3);
 
@@ -141,12 +147,19 @@ public class CryptoboxDetectorBlue extends OpenCVPipeline {
                 Point collumn = drawSlot(i,boxes);
                 Imgproc.circle(raw,collumn,5,new Scalar(0,255,255), 3);
             }
+
+            ColumnDetected = boxes.size() > 1;
         }
-        Mat tempAfter = raw.t();
 
-        Core.flip(tempAfter, raw, 0); //mRgba.t() is the transpose
+        if(!UseImportedImage){
 
-        tempAfter.release();
+            Mat tempAfter = raw.t();
+
+            Core.flip(tempAfter, raw, 0); //mRgba.t() is the transpose
+
+            tempAfter.release();
+        }
+
 
 
         Imgproc.resize(raw,raw, new Size(1280,960));
