@@ -1,7 +1,7 @@
 
 
 <div align="center">
-    <img src="https://i.imgur.com/O2pqyMF.png"/>
+    <img src="https://i.imgur.com/O2pqyMF.png" width="256"/>
     <br></br>
   <p>
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
@@ -11,9 +11,10 @@
 
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
-![Happy Customer](https://i.imgur.com/J1hnHR6.png)
-![Happy Customer](https://i.imgur.com/ZsNOK11.png)
-![Happy Customer](https://i.imgur.com/aHXaB0i.png)
+<img src="https://i.imgur.com/J1hnHR6.png" width="30%">
+<img src="https://i.imgur.com/ZsNOK11.png" width="30%">
+<img src="https://i.imgur.com/aHXaB0i.png" width="30%">
+
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
