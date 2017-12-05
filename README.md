@@ -15,9 +15,21 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
 
-# Known Issues
+## Known Issues
 - Only Works in Landscape
 - Diffrent Camera Specs can cause a crash
+
+## Planned Features / TODO
+- Jewel Position Detector
+- Glyph Color Reading
+- Score based Cryptobox detection to increase accuracy.
+- Previous frame's results to increase accuracy in detectors
+- Motion Tracking for Cryptobox
+- HSV Calibrating
+- Fix Naming Conventions
+- Landscape Mode
+- Adjustible Resolution
+
 
 ## Install (Credit to EnderCV)
 1. Download this repo, either by cloning from Git or using the zip download. 
