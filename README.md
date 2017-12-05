@@ -44,7 +44,7 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 10. Click **OK** to exit the **Project Structure** dialog.
 ## Detectors
 
-### Glyph Detector (Detecting, Needs work)
+### Glyph Detector (Detecting, last Updated: 12/1/17)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -58,9 +58,9 @@ Currently This Detector Returns the Following:
 - `ChosenGlyphOffset` - The Distance of the chosen glyph from the center of the screen
 - `FoundRect` - Is there a glyph found?
 
-### Cryptobox Detector (Working)
-This detector finds the position of each Colloumn inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
-to other ways of doing this. This also currently requires the full cryptobox to be in view. Im also finding a way to change this however it may take a while. I recommend using this as a one-time reading. Find the cryptobox positon, align or find the values to align, then move. 
+### Cryptobox Detector (Working, Last Updated: 12/4/17)
+This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
+to other ways of doing this. 
 
 #### Detector Classes
  - `CryptoboxDetectorRed` - Red Cryptobox Detector
