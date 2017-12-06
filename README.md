@@ -71,8 +71,7 @@ to other ways of doing this.
 Im currently developing a new version of this detector as it is basic and prone to failure, however I decided to release this as it's better the nothing. 
 
 #### Detector Classes
- - `CryptoboxDetectorRed` - Red Cryptobox Detector
- - `CryptoboxDetectorBlue` - Blue Cryptobox Detector
+ - `CryptoboxDetectorRed` - Cryptobox Detector
 
 #### Parameters
 - `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) WARNING! This value seems to cause crashes, recommend 0.6 (default).
