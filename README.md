@@ -14,9 +14,6 @@
 
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
-<img src="https://i.imgur.com/J1hnHR6.png" width="31%"/>
-<img src="https://i.imgur.com/ZsNOK11.png" width="31%"/>
-<img src="https://i.imgur.com/aHXaB0i.png" width="31%"/>
 
 
 # DISCLAIMER
