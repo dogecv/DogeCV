@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.1 Last Updated 12/4/17</i>
+     <i>Version 0.2 Last Updated 12/5/17</i>
 
 </div>
 
@@ -24,9 +24,8 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
 ## Known Issues
-- Only Works in Portrait
-- Diffrent Camera Specs can cause a crash
-- Glyph Detector Rotated
+- Glyph Detector Outdate
+- Glyph Detector Memory Leak
 
 ## Planned Features / TODO
 - Jewel Position Detector
@@ -35,11 +34,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 - Previous frame's results to increase accuracy in detectors
 - Motion Tracking for Cryptobox
 - HSV Calibrating
-- Fix Naming Conventions
-- Landscape Mode
 - Return 2D Coords instead of just X
-- Allow Resizing and Tuning
-- Adjustible Resolution
 
 
 ## Install (Credit to EnderCV)
