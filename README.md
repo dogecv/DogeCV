@@ -7,6 +7,8 @@
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
+    <br/>
+     <i>Version 0.1 Last Updated 12/4/17</i>
 
 </div>
 
@@ -18,10 +20,11 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 
 
 # DISCLAIMER
-### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON
+### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON. MANY OF THE 
+However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
 ## Known Issues
-- Only Works in Landscape
+- Only Works in Portrait
 - Diffrent Camera Specs can cause a crash
 - Glyph Detector Rotated
 
@@ -70,6 +73,8 @@ Currently This Detector Returns the Following:
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
+Im currently developing a new version of this detector as it is basic and prone to failure, however I decided to release this as it's better the nothing. 
+
 #### Detector Classes
  - `CryptoboxDetectorRed` - Red Cryptobox Detector
  - `CryptoboxDetectorBlue` - Blue Cryptobox Detector
@@ -88,7 +93,7 @@ Currently This Detector Returns the Following:
 - `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
 - `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
-### Jewel Detector (In Development)
+### Jewel Detector (In Development v0)
 This detector finds the orientations of the two Jewels, returning which one is left or right. This is HSV based so lighting and color will effect this detector.
 
 
