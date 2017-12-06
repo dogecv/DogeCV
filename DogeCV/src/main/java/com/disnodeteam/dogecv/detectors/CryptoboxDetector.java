@@ -1,13 +1,9 @@
 package com.disnodeteam.dogecv.detectors;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.disnodeteam.dogecv.OpenCVPipeline;
 
-import org.corningrobotics.enderbots.endercv.R;
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -17,63 +13,136 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 public class CryptoboxDetector extends OpenCVPipeline {
 
-    public Mat MatOverride = new Mat();
+    public enum CryptoboxDetectionMode {
+        HSV_RED, HSV_BLUE
+    }
 
+    public enum CryptoboxSpeed {
+        VERY_FAST, FAST, BALANCED, SLOW, VERY_SLOW
+    }
+
+    //Settings
+    public Mat                    MatOverride        = new Mat();
+    public boolean                useImportedImage   = false;
+    public CryptoboxDetectionMode detectionMode      = CryptoboxDetectionMode.HSV_RED;
+    public double                 downScaleFactor    = 0.6;
+    public boolean                rotateMat          = false;
+    public CryptoboxSpeed         speed              = CryptoboxSpeed.BALANCED;
+
+    private boolean CryptoBoxDetected = false;
+    private boolean ColumnDetected = false;
+    private int[] CryptoBoxPositions = new int[3];
 
     public void SetTestMat( int rId){
         try {
             Mat imported = Utils.loadResource(context, rId);
             Imgproc.cvtColor(imported,imported,Imgproc.COLOR_RGB2BGR);
-            Imgproc.resize(imported,MatOverride, new Size(1280,960));
+            Imgproc.resize(imported,MatOverride, new Size(720,960));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //hardwareMap.appContext, com.qualcomm.ftcrobotcontroller.R.drawable.test_cv, CvType.CV_8UC4);
+
     }
+
+    Scalar lower = new Scalar(90, 135, 25);
+    Scalar upper = new Scalar(130, 250, 150);
+
+    private Mat raw  = new Mat();
+    private Mat mask1  = new Mat();
+    private Mat mask2  = new Mat();
+    private Mat mask  = new Mat();
+    private Mat hsv  = new Mat();
+    private Mat structure  = new Mat();
+    private Mat hierarchy = new Mat();
+    Mat kernel = Mat.ones(5,5,CvType.CV_32F);
+
+
+
     @Override
     public Mat processFrame(Mat rgba, Mat gray) {
 
-        Mat raw = MatOverride.clone();
-        Imgproc.resize(raw,raw,new Size(480,360));
+        Size initSize= rgba.size();
 
-        Mat hsv = new Mat();
-        Mat mask = new Mat();
-        Mat hierarchy = new Mat();
+        rgba.copyTo(raw);
+
+        if(useImportedImage){
+            raw = MatOverride.clone();
+            rgba.release();
+        }else {
+            MatOverride.release();
+        }
+
+
+        Imgproc.resize(raw,raw,new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor));
+
+        if(rotateMat){
+            Mat tempBefore = raw.t();
+
+            Core.flip(tempBefore, raw, 1); //mRgba.t() is the transpose
+
+            tempBefore.release();
+        }
+
+
+
         List<MatOfPoint> contours = new ArrayList<>();
         List<Rect> boxes = new ArrayList<>();
 
         Imgproc.cvtColor(raw,hsv,Imgproc.COLOR_RGB2HSV);
 
-        Mat kernel = Mat.ones(5,5,CvType.CV_32F);
 
-        Imgproc.erode(hsv,hsv,kernel);
-        Imgproc.dilate(hsv,hsv,kernel);
-        Imgproc.blur(hsv,hsv,new Size(6,6));
+        switch(detectionMode){
+            case HSV_RED:
+                getRedMask(hsv);
+                break;
+            case HSV_BLUE:
+                getBlueMask(hsv);
+        }
 
-        Scalar lower = new Scalar(90,135,25);
-        Scalar upper = new Scalar(130,250,150);
 
-        Core.inRange(hsv,lower,upper,mask);
-        hsv.release();
 
-        Mat structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2,30));
+        switch (speed){
+            case VERY_FAST:
+                Imgproc.blur(hsv,hsv,new Size(3,3));
+                structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(1,30));
+                break;
+            case FAST:
+                Imgproc.blur(hsv,hsv,new Size(4,4));
+                structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2,30));
+                break;
+
+            case BALANCED:
+                Imgproc.blur(hsv,hsv,new Size(5,5));
+                structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2,40));
+                break;
+
+            case SLOW:
+                Imgproc.blur(hsv,hsv,new Size(6,6));
+                structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2,50));
+                break;
+
+            case VERY_SLOW:
+                Imgproc.blur(hsv,hsv,new Size(7,7));
+                structure = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3,55));
+                break;
+        }
+
+
         Imgproc.morphologyEx(mask,mask,Imgproc.MORPH_CLOSE, structure);
 
         Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
-        hierarchy.release();
 
         for(MatOfPoint c : contours) {
             if(Imgproc.contourArea(c) >= 100) { //Filter by area
@@ -102,11 +171,15 @@ public class CryptoboxDetector extends OpenCVPipeline {
             }
         });
 
-
-        if(boxes.size() >=4 ){
+        CryptoBoxDetected = boxes.size() >=4;
+        if(CryptoBoxDetected){
             Point left = drawSlot(0,boxes);
             Point center = drawSlot(1,boxes);
             Point right = drawSlot(2,boxes);
+
+            CryptoBoxPositions[0] = (int)left.x;
+            CryptoBoxPositions[1] = (int)center.x;
+            CryptoBoxPositions[2] = (int)right.x;
 
             Imgproc.putText(raw, "Left", new Point(left.x - 10, left.y - 20), 0,0.8, new Scalar(0,255,255),2);
             Imgproc.circle(raw,left,5,new Scalar(0,255,255), 3);
@@ -116,19 +189,63 @@ public class CryptoboxDetector extends OpenCVPipeline {
 
             Imgproc.putText(raw, "Right", new Point(right.x - 10, right.y - 20), 0,0.8, new Scalar(0,255,255),2);
             Imgproc.circle(raw,right, 5,new Scalar(0,255,255), 3);
+        }else{
+            for(int i=0;i<boxes.size() - 1;i++){
+                Point collumn = drawSlot(i,boxes);
+                Imgproc.circle(raw,collumn,5,new Scalar(0,255,255), 3);
+                if(i<3){
+                    CryptoBoxPositions[i] = (int)collumn.x;
+                }
+            }
+
+            ColumnDetected = boxes.size() > 1;
         }
 
+        if(rotateMat){
 
-        Imgproc.resize(raw,raw, new Size(1280,960));
-        mask.release();
+            Mat tempAfter = raw.t();
+
+            Core.flip(tempAfter, raw, 0); //mRgba.t() is the transpose
+
+            tempAfter.release();
+        }
+
+        Imgproc.resize(raw,raw, initSize);
+
         return raw;
 
 
     }
 
-    public Object getKey(List item) {
-        return item.get(0);
+    public Mat getRedMask(Mat input){
+        Scalar lower1 = new Scalar(0,150,100);
+        Scalar upper1 = new Scalar(20,255,255);
+
+        Scalar lower2 = new Scalar(140,100,100);
+        Scalar upper2 = new Scalar(179,255,255);
+
+
+        Core.inRange(input,lower1,upper1,mask1);
+
+
+        Core.inRange(input,lower2,upper2,mask2);
+
+        Core.addWeighted(mask1,1.0, mask2,1.0, 0.0, mask);
+        return mask;
     }
+
+    public Mat getBlueMask(Mat input){
+
+        Scalar lower = new Scalar(90, 135, 25);
+        Scalar upper = new Scalar(130, 250, 150);
+
+
+
+        Core.inRange(input,lower,upper,mask);
+        return mask;
+    }
+
+
     public Point drawSlot(int slot, List<Rect> boxes){
         Rect leftColumn = boxes.get(slot); //Get the pillar to the left
         Rect rightColumn = boxes.get(slot + 1); //Get the pillar to the right
@@ -152,6 +269,30 @@ public class CryptoboxDetector extends OpenCVPipeline {
             output.add(row);
         }
         return output;
+    }
+
+    public int[] getCryptoBoxPositions() {
+        return CryptoBoxPositions;
+    }
+
+    public int getCryptoBoxLeftPosition() {
+        return CryptoBoxPositions[0];
+    }
+
+    public int getCryptoBoxCenterPosition() {
+        return CryptoBoxPositions[1];
+    }
+
+    public int getCryptoBoxRightPosition() {
+        return CryptoBoxPositions[2];
+    }
+
+    public boolean isCryptoBoxDetected() {
+        return CryptoBoxDetected;
+    }
+
+    public boolean isColumnDetected() {
+        return ColumnDetected;
     }
 
 }

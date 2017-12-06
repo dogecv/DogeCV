@@ -1,7 +1,5 @@
 package com.disnodeteam.dogecv.detectors;
 
-import android.media.Image;
-
 import com.disnodeteam.dogecv.OpenCVPipeline;
 
 import org.opencv.android.Utils;
@@ -28,7 +26,7 @@ public class GlyphDetector extends OpenCVPipeline {
     public double ChosenGlyphPos = -1;
     public double ChosenGlyphOffset = 0;
 
-    public boolean FoundRect = false;
+    public boolean foundRect = false;
 
     public Size ImageSize = new Size(480, 360);
 
@@ -172,9 +170,9 @@ public class GlyphDetector extends OpenCVPipeline {
             ChosenGlyphPos = (x+(w/2));
             ChosenGlyphOffset = ImageSize.width - (x+(w/2)) ;
 
-            FoundRect = false;
+            foundRect = false;
         }else{
-            FoundRect = true;
+            foundRect = true;
         }
         Imgproc.resize(out,out,new Size(1280,960));
 

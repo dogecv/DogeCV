@@ -23,7 +23,7 @@ public class CryptoboxOpMode extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
 
 
-     private CryptoboxDetectorRed cryptoboxDetectorRed = null;
+     private CryptoboxDetector cryptoboxDetector = null;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -32,14 +32,19 @@ public class CryptoboxOpMode extends OpMode
         telemetry.addData("Status", "Initialized");
 
 
-        cryptoboxDetectorRed = new CryptoboxDetectorRed();
-        cryptoboxDetectorRed.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
+        cryptoboxDetector = new CryptoboxDetector();
+        cryptoboxDetector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
+
+        cryptoboxDetector.downScaleFactor = 0.6;
+        cryptoboxDetector.detectionMode = CryptoboxDetector.CryptoboxDetectionMode.HSV_RED; // Also HSV_BLUE for blue 
+        cryptoboxDetector.speed = CryptoboxDetector.CryptoboxSpeed.BALANCED;
+        cryptoboxDetector.rotated = false;
 
         //Optional Test Code to load images via Drawables
-        //cryptoboxDetectorRed.UseImportedImage = false;
-        //cryptoboxDetectorRed.SetTestMat(com.qualcomm.ftcrobotcontroller.R.drawable.test_cv4);
+        //cryptoboxDetector.useImportedImage = true;
+        //cryptoboxDetector.SetTestMat(com.qualcomm.ftcrobotcontroller.R.drawable.test_cv4);
 
-        cryptoboxDetectorRed.enable();
+        cryptoboxDetector.enable();
 
 
     }
@@ -59,13 +64,17 @@ public class CryptoboxOpMode extends OpMode
     @Override
     public void loop() {
 
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("isCryptoBoxDetected", cryptoboxDetectorRed.isCryptoBoxDetected());
-        telemetry.addData("isColumnDetected ",  cryptoboxDetectorRed.isColumnDetected());
 
-        telemetry.addData("Column Left ",  cryptoboxDetectorRed.getCryptoBoxLeftPosition());
-        telemetry.addData("Column Center ",  cryptoboxDetectorRed.getCryptoBoxCenterPosition());
-        telemetry.addData("Column Right ",  cryptoboxDetectorRed.getCryptoBoxRightPosition());
+
+        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        telemetry.addData("isCryptoBoxDetected", cryptoboxDetector.isCryptoBoxDetected());
+        telemetry.addData("isColumnDetected ",  cryptoboxDetector.isColumnDetected());
+
+        telemetry.addData("Column Left ",  cryptoboxDetector.getCryptoBoxLeftPosition());
+        telemetry.addData("Column Center ",  cryptoboxDetector.getCryptoBoxCenterPosition());
+        telemetry.addData("Column Right ",  cryptoboxDetector.getCryptoBoxRightPosition());
+
+
     }
 
     /*
@@ -73,7 +82,7 @@ public class CryptoboxOpMode extends OpMode
      */
     @Override
     public void stop() {
-        cryptoboxDetectorRed.disable();
+        cryptoboxDetector.disable();
     }
 
 }

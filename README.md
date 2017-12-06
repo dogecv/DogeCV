@@ -12,9 +12,9 @@
 
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
-<img src="https://i.imgur.com/J1hnHR6.png" width="33%"/>
-<img src="https://i.imgur.com/ZsNOK11.png" width="33%"/>
-<img src="https://i.imgur.com/aHXaB0i.png" width="33%"/>
+<img src="https://i.imgur.com/J1hnHR6.png" width="31%"/>
+<img src="https://i.imgur.com/ZsNOK11.png" width="31%"/>
+<img src="https://i.imgur.com/aHXaB0i.png" width="31%"/>
 
 
 # DISCLAIMER
@@ -52,7 +52,7 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 10. Click **OK** to exit the **Project Structure** dialog.
 ## Detectors
 
-### Glyph Detector (Detecting, last Updated: 12/1/17)
+### Glyph Detector (PROTOTYPE WORKING, NOT FUNCTIONAL VIA API, last Updated: 12/1/17)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -66,7 +66,7 @@ Currently This Detector Returns the Following:
 - `ChosenGlyphOffset` - The Distance of the chosen glyph from the center of the screen
 - `FoundRect` - Is there a glyph found?
 
-### Cryptobox Detector (Working, Last Updated: 12/4/17)
+### Cryptobox Detector (Working, Last Updated: 12/5/17)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
@@ -75,8 +75,10 @@ to other ways of doing this.
  - `CryptoboxDetectorBlue` - Blue Cryptobox Detector
 
 #### Parameters
-*none*
-
+- `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) WARNING! This value seems to cause crashes, recommend 0.6 (default).
+- `detectionMode` - Mode used to detect, `HSV_BLUE` and `HSV_RED` are currently only implemented modes, each representing which color you what to detect.
+- `speed` - Speed setting for the detector. (how fast vs how good)
+- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
 #### Returned Data
 Currently This Detector Returns the Following:
 - `isCryptoBoxDetected()` - Is the full box detected?
