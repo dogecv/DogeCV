@@ -21,7 +21,7 @@ public class GlyphOpMode extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
 
 
-    private GlyphDetector glyphDetector = null;
+     private GlyphDetector glyphDetector = null;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -32,6 +32,9 @@ public class GlyphOpMode extends OpMode
 
         glyphDetector = new GlyphDetector();
         glyphDetector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
+        glyphDetector.minScore = 1;
+        glyphDetector.downScaleFactor = 0.3;
+        glyphDetector.speed = GlyphDetector.GlyphDetectionSpeed.SLOW;
         glyphDetector.enable();
 
 
@@ -55,8 +58,8 @@ public class GlyphOpMode extends OpMode
 
 
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Glyph Pos X", glyphDetector.ChosenGlyphPos);
-        telemetry.addData("Glyph Pos Offest", glyphDetector.ChosenGlyphOffset);
+        telemetry.addData("Glyph Pos X", glyphDetector.getChosenGlyphOffset());
+        telemetry.addData("Glyph Pos Offest", glyphDetector.getChosenGlyphPosition().toString());
 
 
     }

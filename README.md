@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.2 Last Updated 12/5/17</i>
+     <i>Version 0.3 Last Updated 12/6/17</i>
 
 </div>
 
@@ -21,8 +21,7 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
 ## Known Issues
-- Glyph Detector Outdate
-- Glyph Detector Memory Leak
+- Glyph Slow Performance
 
 ## Planned Features / TODO
 - Jewel Position Detector
@@ -31,7 +30,6 @@ However, although many of the detectors are currently pretty basic, I am putting
 - Previous frame's results to increase accuracy in detectors
 - Motion Tracking for Cryptobox
 - HSV Calibrating
-- Return 2D Coords instead of just X
 
 
 ## Install (Credit to EnderCV)
@@ -47,31 +45,37 @@ However, although many of the detectors are currently pretty basic, I am putting
 10. Click **OK** to exit the **Project Structure** dialog.
 ## Detectors
 
-### Glyph Detector (PROTOTYPE WORKING, NOT FUNCTIONAL VIA API, last Updated: 12/1/17)
+### Glyph Detector (Working, last Updated: 12/6/17)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
-
+#### Detector Classes
+ - `GlyphDetector` - Cryptobox Detector
 #### Parameters
-- `MinScore` - The mininum score to return the values. Think of this as a threshold for results.
+- `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) 
+- `speed` - Speed setting for the detector. (how fast vs how good)
+- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
+- `minScore` - The minimum score for results (threshold)
+- `debugDrawStats` - Draw Scores for each result
+- `debugDrawRects` - Draw All Found Rectangles
 
 #### Returned Data
 Currently This Detector Returns the Following:
-- `ChosenGlyphPos` - The X Position of the Choosen Glyph on the screen
-- `ChosenGlyphOffset` - The Distance of the chosen glyph from the center of the screen
-- `FoundRect` - Is there a glyph found?
+- `getChosenGlyphPosition()` - The Position of the Choosen Glyph on the screen (Point)
+- `getChosenGlyphOffset()` - The Distance of the chosen glyph from the center of the screen
+- `isFoundRect()` - Is there a glyph found?
 
-### Cryptobox Detector (Working, Last Updated: 12/5/17)
+### Cryptobox Detector (Working, Last Updated: 12/6/17)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
 Im currently developing a new version of this detector as it is basic and prone to failure, however I decided to release this as it's better the nothing. 
 
 #### Detector Classes
- - `CryptoboxDetectorRed` - Cryptobox Detector
+ - `CryptoboxDetector` - Cryptobox Detector
 
 #### Parameters
-- `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) WARNING! This value seems to cause crashes, recommend 0.6 (default).
+- `downScaleFactor` - double representing how much to downscale each frame.
 - `detectionMode` - Mode used to detect, `HSV_BLUE` and `HSV_RED` are currently only implemented modes, each representing which color you what to detect.
 - `speed` - Speed setting for the detector. (how fast vs how good)
 - `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
