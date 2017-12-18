@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.3 Last Updated 12/6/17</i>
+     <i>Version 0.3 Last Updated 12/17/17</i>
 
 </div>
 
@@ -43,9 +43,11 @@ However, although many of the detectors are currently pretty basic, I am putting
 8. Click the green plus sign on the right hand side, then **Module dependency**, and then **:openCVLibrary320**, then press OK.
 9. Repeat step 8, except substitute **:openCVLibrary320** with **:dogecv**
 10. Click **OK** to exit the **Project Structure** dialog.
-## Detectors
 
-### Glyph Detector (Working, last Updated: 12/6/17)
+
+# Detectors
+
+## Glyph Detector (Working, last Updated: 12/6/17)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -65,7 +67,7 @@ Currently This Detector Returns the Following:
 - `getChosenGlyphOffset()` - The Distance of the chosen glyph from the center of the screen
 - `isFoundRect()` - Is there a glyph found?
 
-### Cryptobox Detector (Working, Last Updated: 12/6/17)
+## Cryptobox Detector (Working, Last Updated: 12/6/17)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
@@ -88,8 +90,29 @@ Currently This Detector Returns the Following:
 - `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
 - `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
-### Jewel Detector (In Development v0)
-This detector finds the orientations of the two Jewels, returning which one is left or right. This is HSV based so lighting and color will effect this detector.
+## Jewel Detector (Working, Last Updated: 12/17/17)
+This detector find the current orientation of the jewels using color filtering.
+
+#### Detector Classes
+ - `JewelDetector` - Cryptobox Detector
+
+#### Parameters
+- `downScaleFactor` - double representing how much to downscale each frame.
+- `detectionMode` - Mode used to score results, 
+  - `MAX_AREA` returns the largest objects in the frame (Good for quick and easy since it doesn't need tuning, but less accurate)
+  - `PERFECT_AREA` returns the objects closest to a desired area (Needs tuning, use debugContours to get areas)
+- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
+- `areaWeight` - How much does area affect the results (should always be a decimal under 0.1 due to the large numbers returned by areas)
+- `perfectArea` - The area of an object (in pixels) that is deemed "perfect" for jewels.
+- `debugContours` - Show debug information for contours in the image, including areas.
+- `maxDiffrence` - Max diffrence for objects (lower is more restrictive, recommend 10-20)
+- `ratioWeight` - How is the ratio of the object's width and height weighted (recommend 10-20)
+- `minArea` - Min area for objets (this depends on downScale, but I recommend 500+);
+
+#### Returned Data
+Currently This Detector Returns the Following:
+- `getLastOrder()` - Get the last known jewel order (`BLUE_RED` or `RED_BLUE`)
+- `getCurrentOrder()` -  Get the current jewel order (`BLUE_RED`, `RED_BLUE` or `UNKNOWN`)
 
 
 ## Contact
