@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.3 Last Updated 12/17/17</i>
+     <i>Version 0.4 Last Updated 12/17/17</i>
 
 </div>
 
