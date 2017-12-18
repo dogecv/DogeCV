@@ -20,6 +20,11 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON. MANY OF THE 
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
+## Credits
+- Karter FTC 5975 Cybots
+- Levi 8148 AlephBots
+- Aparna ig
+- Everyone else on the Programming Discord <3
 ## Known Issues
 - Glyph Slow Performance
 
