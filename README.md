@@ -21,10 +21,10 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
 ## Credits
-- Karter FTC 5975 Cybots
-- Levi 8148 AlephBots
-- Aparna ig
-- Everyone else on the Programming Discord <3
+- Levi 8148 AlephBots (Amazing color filtering and Cryptobox Detector)
+- Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
+- Aparna ig (Testing)
+- Everyone else on the Programming Discord <3 (Dealing with my bs)
 ## Known Issues
 - Glyph Slow Performance
 
