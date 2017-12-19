@@ -26,7 +26,8 @@ However, although many of the detectors are currently pretty basic, I am putting
 - Aparna ig (Testing)
 - Everyone else on the Programming Discord <3 (Dealing with my bs)
 ## Known Issues
-- Glyph Slow Performance
+- Blue in background throws of Crypto checkers. (NO JEANS PLZZZ)
+- Gylph Detections pretty buggy
 
 ## Planned Features / TODO
 - Jewel Position Detector
