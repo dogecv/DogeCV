@@ -25,17 +25,16 @@ However, although many of the detectors are currently pretty basic, I am putting
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
 - Aparna ig (Testing)
 - Everyone else on the Programming Discord <3 (Dealing with my bs)
+
 ## Known Issues
 - Blue in background throws of Crypto checkers. (NO JEANS PLZZZ)
 - Gylph Detections pretty buggy
 
 ## Planned Features / TODO
-- Jewel Position Detector
 - Glyph Color Reading
-- Score based Cryptobox detection to increase accuracy.
 - Previous frame's results to increase accuracy in detectors
 - Motion Tracking for Cryptobox
-- HSV Calibrating
+- Cryptobox line checks follow lines instead of Y-Axis
 
 
 ## Install (Credit to EnderCV)
