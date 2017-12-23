@@ -42,7 +42,7 @@ public class JewelDetector extends OpenCVPipeline {
 
 
     public JewelDetectionMode  detectionMode    = JewelDetectionMode.MAX_AREA;
-    public double              downScaleFactor  = 0.6;
+    public double              downScaleFactor  = 0.4;
     public boolean             rotateMat        = false;
     public JewelDetectionSpeed speed            = JewelDetectionSpeed.BALANCED;
     public double              perfectArea      = 6500;
@@ -66,7 +66,7 @@ public class JewelDetector extends OpenCVPipeline {
     private Size newSize = new Size();
 
     @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
+    public  Mat[] processFrame(Mat rgba, Mat gray) {
 
         Size initSize= rgba.size();
         newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
@@ -274,44 +274,35 @@ public class JewelDetector extends OpenCVPipeline {
         Imgproc.putText(workingMat,"Result: " + lastOrder.toString(),new Point(10,newSize.height - 30),0,1, new Scalar(255,255,0),1);
         Imgproc.putText(workingMat,"Current Track: " + currentOrder.toString(),new Point(10,newSize.height - 10),0,0.5, new Scalar(255,255,255),1);
 
-        if(rotateMat){
-            Mat tempAfter = workingMat.t();
-            Core.flip(tempAfter, workingMat, 0); //mRgba.t() is the transpose
-            tempAfter.release();
+
+
+        Mat[] returnMats = {workingMat,maskRed,maskBlue};
+
+        for(Mat mat: returnMats){
+            Imgproc.resize(mat,mat,initSize);
         }
 
         redConvert.release();
         blueConvert.release();
-        Imgproc.resize(workingMat, workingMat, initSize);
-
-
-
-
         Imgproc.putText(workingMat,"DogeCV JewelV1: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,15),0,0.6,new Scalar(0,255,255),2);
-        return workingMat;
+
+        return returnMats;
     }
 
     private void getRedMask(Mat input){
-
         Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2Lab);
         Imgproc.GaussianBlur(input,input,new Size(3,3),0);
         List<Mat> channels = new ArrayList<Mat>();
         Core.split(input, channels);
         Imgproc.threshold(channels.get(1), maskRed, 164.0, 255, Imgproc.THRESH_BINARY);
-
     }
 
-    private Mat getBlueMask(Mat input){
-
+    private void getBlueMask(Mat input){
         Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2YUV);
         Imgproc.GaussianBlur(input,input,new Size(3,3),0);
         List<Mat> channels = new ArrayList<Mat>();
         Core.split(input, channels);
         Imgproc.threshold(channels.get(1), maskBlue, 145.0, 255, Imgproc.THRESH_BINARY);
-
-
-
-        return maskBlue;
     }
 
     public JewelOrder getCurrentOrder() {

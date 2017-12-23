@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.4 Last Updated 12/17/17</i>
+     <i>Version 0.5 Last Updated 12/23/17</i>
 
 </div>
 
@@ -52,7 +52,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 
 # Detectors
 
-## Glyph Detector (Working, last Updated: 12/6/17)
+## Glyph Detector (Not Competetion Ready, last Updated: 12/6/17)
 This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
@@ -72,7 +72,7 @@ Currently This Detector Returns the Following:
 - `getChosenGlyphOffset()` - The Distance of the chosen glyph from the center of the screen
 - `isFoundRect()` - Is there a glyph found?
 
-## Cryptobox Detector (Working, Last Updated: 12/6/17)
+## Cryptobox Detector (Not Competetion Ready. Being Rewritten, Last Updated: 12/6/17)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
@@ -95,7 +95,7 @@ Currently This Detector Returns the Following:
 - `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
 - `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
-## Jewel Detector (Working, Last Updated: 12/17/17)
+## Jewel Detector (Competetion Ready, Last Updated: 12/23/17)
 This detector find the current orientation of the jewels using color filtering.
 
 #### Detector Classes
@@ -120,6 +120,10 @@ Currently This Detector Returns the Following:
 - `getCurrentOrder()` -  Get the current jewel order (`BLUE_RED`, `RED_BLUE` or `UNKNOWN`)
 
 
+## Changelogs
+**0.5**:
+ - Fixed rotated preview on protrait mode.
+ - Detectors return an array of images. You can cycle through them by tapping on the preview screen
 ## Contact
 If you have any suggestions or questions feel free to contact me at:    
 **VictoryForPhil@gmail.com**

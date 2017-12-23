@@ -33,7 +33,8 @@ public class CryptoboxDetector extends OpenCVPipeline {
     public double                 downScaleFactor    = 0.6;
     public boolean                rotateMat          = false;
     public CryptoboxSpeed         speed              = CryptoboxSpeed.BALANCED;
-    public boolean debugShowMask = true;
+    public int                    centerOffset       = 0;
+    public boolean                debugShowMask      = true;
 
 
     private boolean CryptoBoxDetected = false;
@@ -53,13 +54,14 @@ public class CryptoboxDetector extends OpenCVPipeline {
     private Mat hierarchy = new Mat();
     Mat kernel = Mat.ones(5,5,CvType.CV_32F);
 
+    private Size newSize = new Size();
 
 
     @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
+    public Mat[] processFrame(Mat rgba, Mat gray) {
 
         Size initSize= rgba.size();
-        Size newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
+        newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
         rgba.copyTo(workingMat);
 
 
@@ -80,7 +82,7 @@ public class CryptoboxDetector extends OpenCVPipeline {
 
         Imgproc.erode(workingMat, workingMat,kernel);
         Imgproc.dilate(workingMat, workingMat,kernel);
-        Imgproc.cvtColor(workingMat,hsv,Imgproc.COLOR_RGB2HSV);
+        Imgproc.cvtColor(workingMat,hsv,Imgproc.COLOR_BGR2HSV);
 
 
         switch(detectionMode){
@@ -187,19 +189,16 @@ public class CryptoboxDetector extends OpenCVPipeline {
             ColumnDetected = boxes.size() > 1;
         }
 
-        if(rotateMat){
 
-            Mat tempAfter = workingMat.t();
 
-            Core.flip(tempAfter, workingMat, 0); //mRgba.t() is the transpose
+        Mat[] returnMats = {workingMat,mask1,mask2, mask};
 
-            tempAfter.release();
+        for(Mat mat: returnMats){
+
+            Imgproc.resize(mat,mat,initSize);
         }
 
-        Imgproc.resize(workingMat, workingMat, initSize);
-
-
-        return workingMat;
+        return returnMats;
 
 
     }
@@ -281,5 +280,38 @@ public class CryptoboxDetector extends OpenCVPipeline {
     public boolean isColumnDetected() {
         return ColumnDetected;
     }
+
+    public int[] getCryptoBoxOffsets() {
+        int[] offsets = new int[CryptoBoxPositions.length];
+
+        for (int i = 0; i < CryptoBoxPositions.length ; i++) {
+            int center = (int)(newSize.width / 2) + centerOffset;
+            offsets[i] = CryptoBoxPositions[i] - center;
+        }
+
+        return offsets;
+    }
+
+    public int getCryptoBoxLeftOffset() {
+        int center = (int)(newSize.width / 2) + centerOffset;
+        return  CryptoBoxPositions[0] - center;
+
+    }
+
+    public int getCryptoBoxCenterOffset() {
+        int center = (int)(newSize.width / 2) + centerOffset;
+        return  CryptoBoxPositions[1] - center;
+    }
+
+    public int getCryptoBoxRightOffset() {
+        int center = (int)(newSize.width / 2) + centerOffset;
+        return  CryptoBoxPositions[2] - center;
+    }
+
+
+    public Size getFrameSize() {
+        return newSize;
+    }
+
 
 }

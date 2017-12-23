@@ -21,6 +21,7 @@ public class CameraViewDisplay implements ViewDisplay {
 
     public static CameraViewDisplay getInstance() {
         if (instance == null) instance = new CameraViewDisplay();
+
         return instance;
     }
 
@@ -38,6 +39,7 @@ public class CameraViewDisplay implements ViewDisplay {
                 }
                 l.addView(queuedView);
                 view = queuedView;
+
             }
         });
     }
