@@ -43,6 +43,7 @@ public class JewelDetector extends OpenCVPipeline {
 
     public JewelDetectionMode  detectionMode    = JewelDetectionMode.MAX_AREA;
     public double              downScaleFactor  = 0.4;
+    public double              perfectRatio     = 1;
     public boolean             rotateMat        = false;
     public JewelDetectionSpeed speed            = JewelDetectionSpeed.BALANCED;
     public double              perfectArea      = 6500;
@@ -66,7 +67,7 @@ public class JewelDetector extends OpenCVPipeline {
     private Size newSize = new Size();
 
     @Override
-    public  Mat[] processFrame(Mat rgba, Mat gray) {
+    public Mat processFrame(Mat rgba, Mat gray) {
 
         Size initSize= rgba.size();
         newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
@@ -77,7 +78,7 @@ public class JewelDetector extends OpenCVPipeline {
         if(rotateMat){
             Mat tempBefore = workingMat.t();
 
-            Core.flip(tempBefore, workingMat, 1); //mRgba.t() is the transpose
+            Core.flip(tempBefore, workingMat, -1); //mRgba.t() is the transpose
 
             tempBefore.release();
         }
@@ -139,7 +140,7 @@ public class JewelDetector extends OpenCVPipeline {
 
 
             double cubeRatio = Math.max(Math.abs(h/w), Math.abs(w/h)); // Get the ratio. We use max in case h and w get swapped??? it happens when u account for rotation
-            double ratioDiffrence = Math.abs(cubeRatio - 1);
+            double ratioDiffrence = Math.abs(cubeRatio - perfectRatio);
 
 
             double finalDiffrence = (ratioDiffrence * ratioWeight) + (areaDiffrence * areaWeight);
@@ -274,19 +275,13 @@ public class JewelDetector extends OpenCVPipeline {
         Imgproc.putText(workingMat,"Result: " + lastOrder.toString(),new Point(10,newSize.height - 30),0,1, new Scalar(255,255,0),1);
         Imgproc.putText(workingMat,"Current Track: " + currentOrder.toString(),new Point(10,newSize.height - 10),0,0.5, new Scalar(255,255,255),1);
 
-
-
-        Mat[] returnMats = {workingMat,maskRed,maskBlue};
-
-        for(Mat mat: returnMats){
-            Imgproc.resize(mat,mat,initSize);
-        }
+        Imgproc.resize(workingMat,workingMat,initSize);
 
         redConvert.release();
         blueConvert.release();
         Imgproc.putText(workingMat,"DogeCV JewelV1: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,15),0,0.6,new Scalar(0,255,255),2);
 
-        return returnMats;
+        return workingMat;
     }
 
     private void getRedMask(Mat input){

@@ -139,13 +139,9 @@ public abstract class OpenCVPipeline implements CameraBridgeViewBase.CvCameraVie
      */
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        Mat[] returnMats = processFrame(inputFrame.rgba(), inputFrame.gray());
 
-        if(viewIndex >= returnMats.length){
-            viewIndex=0;
-        }
 
-        return returnMats[viewIndex];
+        return processFrame(inputFrame.rgba(), inputFrame.gray());
     }
 
     /**
@@ -154,6 +150,6 @@ public abstract class OpenCVPipeline implements CameraBridgeViewBase.CvCameraVie
      * @param gray a {@link Mat} that is already grayscale
      * @return the Mat that should be displayed to the screen; in most cases one would probably just want to return rgba
      */
-    public abstract Mat[] processFrame(Mat rgba, Mat gray);
+    public abstract Mat processFrame(Mat rgba, Mat gray);
 
 }
