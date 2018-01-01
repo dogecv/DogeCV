@@ -121,11 +121,9 @@ Currently This Detector Returns the Following:
 ## Changelogs
 **1.0**:
  - New Cryptobox Detector
- - Support for Vuforia Frame Capturing
- - Support for Single Frame Capturing
  - Youtube Tutorials
  - Per-Detector Documentation
- - Wiki
+ - Wiki Start 
  - Added `perfectRatio` tuning for Jewels
  - Optimiziation
  - Removed Multiple Mat returning
