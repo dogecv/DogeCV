@@ -1,14 +1,14 @@
 
 
 <div align="center">
-    <img src="https://i.imgur.com/PK5wYK5.png" width="100%"/>
+    <img src="https://i.imgur.com/sjEURcc.png" width="100%"/>
     <br></br>
   <p>
     <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 0.5 Last Updated 12/23/17</i>
+     <i>Version 1.0 Last Updated 12/23/17</i>
 
 </div>
 
@@ -72,7 +72,7 @@ Currently This Detector Returns the Following:
 - `getChosenGlyphOffset()` - The Distance of the chosen glyph from the center of the screen
 - `isFoundRect()` - Is there a glyph found?
 
-## Cryptobox Detector (Not Competetion Ready. Being Rewritten, Last Updated: 12/6/17)
+## Cryptobox Detector (Competetion Ready. Last Updated: 12/31/17)
 This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
 to other ways of doing this. 
 
@@ -82,9 +82,7 @@ Im currently developing a new version of this detector as it is basic and prone 
  - `CryptoboxDetector` - Cryptobox Detector
 
 #### Parameters
-- `downScaleFactor` - double representing how much to downscale each frame.
-- `detectionMode` - Mode used to detect, `HSV_BLUE` and `HSV_RED` are currently only implemented modes, each representing which color you what to detect.
-- `speed` - Speed setting for the detector. (how fast vs how good)
+- `detectionMode` - Mode used to detect, `RED` and `BLUE` are currently only implemented modes, each representing which color you what to detect.
 - `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
 #### Returned Data
 Currently This Detector Returns the Following:
@@ -95,7 +93,7 @@ Currently This Detector Returns the Following:
 - `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
 - `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
 
-## Jewel Detector (Competetion Ready, Last Updated: 12/23/17)
+## Jewel Detector (Competetion Ready, Last Updated: 12/31/17)
 This detector find the current orientation of the jewels using color filtering.
 
 #### Detector Classes
@@ -121,6 +119,17 @@ Currently This Detector Returns the Following:
 
 
 ## Changelogs
+**1.0**:
+ - New Cryptobox Detector
+ - Support for Vuforia Frame Capturing
+ - Support for Single Frame Capturing
+ - Youtube Tutorials
+ - Per-Detector Documentation
+ - Wiki
+ - Added `perfectRatio` tuning for Jewels
+ - Optimiziation
+ - Removed Multiple Mat returning
+
 **0.5**:
  - Fixed rotated preview on protrait mode.
  - Detectors return an array of images. You can cycle through them by tapping on the preview screen
