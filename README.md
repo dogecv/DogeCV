@@ -57,7 +57,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 **1.1**:
  - New Color Filter API
  - New Generic Detector
- 
+ - Debug Text Cleaned up in Jewel Detector
  
 **1.0**:
  - New Cryptobox Detector
