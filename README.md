@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 1.0 Last Updated 12/23/17</i>
+     <i>Version 1.1 Last Updated 1/1/2018</i>
 
 </div>
 
@@ -51,74 +51,12 @@ However, although many of the detectors are currently pretty basic, I am putting
 
 
 # Detectors
-
-## Glyph Detector (Not Competetion Ready, last Updated: 12/6/17)
-This is a detector that uses a mix of filters and canny edge detection that is fed into FindContours. Then each result is scored based on Ratio, Area,
-Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
-from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
-#### Detector Classes
- - `GlyphDetector` - Glyph Detector
-#### Parameters
-- `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) 
-- `speed` - Speed setting for the detector. (how fast vs how good)
-- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
-- `minScore` - The minimum score for results (threshold)
-- `debugDrawStats` - Draw Scores for each result
-- `debugDrawRects` - Draw All Found Rectangles
-
-#### Returned Data
-Currently This Detector Returns the Following:
-- `getChosenGlyphPosition()` - The Position of the Choosen Glyph on the screen (Point)
-- `getChosenGlyphOffset()` - The Distance of the chosen glyph from the center of the screen
-- `isFoundRect()` - Is there a glyph found?
-
-## Cryptobox Detector (Competetion Ready. Last Updated: 12/31/17)
-This detector finds the position of each column inside the cryptobox. It currently used HSV values to do this so color and lighting will effect it. Im looking
-to other ways of doing this. 
-
-Im currently developing a new version of this detector as it is basic and prone to failure, however I decided to release this as it's better the nothing. 
-
-#### Detector Classes
- - `CryptoboxDetector` - Cryptobox Detector
-
-#### Parameters
-- `detectionMode` - Mode used to detect, `RED` and `BLUE` are currently only implemented modes, each representing which color you what to detect.
-- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
-#### Returned Data
-Currently This Detector Returns the Following:
-- `isCryptoBoxDetected()` - Is the full box detected?
-- `isColumnDetected()` - Is at least one column detected?
-- `getCryptoBoxLeftPosition()` - Get the left column position (int on x-axis)
-- `getCryptoBoxCenterPosition()` - Get the center column position (int on x-axis)
-- `getCryptoBoxRightPosition()` - Get the right column position (int on x-axis)
-- `getCryptoBoxPositions()` - Array on Ints that represent columns found, in order from left to right
-
-## Jewel Detector (Competetion Ready, Last Updated: 12/31/17)
-This detector find the current orientation of the jewels using color filtering.
-
-#### Detector Classes
- - `JewelDetector` - Cryptobox Detector
-
-#### Parameters
-- `downScaleFactor` - double representing how much to downscale each frame.
-- `detectionMode` - Mode used to score results, 
-  - `MAX_AREA` returns the largest objects in the frame (Good for quick and easy since it doesn't need tuning, but less accurate)
-  - `PERFECT_AREA` returns the objects closest to a desired area (Needs tuning, use debugContours to get areas)
-- `rotateMat` - Rotate the image when processing (wont be visible on preview, change this if you see detections working horizontally) [Usually: Landscape = false, Portrait = true]
-- `areaWeight` - How much does area affect the results (should always be a decimal under 0.1 due to the large numbers returned by areas)
-- `perfectArea` - The area of an object (in pixels) that is deemed "perfect" for jewels.
-- `debugContours` - Show debug information for contours in the image, including areas.
-- `maxDiffrence` - Max diffrence for objects (lower is more restrictive, recommend 10-20)
-- `ratioWeight` - How is the ratio of the object's width and height weighted (recommend 10-20)
-- `minArea` - Min area for objets (this depends on downScale, but I recommend 500+);
-
-#### Returned Data
-Currently This Detector Returns the Following:
-- `getLastOrder()` - Get the last known jewel order (`BLUE_RED` or `RED_BLUE`)
-- `getCurrentOrder()` -  Get the current jewel order (`BLUE_RED`, `RED_BLUE` or `UNKNOWN`)
-
+## See Wiki
 
 ## Changelogs
+**1.1**:
+ - New Color Filter API
+ - New Generic Detector
 **1.0**:
  - New Cryptobox Detector
  - Youtube Tutorials
