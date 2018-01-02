@@ -51,12 +51,14 @@ However, although many of the detectors are currently pretty basic, I am putting
 
 
 # Detectors
-## See Wiki
+**See Wiki**
 
 ## Changelogs
 **1.1**:
  - New Color Filter API
  - New Generic Detector
+ 
+ 
 **1.0**:
  - New Cryptobox Detector
  - Youtube Tutorials
