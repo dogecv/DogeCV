@@ -55,9 +55,13 @@ However, although many of the detectors are currently pretty basic, I am putting
 
 ## Changelogs
 **1.1**:
- - New Color Filter API
- - New Generic Detector
- - Debug Text Cleaned up in Jewel Detector
+- New Color Filter API   
+- New Generic Detector     
+- Fixed Jewel Debug Scores    
+- Fixed Imports for DogeLogger inside Cryptobox Detector   
+- Ported all detectors to Color Filter API     
+- Added Yellow to LeviColorFilter
+- Added HSV color filter
  
 **1.0**:
  - New Cryptobox Detector
