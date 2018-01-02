@@ -2,6 +2,8 @@ package com.disnodeteam.dogecv.detectors;
 
 
 import com.disnodeteam.dogecv.OpenCVPipeline;
+import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
+import com.disnodeteam.dogecv.filters.LeviColorFilter;
 
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -52,6 +54,9 @@ public class JewelDetector extends OpenCVPipeline {
     public double              ratioWeight      = 15; // Since most of the time the area diffrence is a decimal place
     public double              maxDiffrence     = 10; // Since most of the time the area diffrence is a decimal place
     public boolean             debugContours    = false;
+    public DogeCVColorFilter   colorFilterRed   = new LeviColorFilter(LeviColorFilter.ColorPreset.RED);
+    public DogeCVColorFilter   colorFilterBlue  = new LeviColorFilter(LeviColorFilter.ColorPreset.BLUE);
+
 
     private JewelOrder currentOrder = JewelOrder.UNKNOWN;
     private JewelOrder lastOrder    = JewelOrder.UNKNOWN;
@@ -86,8 +91,8 @@ public class JewelDetector extends OpenCVPipeline {
         Mat redConvert = workingMat.clone();
         Mat blueConvert = workingMat.clone();
 
-        getRedMask(redConvert);
-        getBlueMask(blueConvert);
+        colorFilterRed.process(redConvert, maskRed);
+        colorFilterBlue.process(blueConvert, blurredMat);
 
 
 
@@ -237,7 +242,7 @@ public class JewelDetector extends OpenCVPipeline {
                     new Scalar(255, 0, 0), 2);
 
             Imgproc.putText(workingMat,
-                    "Red: " + chosenRedScore,
+                    "Red: " + String.format("%.2f", chosenRedScore),
                     new Point(chosenRedRect.x - 5, chosenRedRect.y - 10),
                     Core.FONT_HERSHEY_PLAIN,
                     1.3,
@@ -252,7 +257,7 @@ public class JewelDetector extends OpenCVPipeline {
                     new Scalar(0, 0, 255), 2);
 
             Imgproc.putText(workingMat,
-                    "Blue: " + chosenRedScore,
+                    "Blue: " + String.format("%.2f", chosenBlueScore),
                     new Point(chosenBlueRect.x - 5, chosenBlueRect.y - 10),
                     Core.FONT_HERSHEY_PLAIN,
                     1.3,
@@ -279,26 +284,11 @@ public class JewelDetector extends OpenCVPipeline {
 
         redConvert.release();
         blueConvert.release();
-        Imgproc.putText(workingMat,"DogeCV JewelV1: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,15),0,0.6,new Scalar(0,255,255),2);
+        Imgproc.putText(workingMat,"DogeCV 1.1 Jewel: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,30),0,1.2,new Scalar(0,255,255),2);
 
         return workingMat;
     }
 
-    private void getRedMask(Mat input){
-        Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2Lab);
-        Imgproc.GaussianBlur(input,input,new Size(3,3),0);
-        List<Mat> channels = new ArrayList<Mat>();
-        Core.split(input, channels);
-        Imgproc.threshold(channels.get(1), maskRed, 164.0, 255, Imgproc.THRESH_BINARY);
-    }
-
-    private void getBlueMask(Mat input){
-        Imgproc.cvtColor(input, input, Imgproc.COLOR_RGB2YUV);
-        Imgproc.GaussianBlur(input,input,new Size(3,3),0);
-        List<Mat> channels = new ArrayList<Mat>();
-        Core.split(input, channels);
-        Imgproc.threshold(channels.get(1), maskBlue, 145.0, 255, Imgproc.THRESH_BINARY);
-    }
 
     public JewelOrder getCurrentOrder() {
         return currentOrder;
