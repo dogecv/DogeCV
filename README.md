@@ -57,7 +57,7 @@ This is a detector that uses a mix of filters and canny edge detection that is f
 Distance from Bottom-Center of the screen, and soon color. The top scoring result is returned. The value that will be returned inside DogeCV will be a distance
 from Center Screen on the X Axis. This can be fed into the bot to tell it which direction to turn.
 #### Detector Classes
- - `GlyphDetector` - Cryptobox Detector
+ - `GlyphDetector` - Glyph Detector
 #### Parameters
 - `downScaleFactor` - double representing how much to downscale each frame. (Lower = Faster) 
 - `speed` - Speed setting for the detector. (how fast vs how good)
@@ -121,11 +121,9 @@ Currently This Detector Returns the Following:
 ## Changelogs
 **1.0**:
  - New Cryptobox Detector
- - Support for Vuforia Frame Capturing
- - Support for Single Frame Capturing
  - Youtube Tutorials
  - Per-Detector Documentation
- - Wiki
+ - Wiki Start 
  - Added `perfectRatio` tuning for Jewels
  - Optimiziation
  - Removed Multiple Mat returning
