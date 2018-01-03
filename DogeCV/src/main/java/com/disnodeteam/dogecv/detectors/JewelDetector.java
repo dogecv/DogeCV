@@ -92,9 +92,7 @@ public class JewelDetector extends OpenCVPipeline {
         Mat blueConvert = workingMat.clone();
 
         colorFilterRed.process(redConvert, maskRed);
-        colorFilterBlue.process(blueConvert, blurredMat);
-
-
+        colorFilterBlue.process(blueConvert, maskBlue);
 
         List<MatOfPoint> contoursRed = new ArrayList<>();
 

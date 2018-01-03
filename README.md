@@ -54,6 +54,10 @@ However, although many of the detectors are currently pretty basic, I am putting
 **See Wiki**
 
 ## Changelogs
+**1.1.1 HOTFIX**:
+ - Fixed Jewel Detector Blue Filter
+ 
+
 **1.1**:
  - New Color Filter API
  - New Generic Detector
