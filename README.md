@@ -54,9 +54,9 @@ However, although many of the detectors are currently pretty basic, I am putting
 **See Wiki**
 
 ## FAQ
-**If I use dogeCV can I still use Vuforia?**
+- **If I use dogeCV can I still use Vuforia?**
 
-Yes, but not at the same time. You must disable Vuforia before using dogeCV and vice versa. Also, the default vuforia localizer doesn't detach from the camera by default. In order to make it detech from the camera, you must use [another vuforia localizer](https://gist.github.com/5484Enderbots/772584ae3fc53fda99c0f8f51dc1a9f9). 
+    Yes, but not at the same time. You must disable Vuforia before using dogeCV and vice versa. Also, the default vuforia localizer doesn't detach from the camera by default. In order to make it detech from the camera, you must use [another vuforia localizer](https://gist.github.com/5484Enderbots/772584ae3fc53fda99c0f8f51dc1a9f9). 
 
 ## Changelogs
 **1.1.1 HOTFIX**:
