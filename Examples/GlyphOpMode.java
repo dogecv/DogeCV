@@ -37,12 +37,7 @@ public class GlyphOpMode extends OpMode
         glyphDetector.speed = GlyphDetector.GlyphDetectionSpeed.SLOW;
         glyphDetector.enable();
 
-
-    }
-
-    @Override
-    public void init_loop() {
-        telemetry.addData("Status", "Initialized. Gyro Calibration");
+        telemetry.update();
     }
 
     @Override
@@ -60,6 +55,7 @@ public class GlyphOpMode extends OpMode
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Glyph Pos X", glyphDetector.getChosenGlyphOffset());
         telemetry.addData("Glyph Pos Offest", glyphDetector.getChosenGlyphPosition().toString());
+        telemetry.update();
 
 
     }
