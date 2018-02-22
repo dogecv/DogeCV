@@ -23,6 +23,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 ## Credits
 - Levi 8148 AlephBots (Amazing color filtering and Cryptobox Detector)
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
+- Derek FTC 5484 Enderbots (EnderCV Classes)
 - Aparna ig (Testing)
 - Everyone else on the Programming Discord <3 (Dealing with my bs)
 
