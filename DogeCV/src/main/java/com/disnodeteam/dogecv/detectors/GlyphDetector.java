@@ -49,7 +49,7 @@ public class GlyphDetector extends OpenCVPipeline {
 
 
     //results
-    private Point chosenGlyphPosition;
+    private Point chosenGlyphPosition = null;
     private double size = 0;
     private double chosenGlyphOffset = 0;
     private boolean foundRect = false;
