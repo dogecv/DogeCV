@@ -49,7 +49,8 @@ public class GlyphDetector extends OpenCVPipeline {
 
 
     //results
-    private Point chosenGlyphPosition = null;
+    private Point chosenGlyphPosition;
+    private double size = 0;
     private double chosenGlyphOffset = 0;
     private boolean foundRect = false;
 
@@ -239,6 +240,7 @@ public class GlyphDetector extends OpenCVPipeline {
 
             chosenGlyphPosition = new Point((x+(w/2)), (y+(h/2)));
             chosenGlyphOffset = newSize.width - (x+(w/2)) ;
+            size = (w + h)/2;
 
             foundRect = false;
         }else{
@@ -283,6 +285,9 @@ public class GlyphDetector extends OpenCVPipeline {
 
     public double getChosenGlyphOffset() {
         return chosenGlyphOffset;
+    }
+    public double getSize() {
+        return size;
     }
 
     public boolean isFoundRect() {
