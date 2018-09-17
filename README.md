@@ -4,7 +4,7 @@
     <img src="https://i.imgur.com/sjEURcc.png" width="100%"/>
     <br></br>
   <p>
-    <a href="https://discord.gg/qCRpgEY"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
+    <a href="https://discord.gg/colton"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
