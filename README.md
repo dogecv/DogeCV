@@ -8,34 +8,43 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 1.1.1 Last Updated 1/3/2018</i>
+     <i>Version 2018.0 (UNRELEASED) | Updated 9/19/2018 </i>
 
 </div>
 
 # DogeCV
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 
+## Project Status:
+**IN DEVELOPMENT. ALPHA RELEASE COMING SOON. NOT COMPETETION READY**
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON. MANY OF THE 
 However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
 
+
+
 ## Credits
 - Levi 8148 AlephBots (Amazing color filtering and Cryptobox Detector)
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
 - Derek FTC 5484 Enderbots (EnderCV Classes)
-- Aparna ig (Testing)
-- Everyone else on the Programming Discord <3 (Dealing with my bs)
+- Owen Gonzalez (Testing)
 
 ## Known Issues
-- Blue in background throws of Crypto checkers. (NO JEANS PLZZZ)
-- Gylph Detections pretty buggy
+(These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
+- Vuforia Mode Unstable (Crashes alot!)
+- Memeory Leak in Gold Align Detectors
+- General Unstablity
 
 ## Planned Features / TODO
-- Glyph Color Reading
-- Previous frame's results to increase accuracy in detectors
-- Motion Tracking for Cryptobox
-- Cryptobox line checks follow lines instead of Y-Axis
+- Fix Vuforia
+- Add in distance scoring between samples to increase accuracy
+- General Code Clean up
+- Add back in Perfect Area Scoring
+- Update Wiki
+- Basic angle/positioning of elements
+- Example Autons using DogeCV
+- Generic Silver Detector
 
 
 ## Install (Credit to EnderCV)
@@ -51,15 +60,34 @@ However, although many of the detectors are currently pretty basic, I am putting
 10. Click **OK** to exit the **Project Structure** dialog.
 
 
-# Detectors
-**See Wiki**
+# Detectors Status
+- **Gold Align Detecotr** - Implemented. Unstable (Memory Leak)
+- **Sampling Detecotr** - Implemented. Stable. Not Competetion Ready.
+- **Gold Detector** - Implemented Base (Needs more).Stable. Not Cmpetetion Ready.
+- **Silver Detector** - Not Yet Implemented
+- **MultiMineral Detector** - Not Yet Implemented
+**See Wiki For More Info
 
 ## FAQ
 - **If I use dogeCV can I still use Vuforia?**
+    With the 2018 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, while using the same camera nad viewing both data on the RC at the same time! This is done by using DogeCV's Vuforia class `DogeForia`. See more in the wiki.
+    (Current Unstable)
+- **Can I still use classic OpenCV**
+    Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV lib.
 
-    Yes, but not at the same time. You must disable Vuforia before using dogeCV and vice versa. Also, the default vuforia localizer doesn't detach from the camera by default. In order to make it detech from the camera, you must use [another vuforia localizer](https://gist.github.com/5484Enderbots/772584ae3fc53fda99c0f8f51dc1a9f9). 
 
 ## Changelogs
+**2018.0 (UNRELEASED)**:
+ - New Versioning System
+ - New Scoring API
+ - New DogeCVDetector Class
+ - Vuforia Support
+ - Gold Align, Mineral Order, and Gold Detectors
+ - General Code Cleanup
+ - Cleaner Params
+ - Moved Downscaling to DogeCVDetector Class
+ - Updated to EnderCV 2.0 (Modfied)
+ 
 **1.1.1 HOTFIX**:
  - Fixed Jewel Detector Blue Filter
  
