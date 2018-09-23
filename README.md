@@ -8,7 +8,7 @@
   </p>
   <b>Created by Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 2018.0 (UNRELEASED) | Updated 9/19/2018 </i>
+     <i>Version 2018.0 | Updated 9/22/2018 </i>
 
 </div>
 
@@ -16,11 +16,11 @@
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 
 ## Project Status:
-**IN DEVELOPMENT. ALPHA RELEASE COMING SOON. NOT COMPETETION READY**
+**IN DEVELOPMENT. CURRENT IN ALPHA. NOT COMPETETION READY**
 
 # DISCLAIMER
-### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON. MANY OF THE 
-However, although many of the detectors are currently pretty basic, I am putting alot of time in effort into this lib, and open sourced it to let the community work or learn from my mistakes. This is the exact code my team will be running so I do have a decent motivation to work on it ;)
+### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON.
+Also please keep in mind due to the major rewrite, many components have not been fully tested and polished, and many Relic Recovery detectors may be broken
 
 
 
@@ -29,22 +29,25 @@ However, although many of the detectors are currently pretty basic, I am putting
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
 - Derek FTC 5484 Enderbots (EnderCV Classes)
 - Owen Gonzalez (Testing)
+- Kwon Paradigm Break (Testing)
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- Vuforia Mode Unstable (Crashes alot!)
-- Memeory Leak in Gold Align Detectors
 - General Unstablity
+- GenericDetector not ported
+- Vuforia is rotated in portrait mode
+- Crashed in Vuforia mode rarely
 
 ## Planned Features / TODO
 - Fix Vuforia
 - Add in distance scoring between samples to increase accuracy
 - General Code Clean up
-- Add back in Perfect Area Scoring
 - Update Wiki
 - Basic angle/positioning of elements
 - Example Autons using DogeCV
 - Generic Silver Detector
+- Port Old detectors to new systems
+- Better Saftey checks
 
 
 ## Install (Credit to EnderCV)
@@ -77,7 +80,7 @@ However, although many of the detectors are currently pretty basic, I am putting
 
 
 ## Changelogs
-**2018.0 (UNRELEASED)**:
+**2018.0**:
  - New Versioning System
  - New Scoring API
  - New DogeCVDetector Class
