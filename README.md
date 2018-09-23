@@ -83,6 +83,8 @@ and resync the project.
     (Current Unstable)
 - **Can I still use classic OpenCV**
     Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV lib.
+- **`Dogeforia` is getting import errors**
+    This is a current bug that I am investigating, for right now simply move the Dogeforia class to your `TeamCode` package.
 
 
 ## Changelogs
