@@ -1,1 +1,1 @@
-[Sampling Order Detector](/detectors/SamplingOrder){: .btn}
+[Sampling Order Detector](/detectors/SamplingOrder)
