@@ -8,4 +8,5 @@ import org.opencv.core.Mat;
 
 public abstract class DogeCVColorFilter {
     public abstract void process(Mat input, Mat mask);
+
 }

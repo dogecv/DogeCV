@@ -12,4 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DogeCV {
+    public enum DetectionSpeed {
+        VERY_FAST,
+        FAST,
+        BALANCED,
+        SLOW,
+        VERY_SLOW
+    }
+
+    public enum AreaScoringMethod {
+        MAX_AREA,
+        PERFECT_AREA
+    }
+
+
 }

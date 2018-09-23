@@ -6,8 +6,9 @@ import android.view.View;
 
 /**
  * Created by guinea on 6/23/17.
- * Copyright (c) 2017 FTC Team 5484 Enderbots
- *
+ * -------------------------------------------------------------------------------------
+ * Copyright (c) 2018 FTC Team 5484 Enderbots
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -17,7 +18,7 @@ import android.view.View;
  * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +26,12 @@ import android.view.View;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
+ * 
+ * 
+ * By downloading, copying, installing or using the software you agree to this license.
+ * If you do not agree to this license, do not download, install,
+ * copy or use the software.
+ * -------------------------------------------------------------------------------------
  * This ViewDisplay displays a View over the entire screen.
  * As a singleton, you'll want to pass ActivityViewDisplay.getInstance() instead of directly instantiating it.
  */

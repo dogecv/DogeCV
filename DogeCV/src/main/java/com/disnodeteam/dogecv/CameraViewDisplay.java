@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 
 
 /**
  * Created by guinea on 6/23/17.
- * Copyright (c) 2017 FTC Team 5484 Enderbots
- *
+ * -------------------------------------------------------------------------------------
+ * Copyright (c) 2018 FTC Team 5484 Enderbots
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,7 +21,7 @@ import android.view.ViewGroup;
  * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,7 +29,12 @@ import android.view.ViewGroup;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
+ * 
+ * 
+ * By downloading, copying, installing or using the software you agree to this license.
+ * If you do not agree to this license, do not download, install,
+ * copy or use the software.
+ * -------------------------------------------------------------------------------------
  * Nicely adds/removes a View from the main body of the robot controller app screen.
  * As a singleton, you'll want to pass CameraViewDisplay.getInstance() instead of directly instantiating it.
  */
@@ -41,7 +48,6 @@ public class CameraViewDisplay implements ViewDisplay {
 
     public static CameraViewDisplay getInstance() {
         if (instance == null) instance = new CameraViewDisplay();
-
         return instance;
     }
 
@@ -57,9 +63,9 @@ public class CameraViewDisplay implements ViewDisplay {
                 if (view != null) {
                     l.removeView(view);
                 }
+
                 l.addView(queuedView);
                 view = queuedView;
-
             }
         });
     }

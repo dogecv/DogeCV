@@ -27,20 +27,14 @@ import java.util.List;
 
 public class GenericDetector extends OpenCVPipeline {
 
-    public enum GenericDetectionMode {
-        PERFECT_AREA, MAX_AREA
-    }
-
-    public enum GenericDetectionSpeed {
-        VERY_FAST, FAST, BALANCED, SLOW, VERY_SLOW
-    }
 
 
-    public GenericDetectionMode detectionMode = GenericDetectionMode.MAX_AREA;
+
+    public DogeCV.AreaScoringMethod detectionMode = DogeCV.AreaScoringMethod.MAX_AREA;
     public double downScaleFactor = 0.4;
     public double perfectRatio = 1;
     public boolean rotateMat = false;
-    public GenericDetectionSpeed speed = GenericDetectionSpeed.BALANCED;
+    public DogeCV.DetectionSpeed speed = DogeCV.DetectionSpeed.BALANCED;
 
     public DogeCVColorFilter colorFilter = new HSVColorFilter(new Scalar(50,50,50), new Scalar(50,50,50));
 
