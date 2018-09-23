@@ -37,6 +37,7 @@ Also please keep in mind due to the major rewrite, many components have not been
 - GenericDetector not ported
 - Vuforia is rotated in portrait mode
 - Crashed in Vuforia mode rarely
+- RoverRukas Package typo.
 
 ## Planned Features / TODO
 - Fix Vuforia
