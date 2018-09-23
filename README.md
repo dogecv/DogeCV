@@ -61,12 +61,12 @@ Also please keep in mind due to the major rewrite, many components have not been
 include ':openCVLibrary3'
 include ':DogeCV'
 ```
-and resync the project. 
-6. In the left hand side project explorer in Android Studio, right-click **TeamCode**, and click on **Open Module Settings**.
-7. A **Project Struture** dialog should come up. Click the **Dependencies** tab.
-8. Click the green plus sign on the right hand side, then **Module dependency**, and then **:openCVLibrary3**, then press OK.
-9. Repeat step 8, except substitute **:openCVLibrary3** with **:DogeCV**.
-10. Click **OK** to exit the **Project Structure** dialog.
+and resync the project.    
+6. In the left hand side project explorer in Android Studio, right-click **TeamCode**, and click on **Open Module Settings**.    
+7. A **Project Struture** dialog should come up. Click the **Dependencies** tab.     
+8. Click the green plus sign on the right hand side, then **Module dependency**, and then **:openCVLibrary3**, then press OK.     
+9. Repeat step 8, except substitute **:openCVLibrary3** with **:DogeCV**.   
+10. Click **OK** to exit the **Project Structure** dialog.    
 
 
 # Detectors Status
