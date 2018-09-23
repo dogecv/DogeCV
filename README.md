@@ -1,7 +1,7 @@
 
 
 <div align="center">
-    <img src="https://i.imgur.com/sjEURcc.png" width="100%"/>
+    <img src="https://i.imgur.com/bMAmxfZ.png" width="100%"/>
     <br></br>
   <p>
     <a href="https://discord.gg/colton"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
