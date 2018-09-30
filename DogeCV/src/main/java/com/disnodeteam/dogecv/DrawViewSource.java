@@ -56,8 +56,7 @@ public class DrawViewSource extends View {
 
 
         resources = context.getResources();
-        bitmap = BitmapFactory
-                .decodeResource(resources, R.drawable.ic_launcher);
+
 
 
         setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
@@ -94,7 +93,9 @@ public class DrawViewSource extends View {
         int deviceOrientation = getContext().getResources().getConfiguration().orientation;
 
 
-        canvas.drawBitmap(bitmap, 0, 0,mPaint);
+        if(bitmap != null){
+            canvas.drawBitmap(bitmap, 0, 0,null);
+        }
 
     }
 }

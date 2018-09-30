@@ -38,16 +38,17 @@ return this;
 }
 @Override public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException
 {
+java.lang.String descriptor = DESCRIPTOR;
 switch (code)
 {
 case INTERFACE_TRANSACTION:
 {
-reply.writeString(DESCRIPTOR);
+reply.writeString(descriptor);
 return true;
 }
 case TRANSACTION_getEngineVersion:
 {
-data.enforceInterface(DESCRIPTOR);
+data.enforceInterface(descriptor);
 int _result = this.getEngineVersion();
 reply.writeNoException();
 reply.writeInt(_result);
@@ -55,7 +56,7 @@ return true;
 }
 case TRANSACTION_getLibPathByVersion:
 {
-data.enforceInterface(DESCRIPTOR);
+data.enforceInterface(descriptor);
 java.lang.String _arg0;
 _arg0 = data.readString();
 java.lang.String _result = this.getLibPathByVersion(_arg0);
@@ -65,7 +66,7 @@ return true;
 }
 case TRANSACTION_installVersion:
 {
-data.enforceInterface(DESCRIPTOR);
+data.enforceInterface(descriptor);
 java.lang.String _arg0;
 _arg0 = data.readString();
 boolean _result = this.installVersion(_arg0);
@@ -75,7 +76,7 @@ return true;
 }
 case TRANSACTION_getLibraryList:
 {
-data.enforceInterface(DESCRIPTOR);
+data.enforceInterface(descriptor);
 java.lang.String _arg0;
 _arg0 = data.readString();
 java.lang.String _result = this.getLibraryList(_arg0);
@@ -83,8 +84,11 @@ reply.writeNoException();
 reply.writeString(_result);
 return true;
 }
-}
+default:
+{
 return super.onTransact(code, data, reply, flags);
+}
+}
 }
 private static class Proxy implements org.opencv.engine.OpenCVEngineInterface
 {

@@ -41,6 +41,11 @@ public class GoldDetector extends DogeCVDetector {
     private int results;
     private Rect foundRect;
     private boolean isFound = false;
+
+    public GoldDetector() {
+        super();
+        this.detectorName = "Gold Detector";
+    }
     @Override
     public Mat process(Mat input) {
         if(input.channels() < 0 || input.cols() <= 0){
@@ -84,7 +89,6 @@ public class GoldDetector extends DogeCVDetector {
             foundRect = null;
         }
 
-        Imgproc.putText(workingMat,"DogeCV 2018.0 Gold Detector: " + getAdjustedSize().toString() + " - " + speed.toString() ,new Point(5,30),0,0.5,new Scalar(0,255,255),2);
 
 
         return workingMat;

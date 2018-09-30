@@ -56,6 +56,11 @@ public class GoldAlignDetector extends DogeCVDetector {
     public MaxAreaScorer    maxAreaScorer      = new MaxAreaScorer( 0.01);
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05);
 
+    public GoldAlignDetector() {
+        super();
+        detectorName = "Gold Align Detector";
+    }
+
     @Override
     public Mat process(Mat input) {
         if(input.channels() < 0 || input.cols() <= 0){
@@ -132,7 +137,6 @@ public class GoldAlignDetector extends DogeCVDetector {
 
 
 
-        Imgproc.putText(workingMat,"DogeCV 2018.0 Gold Align: " + getAdjustedSize().toString() + " - " + speed.toString() ,new Point(5,30),0,0.5,new Scalar(0,255,255),2);
 
         return workingMat;
 

@@ -22,16 +22,16 @@ INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidMa
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml
 uses-sdk
-ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-73
-INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-73
-INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-73
-INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-73
-INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-73
+ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
+INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
+INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
+INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
+INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
 	android:targetSdkVersion
-		ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:41-70
+		ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:15-44
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:15-40
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml
+		ADDED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml:7:5-47
 		INJECTED from E:\Programs\FTC\Projects\uWu-Bot\openCVLibrary3\src\main\AndroidManifest.xml

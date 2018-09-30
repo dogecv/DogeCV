@@ -6,6 +6,7 @@ import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.HSVColorFilter;
+import com.disnodeteam.dogecv.filters.HSVRangeFilter;
 import com.disnodeteam.dogecv.filters.LeviColorFilter;
 import com.disnodeteam.dogecv.scoring.MaxAreaScorer;
 import com.disnodeteam.dogecv.scoring.PerfectAreaScorer;
@@ -40,13 +41,13 @@ public class SamplingOrderDetector extends DogeCVDetector {
 
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA;
 
-    public RatioScorer ratioScorer = new RatioScorer(1.0,10);
-    public MaxAreaScorer maxAreaScorer = new MaxAreaScorer(0.005);
+    public RatioScorer ratioScorer = new RatioScorer(1.0,5);
+    public MaxAreaScorer maxAreaScorer = new MaxAreaScorer(0.01);
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05);
 
 
-    public DogeCVColorFilter yellowFilter = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW,70);
-    public DogeCVColorFilter whiteFilter  = new HSVColorFilter(new Scalar(40,25,200), new Scalar(40,40,50));
+    public DogeCVColorFilter yellowFilter = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW,100);
+    public DogeCVColorFilter whiteFilter  = new HSVRangeFilter(new Scalar(0,0,200), new Scalar(50,40,255));
 
     private GoldLocation currentOrder = GoldLocation.UNKNOWN;
     private GoldLocation lastOrder    = GoldLocation.UNKNOWN;
@@ -63,6 +64,11 @@ public class SamplingOrderDetector extends DogeCVDetector {
     private Size stretchKernal = new Size(10,10);
     private Size newSize = new Size();
 
+    public SamplingOrderDetector() {
+        super();
+        this.detectorName = "Sampling Order Detector";
+    }
+
     @Override
     public Mat process(Mat input) {
         if(input.channels() < 0 || input.cols() <= 0){
@@ -78,6 +84,9 @@ public class SamplingOrderDetector extends DogeCVDetector {
 
         List<MatOfPoint> contoursYellow = new ArrayList<>();
         List<MatOfPoint> contoursWhite = new ArrayList<>();
+
+        Imgproc.blur(whiteMask,whiteMask,new Size(2,2));
+        Imgproc.blur(yellowMask,yellowMask,new Size(2,2));
 
         Imgproc.findContours(yellowMask, contoursYellow, hiarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(workingMat,contoursYellow,-1,new Scalar(230,70,70),2);
@@ -117,7 +126,7 @@ public class SamplingOrderDetector extends DogeCVDetector {
             double w = rect.width;
             double h = rect.height;
             Point centerPoint = new Point(x + ( w/2), y + (h/2));
-            if( area > 1000){
+            if( area > 500){
                 Imgproc.circle(workingMat,centerPoint,3,new Scalar(0,255,255),3);
                 Imgproc.putText(workingMat,"Area: " + area,centerPoint,0,0.5,new Scalar(0,255,255));
             }
@@ -237,7 +246,6 @@ public class SamplingOrderDetector extends DogeCVDetector {
 
         Imgproc.putText(workingMat,"Gold Position: " + lastOrder.toString(),new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
         Imgproc.putText(workingMat,"Current Track: " + currentOrder.toString(),new Point(10,getAdjustedSize().height - 10),0,0.5, new Scalar(255,255,255),1);
-        Imgproc.putText(workingMat,"DogeCV 2018.0 Sampling Order: " + getAdjustedSize().toString() + " - " + speed.toString() ,new Point(5,30),0,0.5,new Scalar(0,255,255),2);
 
         return workingMat;
     }

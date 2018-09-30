@@ -11,6 +11,8 @@ import com.disnodeteam.dogecv.scoring.DogeCVScorer;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
@@ -36,10 +38,11 @@ public abstract class DogeCVDetector extends OpenCVPipeline{
     public double downscale = 0.5;
     public Size   downscaleResolution = new Size(640, 480);
     public boolean useFixedDownscale = true;
+    protected String detectorName = "DogeCV Detector";
 
     public DogeCVDetector(){}
 
-    public DogeCVDetector(DogeCV.DetectionSpeed speed){
+    public void setSpeed(DogeCV.DetectionSpeed speed){
         this.speed = speed;
     }
 
@@ -77,6 +80,8 @@ public abstract class DogeCVDetector extends OpenCVPipeline{
         Imgproc.resize(workingMat, workingMat,adjustedSize);
 
         Imgproc.resize(process(workingMat),workingMat,getInitSize());
+        Imgproc.putText(workingMat,"DogeCV 2018.1 " + detectorName + ": " + getAdjustedSize().toString() + " - " + speed.toString() ,new Point(5,30),0,0.5,new Scalar(0,255,255),2);
+
         return workingMat;
     }
 
