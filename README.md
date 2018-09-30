@@ -33,10 +33,10 @@ Also please keep in mind due to the major rewrite, many components have not been
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
+- Errors importing the module (this is hard to find as I cant replicate it on my end, however if you have this issue please contact me so I can figure this out!)
 - General Unstablity
 - GenericDetector not ported
 - Vuforia is rotated in portrait mode
-- Crashed in Vuforia mode rarely
 - RoverRukas Package typo.
 
 ## Planned Features / TODO
