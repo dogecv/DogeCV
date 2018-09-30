@@ -33,7 +33,6 @@ Also please keep in mind due to the major rewrite, many components have not been
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- Errors importing the module (this is hard to find as I cant replicate it on my end, however if you have this issue please contact me so I can figure this out!)
 - General Unstablity
 - GenericDetector not ported
 - Vuforia is rotated in portrait mode
@@ -46,9 +45,12 @@ Also please keep in mind due to the major rewrite, many components have not been
 - Update Wiki
 - Basic angle/positioning of elements
 - Example Autons using DogeCV
-- Generic Silver Detector
 - Port Old detectors to new systems
 - Better Saftey checks
+- Move to our own OpenCV System
+- Add to JCenter
+- New Frame Input System
+- ML detectors
 
 
 ## Install (Credit to EnderCV)
@@ -73,7 +75,7 @@ and resync the project.
 - **Gold Align Detecotr** - Implemented. Unstable (Memory Leak)
 - **Sampling Detecotr** - Implemented. Stable. Not Competetion Ready.
 - **Gold Detector** - Implemented Base (Needs more).Stable. Not Cmpetetion Ready.
-- **Silver Detector** - Not Yet Implemented
+- **Silver Detector** - Implemented Base (Needs more).Stable. Not Cmpetetion Ready.
 - **MultiMineral Detector** - Not Yet Implemented
 **See Wiki For More Info
 
@@ -88,6 +90,18 @@ and resync the project.
 
 
 ## Changelogs
+**2018.1**:
+ - Added `HSVRangeFilter` that uses classic `lower` and `upper` HSV ranges
+ - `HSVColorFilter` now devides the range by 2 on each side of the perfect color value. (Now range acts as expected) (Issue #9)
+ - Added `SilverDetector` (Same as Gold but for silver)
+ - Moved `SamplingOrderDetector` to use `HSVRangeFilter` for silver
+ - Tuned Sampling (Still not competetion ready)
+ - Cleaned up `Dogeforia` handling per suggestions of "@BillTheCat123 | Mentor | 3763" on FTC Discord
+ - Fixed Gradle import issues of `:FTCRobotController` with `Dogeforia` class. (Issue #8)
+ - Cleaned up Gradle Build files to lessen import errors
+ - Added common Gradle Build errors to wiki
+ - `DogeCVDetector` now handles printing the detector setting to the screen
+
 **2018.0**:
  - New Versioning System
  - New Scoring API
