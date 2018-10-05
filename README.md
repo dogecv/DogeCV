@@ -22,6 +22,11 @@ A easy to use computer vision library used for FTC Games to detect game objects.
 ### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON.
 Also please keep in mind due to the major rewrite, many components have not been fully tested and polished, and many Relic Recovery detectors may be broken
 
+## Videos
+Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV.
+
+Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
+ - [Wizards.exe Tutorial](https://www.youtube.com/watch?v=_i-EU3v9CRc)
 
 
 ## Credits
