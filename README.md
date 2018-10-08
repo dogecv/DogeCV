@@ -6,9 +6,9 @@
   <p>
     <a href="https://discord.gg/colton"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
-  <b>Created by Alex Carter of Disnode Robotics</b>
+  <b>Developed by Alex Carter of Disnode Robotics and Levi Gershon of Newton's Law</b>
     <br/>
-     <i>Version 2018.1 | Updated 9/30/2018 </i>
+     <i>Version 2018.2 | Updated 10/08/2018 </i>
 
 </div>
 
@@ -16,11 +16,11 @@
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 
 ## Project Status:
-**IN DEVELOPMENT. CURRENT IN ALPHA. NOT COMPETETION READY**
+**IN DEVELOPMENT. CURRENTLY IN ALPHA. NOT COMPETITION READY**
 
 # DISCLAIMER
-### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. I WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON.
-Also please keep in mind due to the major rewrite, many components have not been fully tested and polished, and many Relic Recovery detectors may be broken
+### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON.
+Also please keep in mind due to the major rewrite, many components have not been fully tested and polished, and many Relic Recovery detectors may be broken.
 
 ## Videos
 Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV.
@@ -29,8 +29,12 @@ Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
  - [Wizards.exe Tutorial](https://www.youtube.com/watch?v=_i-EU3v9CRc)
 
 
-## Credits
-- Levi 8148 AlephBots (Amazing color filtering and Cryptobox Detector)
+## Development Team
+- Alex Carter FTC 7195 Mechanical Memes
+- Levi Gershon FTC 12897 Newton's Law of Mass'
+- Brandon FTC 8565 Technicbots
+
+## Other Contributors
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
 - Derek FTC 5484 Enderbots (EnderCV Classes)
 - Owen Gonzalez (Testing)
@@ -38,7 +42,7 @@ Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- General Unstablity
+- General Instablity
 - GenericDetector not ported
 - Vuforia is rotated in portrait mode
 - RoverRukas Package typo.
@@ -51,7 +55,7 @@ Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
 - Basic angle/positioning of elements
 - Example Autons using DogeCV
 - Port Old detectors to new systems
-- Better Saftey checks
+- Better Safety checks
 - Move to our own OpenCV System
 - Add to JCenter
 - New Frame Input System
@@ -70,37 +74,53 @@ include ':DogeCV'
 ```
 and resync the project.    
 6. In the left hand side project explorer in Android Studio, right-click **TeamCode**, and click on **Open Module Settings**.    
-7. A **Project Struture** dialog should come up. Click the **Dependencies** tab.     
+7. A **Project Structure** dialog should come up. Click the **Dependencies** tab.     
 8. Click the green plus sign on the right hand side, then **Module dependency**, and then **:openCVLibrary3**, then press OK.     
 9. Repeat step 8, except substitute **:openCVLibrary3** with **:DogeCV**.   
 10. Click **OK** to exit the **Project Structure** dialog.    
 
 
 # Detectors Status
-- **Gold Align Detecotr** - Implemented. Unstable (Memory Leak)
-- **Sampling Detecotr** - Implemented. Stable. Not Competetion Ready.
-- **Gold Detector** - Implemented Base (Needs more).Stable. Not Cmpetetion Ready.
-- **Silver Detector** - Implemented Base (Needs more).Stable. Not Cmpetetion Ready.
+- **Gold Align Detector** - Implemented. Unstable (Memory Leak)
+- **Sampling Detector** - Implemented. Stable. Not Competition Ready.
+- **Gold Detector** - Implemented Base (Needs more).Stable. Not Competition Ready.
+- **Silver Detector** - Implemented Base (Needs more).Stable. Not Competition Ready.
 - **MultiMineral Detector** - Not Yet Implemented
 **See Wiki For More Info
 
 ## FAQ
 - **If I use dogeCV can I still use Vuforia?**
-    With the 2018 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, while using the same camera nad viewing both data on the RC at the same time! This is done by using DogeCV's Vuforia class `DogeForia`. See more in the wiki.
+    With the 2018 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, while using the same camera and viewing both data on the RC at the same time! This is done by using DogeCV's Vuforia class `DogeForia`. See more in the wiki.
     (Current Unstable)
-- **Can I still use classic OpenCV**
+- **Can I still use classic OpenCV?**
     Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV lib.
-- **`Dogeforia` is getting import errors**
+- **`Dogeforia` is getting import errors:**
     This is a current bug that I am investigating, for right now simply move the Dogeforia class to your `TeamCode` package.
 
 
 ## Changelogs
+**2018.2**:
+ - Added `HoughSilverDetector`: intended for slighter slower but more precise silver mineral classification. Works nicely.
+ - Added JavaDocs and in-depths comments on most detectors, scorers, and filters
+ - Changed `DogeCVScorer` input from MatOfPoint to Mat in order to facilitate more diverse scoring methods
+ - Detectors now have a seperate `displayMat` as opposed to a `workingMat`; one is for detection work, the other is for displaying the results
+ - Added `SilverExample` OpMode for demonstrating silver detector use
+ - Added `HoughSilverExample` OpMode for demonstrating Hough transform-based silver detector use
+ - Gold Align Detector now has `setAlignSettings(int offset, int width)` function to set parameters
+ - Updated `SamplingOrderDetector` to choose top two silver minerals instead of all
+ - Ported `GenericDetector` to using `DogeCVDetector`
+ - Ported `BlankDetector` to using `DogeCVDetector`
+ - Added `updateSettings` to `LeviColorFilter`
+ - Corrected typos within this `README`
+ - Added an experimental `WHITE` option to `LeviColorFilter`
+ - Cleaned up detectors and filters
+
 **2018.1**:
  - Added `HSVRangeFilter` that uses classic `lower` and `upper` HSV ranges
  - `HSVColorFilter` now devides the range by 2 on each side of the perfect color value. (Now range acts as expected) (Issue #9)
  - Added `SilverDetector` (Same as Gold but for silver)
  - Moved `SamplingOrderDetector` to use `HSVRangeFilter` for silver
- - Tuned Sampling (Still not competetion ready)
+ - Tuned Sampling (Still not competition ready)
  - Cleaned up `Dogeforia` handling per suggestions of "@BillTheCat123 | Mentor | 3763" on FTC Discord
  - Fixed Gradle import issues of `:FTCRobotController` with `Dogeforia` class. (Issue #8)
  - Cleaned up Gradle Build files to lessen import errors
@@ -134,20 +154,20 @@ and resync the project.
  
 **1.0**:
  - New Cryptobox Detector
- - Youtube Tutorials
+ - YouTube Tutorials
  - Per-Detector Documentation
  - Wiki Start 
  - Added `perfectRatio` tuning for Jewels
- - Optimiziation
+ - Optimization
  - Removed Multiple Mat returning
 
 **0.5**:
  - Fixed rotated preview on protrait mode.
  - Detectors return an array of images. You can cycle through them by tapping on the preview screen
 ## Contact
-If you have any suggestions or questions feel free to contact me at:    
+If you have any suggestions or questions feel free to contact us at:    
 **VictoryForPhil@gmail.com**
 or 
-**VictoryForPhil#4759** on Discord
+**VictoryForPhil#4759 or Levi -12897** on Discord
 
-You can also usually spot me on the FTC Discord.
+You can also usually spot us on the FTC Discord.
