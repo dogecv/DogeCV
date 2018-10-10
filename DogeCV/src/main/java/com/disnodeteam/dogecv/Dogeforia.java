@@ -120,18 +120,21 @@ public class Dogeforia extends VuforiaLocalizerImpl {
             outMat = detector.processFrame(inputMat, null);
 
             if(showDebug){
-                VuforiaTrackablesImpl trackables = loadedTrackableSets.get(0);
-                int count = 0;
-                for(VuforiaTrackable trackable : trackables){
-                    if(trackable == null || ((VuforiaTrackableDefaultListener)trackable.getListener()) == null){
-                        continue;
-                    }
-                    if(((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()){
-                        Imgproc.putText(outMat,"Vuforia: " + trackable.getName(), new Point(10,50 * count + 50),0,2,new Scalar(0,255,0),3);
-                        count++;
-                    }
+                if(loadedTrackableSets !=null && loadedTrackableSets.size() > 0) {
+                    VuforiaTrackablesImpl trackables = loadedTrackableSets.get(0);
+                    int count = 0;
+                    for(VuforiaTrackable trackable : trackables){
+                        if(trackable == null || ((VuforiaTrackableDefaultListener)trackable.getListener()) == null){
+                            continue;
+                        }
+                        if(((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()){
+                            Imgproc.putText(outMat,"Vuforia: " + trackable.getName(), new Point(10,50 * count + 50),0,2,new Scalar(0,255,0),3);
+                            count++;
+                        }
 
+                    }   
                 }
+                
             }
 
 
@@ -182,7 +185,7 @@ public class Dogeforia extends VuforiaLocalizerImpl {
                     e.printStackTrace();
                 }
             }else{
-                Log.w("DogeCV", "Frame is empty wtf: " + getFrameQueueCapacity());
+                //Log.w("DogeCV", "Frame is empty: " + getFrameQueueCapacity());
             }
 
             /*
