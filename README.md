@@ -100,8 +100,9 @@ and resync the project.
 
 ## Changelogs
 **2018.2.1 HOTFIX**:
- - Removed `AsyncFilterRunner` import from Sampling Detector #12
- - Fixed `Dogeforia` crash on stop #10      
+ - Removed `AsyncFilterRunner` import from Sampling Detector #12   
+ - Fixed `Dogeforia` crash on stop #10        
+
 **2018.2**:
  - Added `HoughSilverDetector`: intended for slighter slower but more precise silver mineral classification. Works nicely.
  - Added JavaDocs and in-depths comments on most detectors, scorers, and filters
