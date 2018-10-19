@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 public class GoldAlignExample extends OpMode
 {
-    //Detector object
+    // Detector object
     private GoldAlignDetector detector;
 
 
@@ -49,10 +49,10 @@ public class GoldAlignExample extends OpMode
     public void init() {
         telemetry.addData("Status", "DogeCV 2018.0 - Gold Align Example");
 
-        //Set up detector
-        detector = new GoldAlignDetector(); //Create detector
-        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); //Initialize it with the app context and camera
-        detector.useDefaults(); //Set detector to use default settings
+        // Set up detector
+        detector = new GoldAlignDetector(); // Create detector
+        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); // Initialize it with the app context and camera
+        detector.useDefaults(); // Set detector to use default settings
 
         // Optional tuning
         detector.alignSize = 100; // How wide (in pixels) is the range in which the gold object will be aligned. (Represented by green bars in the preview)
@@ -64,13 +64,16 @@ public class GoldAlignExample extends OpMode
         detector.maxAreaScorer.weight = 0.005; //
 
         detector.ratioScorer.weight = 5; //
-        detector.ratioScorer.perfectRatio = 1.0; //Ratio adjustment
+        detector.ratioScorer.perfectRatio = 1.0; // Ratio adjustment
 
-        detector.enable(); //Start the detector!
+        detector.enable(); // Start the detector!
 
 
     }
 
+    /*
+     * Code to run REPEATEDLY when the driver hits INIT
+     */
     @Override
     public void init_loop() {
     }
@@ -83,7 +86,9 @@ public class GoldAlignExample extends OpMode
 
     }
 
-
+    /*
+     * Code to run REPEATEDLY when the driver hits PLAY
+     */
     @Override
     public void loop() {
         telemetry.addData("IsAligned" , detector.getAligned()); // Is the bot aligned with the gold mineral?
@@ -95,7 +100,7 @@ public class GoldAlignExample extends OpMode
      */
     @Override
     public void stop() {
-        //Disable the detector
+        // Disable the detector
         detector.disable();
     }
 
