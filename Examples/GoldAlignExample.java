@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 public class GoldAlignExample extends OpMode
 {
+    //Detector object
     private GoldAlignDetector detector;
 
 
@@ -48,23 +49,24 @@ public class GoldAlignExample extends OpMode
     public void init() {
         telemetry.addData("Status", "DogeCV 2018.0 - Gold Align Example");
 
-        detector = new GoldAlignDetector();
-        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
-        detector.useDefaults();
+        //Set up detector
+        detector = new GoldAlignDetector(); //Create detector
+        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); //Initialize it with the app context and camera
+        detector.useDefaults(); //Set detector to use default settings
 
-        // Optional Tuning
+        // Optional tuning
         detector.alignSize = 100; // How wide (in pixels) is the range in which the gold object will be aligned. (Represented by green bars in the preview)
         detector.alignPosOffset = 0; // How far from center frame to offset this alignment zone.
         detector.downscale = 0.4; // How much to downscale the input frames
 
         detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
         //detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
-        detector.maxAreaScorer.weight = 0.005;
+        detector.maxAreaScorer.weight = 0.005; //
 
-        detector.ratioScorer.weight = 5;
-        detector.ratioScorer.perfectRatio = 1.0;
+        detector.ratioScorer.weight = 5; //
+        detector.ratioScorer.perfectRatio = 1.0; //Ratio adjustment
 
-        detector.enable();
+        detector.enable(); //Start the detector!
 
 
     }
@@ -84,8 +86,8 @@ public class GoldAlignExample extends OpMode
 
     @Override
     public void loop() {
-        telemetry.addData("IsAligned" , detector.getAligned()); // Is the bot aligned with the gold mineral
-        telemetry.addData("X Pos" , detector.getXPosition()); // Gold X pos.
+        telemetry.addData("IsAligned" , detector.getAligned()); // Is the bot aligned with the gold mineral?
+        telemetry.addData("X Pos" , detector.getXPosition()); // Gold X position.
     }
 
     /*
@@ -93,6 +95,7 @@ public class GoldAlignExample extends OpMode
      */
     @Override
     public void stop() {
+        //Disable the detector
         detector.disable();
     }
 
