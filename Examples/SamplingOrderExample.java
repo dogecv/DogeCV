@@ -41,8 +41,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Sampling Order Example", group="DogeCV")
 
-public class SamplingOrderExample extends OpMode
-{
+public class SamplingOrderExample extends OpMode {
+    // Detector object
     private SamplingOrderDetector detector;
 
 
@@ -50,13 +50,14 @@ public class SamplingOrderExample extends OpMode
     public void init() {
         telemetry.addData("Status", "DogeCV 2018.0 - Sampling Order Example");
 
-        detector = new SamplingOrderDetector();
-        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
-        detector.useDefaults();
+        // Setup detector
+        detector = new SamplingOrderDetector(); // Create the detector
+        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); // Initialize detector with app context and camera
+        detector.useDefaults(); // Set detector to use default settings
 
         detector.downscale = 0.4; // How much to downscale the input frames
 
-        // Optional Tuning
+        // Optional tuning
         detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
         //detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
         detector.maxAreaScorer.weight = 0.001;
@@ -64,11 +65,12 @@ public class SamplingOrderExample extends OpMode
         detector.ratioScorer.weight = 15;
         detector.ratioScorer.perfectRatio = 1.0;
 
-        detector.enable();
-
-
+        detector.enable(); // Start detector
     }
 
+    /*
+     * Code to run REPEATEDLY when the driver hits INIT
+     */
     @Override
     public void init_loop() {
     }
@@ -82,6 +84,9 @@ public class SamplingOrderExample extends OpMode
     }
 
 
+    /*
+     * Code to run REPEATEDLY when the driver hits PLAY
+     */
     @Override
     public void loop() {
         telemetry.addData("Current Order" , detector.getCurrentOrder().toString()); // The current result for the frame
