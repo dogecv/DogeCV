@@ -41,6 +41,7 @@ import org.opencv.core.Size;
 
 public class HoughSilverExample extends OpMode
 {
+    //Detector object
     private HoughSilverDetector detector;
 
 
@@ -48,22 +49,23 @@ public class HoughSilverExample extends OpMode
     public void init() {
         telemetry.addData("Status", "DogeCV 2018.0 - Gold SilverDetector Example");
 
-        detector = new HoughSilverDetector();
+        detector = new HoughSilverDetector(); //Create detector
         detector.downscale = 1; //Increase detector sensitivity with smaller size. Make sure to preserve aspect ratio.
-        detector.useFixedDownscale = false;
-        detector.sensitivity = 1.6; //Play with this based on your camera
+        detector.useFixedDownscale = false; //Don't fix the downscale
+        detector.sensitivity = 1.6; //Play with this based on your camera, adjusts how sensitive the detector is
         detector.minDistance = 60; //Minimum distance between silver mineral centers in pixels
-        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance());
-        detector.useDefaults();
+        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); //Initialize detector with app context and camera
+        detector.useDefaults(); //Use default settings
+        
         // Optional Tuning
-
         detector.downscale = 0.4; // How much to downscale the input frames
 
-        detector.enable();
-
-
+        detector.enable(); //Start the detector
     }
 
+    /*
+     * Code to run REPEATEDLY when the driver hits INIT
+     */
     @Override
     public void init_loop() {
     }
@@ -77,6 +79,9 @@ public class HoughSilverExample extends OpMode
     }
 
 
+    /*
+     * Code to run REPEATEDLY when the driver hits PLAY
+     */
     @Override
     public void loop() {
 
