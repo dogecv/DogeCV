@@ -77,6 +77,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 public class VuforiaWebcamTesting extends OpMode
 {
 
+    // Setup variables
     private ElapsedTime runtime = new ElapsedTime();
     private static final float mmPerInch        = 25.4f;
     private static final float mmFTCFieldWidth  = (12*6) * mmPerInch;       // the width of the FTC field (from the center point to the outer panels)
@@ -86,30 +87,37 @@ public class VuforiaWebcamTesting extends OpMode
     // Valid choices are:  BACK or FRONT
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
 
+    // Vuforia variables
     private OpenGLMatrix lastLocation = null;
     boolean targetVisible;
     Dogeforia vuforia;
     WebcamName webcamName;
     List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
 
+    // DogeCV detector
     GoldAlignDetector detector;
 
     @Override
     public void init() {
+        // Default webcam name
         webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
-
+        // Set up parameters for Vuforia
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
-        parameters.vuforiaLicenseKey = "AWbfTmn/////AAABmY0xuIe3C0RHvL3XuzRxyEmOT2OekXBSbqN2jot1si3OGBObwWadfitJR/D6Vk8VEBiW0HG2Q8UAEd0//OliF9aWCRmyDJ1mMqKCJZxpZemfT5ELFuWnJIZWUkKyjQfDNe2RIaAh0ermSxF4Bq77IDFirgggdYJoRIyi2Ys7Gl9lD/tSonV8OnldIN/Ove4/MtEBJTKHqjUEjC5U2khV+26AqkeqbxhFTNiIMl0LcmSSfugGhmWFGFtuPtp/+flPBRGoBO+tSl9P2sV4mSUBE/WrpHqB0Jd/tAmeNvbtgQXtZEGYc/9NszwRLVNl9k13vrBcgsiNxs2UY5xAvA4Wb6LN7Yu+tChwc+qBiVKAQe09\n";
+        // Vuforia licence key
+        parameters.vuforiaLicenseKey = " -- INSERT VUFORIA LICENCE KEY HERE -- ";
         parameters.fillCameraMonitorViewParent = true;
 
+        // Set camera name for Vuforia config
         parameters.cameraName = webcamName;
 
+        // Create Dogeforia object
         vuforia = new Dogeforia(parameters);
         vuforia.enableConvertFrameToBitmap();
 
+        //Setup trackables
         VuforiaTrackables targetsRoverRuckus = this.vuforia.loadTrackablesFromAsset("RoverRuckus");
         VuforiaTrackable blueRover = targetsRoverRuckus.get(0);
         blueRover.setName("Blue-Rover");
@@ -121,7 +129,6 @@ public class VuforiaWebcamTesting extends OpMode
         backSpace.setName("Back-Space");
 
         // For convenience, gather together all the trackable objects in one easily-iterable collection */
-
         allTrackables.addAll(targetsRoverRuckus);
 
         OpenGLMatrix blueRoverLocationOnField = OpenGLMatrix
@@ -159,8 +166,10 @@ public class VuforiaWebcamTesting extends OpMode
             ((VuforiaTrackableDefaultListener)trackable.getListener()).setPhoneInformation(phoneLocationOnRobot, parameters.cameraDirection);
         }
 
+        // Activate the targets
         targetsRoverRuckus.activate();
 
+        // Initialize the detector
         detector = new GoldAlignDetector();
         detector.init(hardwareMap.appContext,CameraViewDisplay.getInstance(), 0, true);
         detector.useDefaults();
@@ -168,14 +177,16 @@ public class VuforiaWebcamTesting extends OpMode
         //detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
         detector.downscale = 0.8;
 
+        // Set the detector
         vuforia.setDogeCVDetector(detector);
         vuforia.enableDogeCV();
         vuforia.showDebug();
         vuforia.start();
-
-
     }
 
+    /*
+     * Code to run REPEATEDLY when the driver hits INIT
+     */
     @Override
     public void init_loop() {
     }
@@ -185,10 +196,14 @@ public class VuforiaWebcamTesting extends OpMode
      */
     @Override
     public void start() {
+        // Reset timer
         runtime.reset();
     }
 
 
+    /*
+     * Code to run REPEATEDLY when the driver hits PLAY
+     */
     @Override
     public void loop() {
         targetVisible = false;
