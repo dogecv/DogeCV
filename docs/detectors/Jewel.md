@@ -2,6 +2,8 @@
 **STATUS:** _90% Competition Ready_   
 **LAST UPDATED:** _1/1/2017 with DogeCV 1.1_
 
+**WARNING** - This detector was made for an older competition. It is no longer being developed, but is still here for refrence purposes.
+
 # About
 This detector detects the jewels on their stand and returns their orientation.
 
@@ -23,7 +25,7 @@ To score these boxes, we calculate the difference from "Perfect" in different at
 The two attributes we use for this scoring are ratio of the cube and area of it in pixels. We uses these two attributes to find a perfect square that is the size of a jewel (or the largest object). Both of these values and how important are they to the final score can be tuned.
 
 # Usage
-THis detector is made to be used in the place of a color sensor in order to detect the jewels orientation in autonomous periods. The detector returns a enum representing the orientation/status. This can be fed to your bots code to have it knock off the correct jewel.
+This detector is made to be used in the place of a color sensor in order to detect the jewels orientation in autonomous periods. The detector returns a enum representing the orientation/status. This can be fed to your bot's code to have it knock off the correct jewel.
 
 ## Tuning
 _Still have to do this. Theres alot :/_
