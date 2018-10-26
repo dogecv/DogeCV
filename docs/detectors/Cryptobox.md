@@ -2,6 +2,8 @@
 **STATUS:** _70% Competition Ready_   
 **LAST UPDATED:** _1/1/2018 with DogeCV 1.1_
 
+**WARNING** - This detector was made for an older competiotion. It is no longer being developed, but is still here for refrence purposes.
+
 # About
 The Cryptobox detector is used to get positions of each column inside a cryptobox. This can be used to align your robot with a certain collumn of the cryptobox.
 
