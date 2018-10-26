@@ -3,20 +3,21 @@
 **LAST UPDATED:** _9/22/2018 DogeCV 2018.0_
 
 # About
-This detector is also made for the auton sampling section of the game, however this detector only requires the gold to be visable as it returns if the phone is aligned with the gold mineral.
+This detector is also made for the autonomous sampling section of the game, however this detector only requires the gold to be visible as it returns whether the phone is aligned with the gold mineral.
 
 ### Todo
-- Idk its pretty neato, ig ill tune it /shrug
+- Tuneups
 
 ### Known Issues
-- Somehow works, could use tuning tho
+- Works, but could use some tuning
+
 ### Credits
 
 # Details
-This detector uses a yellow LeviColorFilter to locate the gold mineral, then checks if the mineral's x positiob is with in a margin relative to the center of the screen.
+This detector uses a yellow LeviColorFilter to locate the gold mineral, then checks if the mineral's x position is with in a margin relative to the center of the screen.
 
 # Usage
-Find the location of the bot compare to the mineral in which you want to score the mineral, then tune the margins and position of the detector to match, after that all you you need to in auton is drive until the detector reports that the bot is aligned, then score.
+Find the location of the bot compared to the mineral that you want to knock off the sampling pad, then tune the margins and position of the detector to make sure the margins are centered on the robot. After that all you you need to do in autonomous is drive until the detector reports that the bot is aligned, then drive forward to score.
 
 ## Scorers (See ScoringAPI for tuning each.)
 - `ratioScorer` - a `RatioScorer` to find perfect squares.
