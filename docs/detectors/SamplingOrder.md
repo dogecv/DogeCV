@@ -3,24 +3,24 @@
 **LAST UPDATED:** _9/22/2018 DogeCV 2018.0_
 
 # About
-The sampling order detector, when having sight of all 3 auton minerals, will return the position of the gold mineral, allowing you to knock it off succesfully.
+This sampling order detector, when it sees all 3 sampling minerals, will return the position of the gold mineral. This allows you to knock it off succesfully.
 
 ### Todo
-- Distance between minerals affect scoring
-- Guessing with only two minerals
-- Better Silver detection
+- Distance between minerals should affect scoring
+- Guessing with only two minerals in sight
+- Better silver detection
 - Implement DogeCV performance settings
-- Pick Top Two Scoring Elements instead of any two
+- Pick top 2 Scoring Elements instead of any two
 ### Known Issues
 - Brightly lit floor can cause issues
 - Needs all 3 minerals in sight
 ### Credits
 
 # Details
-The sampling order detector uses a Yellow LeviColorFilter to locate 1 gold mineral and an HSVColorFilter to locate all white minerals, then compares their X coords to find the location of the gold, either `CENTER, LEFT or RIGHT` (`UNKNWON` if we do not know the current location)`
+The sampling order detector uses a Yellow `LeviColorFilter` to locate 1 gold mineral and an `HSVColorFilter` to locate all white minerals, then compares their X coordinates to find the location of the gold. Gold position is either `CENTER`, `LEFT`, or `RIGHT` (or `UNKNOWN` if we do not know the current location)
 
 # Usage
-This is made for those writing autons in which the location of the gold mineral needs to be known, and whos camera placement allows to see all 3 minerals.
+This is made for those writing autonomous programs in which the location of the gold mineral needs to be known, and whose camera placement allows the robot to see all 3 minerals.
 
 ## Scorers (See ScoringAPI for tuning each.)
 - `ratioScorer` - a `RatioScorer` to find perfect squares.
