@@ -16,9 +16,9 @@
 A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 
 # Docs
-[Detectors](/detectors)
-[ScoringAPI](/ScoringAPI)
-[ColorFilterAPI](/ColorFilterAPI)
+[Detectors](/docs/detectors)
+[ScoringAPI](/docs/ScoringAPI)
+[ColorFilterAPI](/docs/ColorFilterAPI)
 
 ## Project Status:
 **IN DEVELOPMENT. ALPHA RELEASE COMING SOON. NOT COMPETETION READY**
