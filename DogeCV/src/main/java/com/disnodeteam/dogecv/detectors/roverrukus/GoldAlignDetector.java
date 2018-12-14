@@ -1,7 +1,5 @@
 package com.disnodeteam.dogecv.detectors.roverrukus;
 
-import android.util.Log;
-
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
@@ -29,20 +27,26 @@ public class GoldAlignDetector extends DogeCVDetector {
 
     // Defining Mats to be used.
     private Mat displayMat = new Mat(); // Display debug info to the screen (this is what is returned)
-    private Mat workingMat = new Mat(); // Used for preprocessing and working with (blurring as an example)
+    private Mat workingMat = new Mat(); // Used for pre-processing and working with (blurring as an example)
     private Mat maskYellow = new Mat(); // Yellow Mask returned by color filter
-    private Mat hierarchy  = new Mat(); // hierarchy used by coutnours
+    private Mat hierarchy  = new Mat(); // hierarchy used by contours
 
     // Results of the detector
-    private boolean found    = false; // Is the gold mineral found
-    private boolean aligned  = false; // Is the gold mineral aligned
+    private boolean found       = false; // Is the gold mineral found
+    private boolean aligned     = false; // Is the gold mineral aligned       (X position)
+    private boolean constrained = false; // Is the gold mineral constrained   (Y position)
     private double  goldXPos = 0;     // X Position (in pixels) of the gold element
+    private double  goldYPos = 0;     // X Position (in pixels) of the gold element
 
     // Detector settings
-    public boolean debugAlignment = true; // Show debug lines to show alignment settings
-    public double alignPosOffset  = 0;    // How far from center frame is aligned
-    public double alignSize       = 100;  // How wide is the margin of error for alignment
-
+    public boolean debugAlignment    = true; // Show debug lines to show alignment settings
+    public double alignPosOffset     = 0;    // How far from center frame is aligned          (X position)
+    public double alignSize          = 100;  // How wide is the margin of error for alignment
+    public double constrainPosOffset = 0;   // How far from top is constrained               (Y position)
+    public double constrainSize      = 0;   // How wide is the margin of error for constraining
+    //
+    Rect bestRect = null;
+    //
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
 
@@ -74,15 +78,14 @@ public class GoldAlignDetector extends DogeCVDetector {
         //Preprocess the working Mat (blur it then apply a yellow filter)
         Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
         yellowFilter.process(workingMat.clone(),maskYellow);
-
         //Find contours of the yellow mask and draw them to the display mat for viewing
+
 
         List<MatOfPoint> contoursYellow = new ArrayList<>();
         Imgproc.findContours(maskYellow, contoursYellow, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(displayMat,contoursYellow,-1,new Scalar(230,70,70),2);
 
         // Current result
-        Rect bestRect = null;
         double bestDiffrence = Double.MAX_VALUE; // MAX_VALUE since less diffrence = better
 
         // Loop through the contours and score them, searching for the best result
@@ -101,10 +104,14 @@ public class GoldAlignDetector extends DogeCVDetector {
         }
 
         // Vars to calculate the alignment logic.
-        double alignX    = (getAdjustedSize().width / 2) + alignPosOffset; // Center point in X Pixels
-        double alignXMin = alignX - (alignSize / 2); // Min X Pos in pixels
-        double alignXMax = alignX +(alignSize / 2); // Max X pos in pixels
+        double alignX        = (getAdjustedSize().width / 2) + alignPosOffset; // Center point in X Pixels
+        double alignXMin     = alignX - (alignSize / 2); // Min X Pos in pixels
+        double alignXMax     = alignX +(alignSize / 2); // Max X pos in pixels
+        double constrainYMin = limitPositive(limitPositive(constrainPosOffset) - (constrainSize / 2));
+        double constrainYMax = (limitPositive(constrainPosOffset) + (constrainSize / 2));
         double xPos; // Current Gold X Pos
+        double yPos; // Current Gold X Pos
+
 
         if(bestRect != null){
             // Show chosen result
@@ -114,6 +121,9 @@ public class GoldAlignDetector extends DogeCVDetector {
             // Set align X pos
             xPos = bestRect.x + (bestRect.width / 2);
             goldXPos = xPos;
+
+            yPos = bestRect.y;
+            goldYPos = yPos;
 
             // Draw center point
             Imgproc.circle(displayMat, new Point( xPos, bestRect.y + (bestRect.height / 2)), 5, new Scalar(0,255,0),2);
@@ -125,8 +135,14 @@ public class GoldAlignDetector extends DogeCVDetector {
                 aligned = false;
             }
 
+            if(yPos < constrainYMax && yPos < constrainYMin){
+                constrained = true;
+            }else{
+                constrained = false;
+            }
+
             // Draw Current X
-            Imgproc.putText(displayMat,"Current X: " + bestRect.x,new Point(10,getAdjustedSize().height - 10),0,0.5, new Scalar(255,255,255),1);
+            Imgproc.putText(displayMat,"Current X: " + xPos + ", Current Y: " + yPos,new Point(10,getAdjustedSize().height - 10),0,0.5, new Scalar(255,255,255),1);
             found = true;
         }else{
             found = false;
@@ -141,10 +157,13 @@ public class GoldAlignDetector extends DogeCVDetector {
 
             Imgproc.line(displayMat,new Point(alignXMin, getAdjustedSize().height), new Point(alignXMin, getAdjustedSize().height - 40),new Scalar(0,255,0), 2);
             Imgproc.line(displayMat,new Point(alignXMax, getAdjustedSize().height), new Point(alignXMax,getAdjustedSize().height - 40),new Scalar(0,255,0), 2);
+
+            Imgproc.line(displayMat,new Point(0, constrainYMin), new Point(getAdjustedSize().width, constrainYMin), new Scalar(255, 0, 0), 2);
+            Imgproc.line(displayMat,new Point(0, constrainYMax), new Point(getAdjustedSize().width, constrainYMax), new Scalar(255, 0, 0), 2);
         }
 
         //Print result
-        Imgproc.putText(displayMat,"Result: " + aligned,new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
+        Imgproc.putText(displayMat,"Result: " + aligned + ", " + constrained, new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
 
 
         return displayMat;
@@ -177,8 +196,17 @@ public class GoldAlignDetector extends DogeCVDetector {
     }
 
     /**
+     *
+     * @param input - the double to be made positive
+     * @return the input if it is positive, else a 0
+     */
+    public double limitPositive(double input){
+        return input > 0 ? input : 0;
+    }
+
+    /**
      * Returns if the gold element is aligned
-     * @return if the gold element is alined
+     * @return if the gold element is aligned
      */
     public boolean getAligned(){
         return aligned;
@@ -198,5 +226,26 @@ public class GoldAlignDetector extends DogeCVDetector {
      */
     public boolean isFound() {
         return found;
+    }
+
+    /**
+     *
+     * @return the y-position of the gold element
+     */
+    public double getY(){
+        if (isFound()) {
+            return goldYPos;
+        }else{
+            return 0;
+        }
+    }
+
+    /**
+     *
+     * @return if the the gold element is aligned and within the
+     */
+    public boolean getConstrained(){
+        //
+        return aligned && constrained;
     }
 }
