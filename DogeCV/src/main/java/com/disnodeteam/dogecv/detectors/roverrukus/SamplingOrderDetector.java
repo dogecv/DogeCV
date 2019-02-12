@@ -26,6 +26,8 @@ import java.util.List;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * Basic sampling order detector - users are encouraged to tune it to their own needs.
  */
 
 public class SamplingOrderDetector extends DogeCVDetector {

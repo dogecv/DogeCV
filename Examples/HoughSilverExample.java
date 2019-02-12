@@ -47,7 +47,7 @@ public class HoughSilverExample extends OpMode
 
     @Override
     public void init() {
-        telemetry.addData("Status", "DogeCV 2018.0 - Gold SilverDetector Example");
+        telemetry.addData("Status", "DogeCV 2019.1 - Gold SilverDetector Example");
 
         detector = new HoughSilverDetector(); //Create detector
         detector.downscale = 1; //Increase detector sensitivity with smaller size. Make sure to preserve aspect ratio.
@@ -92,7 +92,7 @@ public class HoughSilverExample extends OpMode
      */
     @Override
     public void stop() {
-        detector.disable();
+        if(detector != null) detector.disable();
     }
 
 }

@@ -1,40 +1,40 @@
 
 
 <div align="center">
-    <img src="https://i.imgur.com/bMAmxfZ.png" width="100%"/>
+    <img src="https://i.imgur.com/umLIEix.jpg" width="100%"/>
     <br></br>
   <p>
     <a href="https://discord.gg/colton"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
   </p>
-  <b>Developed by Alex Carter of Disnode Robotics and Levi Gershon of Newton's Law</b>
+  <b>Developed by Levi Gershon of Newton's Law and Alex Carter of Disnode Robotics</b>
     <br/>
-     <i>Version 2018.2 | Updated 10/08/2018 </i>
+     <i>Version 2019.1 | Updated 02/12/2019 </i>
 
 </div>
 
 # DogeCV
-A easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
+An easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
 
 ## Project Status:
-**IN DEVELOPMENT. CURRENTLY IN ALPHA. NOT COMPETITION READY**
+**MOSTLY COMPETITION READY.**
 
 # DISCLAIMER
-### THIS REPO IS STILL UNDER HEAVY DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES AND NEW DETECTORS SOON.
-Also please keep in mind due to the major rewrite, many components have not been fully tested and polished, and many Relic Recovery detectors may be broken.
+### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
 
 ## Videos
 Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV.
 
-Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
  - [Wizards.exe Tutorial](https://www.youtube.com/watch?v=_i-EU3v9CRc)
 
 
 ## Development Team
-- Alex Carter FTC 7195 Mechanical Memes
 - Levi Gershon FTC 12897 Newton's Law of Mass'
+- Alex Carter FTC 7195 Mechanical Memes
 - Brandon FTC 8565 Technicbots
 
 ## Other Contributors
+- Robert Iridon and Prodaniuc Pavel FTC 15994 CSH (Webcam testing)
+- Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Banner art)
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
 - Derek FTC 5484 Enderbots (EnderCV Classes)
 - Owen Gonzalez (Testing)
@@ -42,22 +42,17 @@ Official Tutorials coming with the 2018.3 Update. (Est Sep 20th)
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- General Instablity
+- General Instability
 - GenericDetector not ported
-- Vuforia is rotated in portrait mode
-- RoverRukas Package typo.
+- RelicRecovery detectors not ported
 
 ## Planned Features / TODO
-- Fix Vuforia
+- Expand Wiki
 - Add in distance scoring between samples to increase accuracy
 - General Code Clean up
-- Update Wiki
 - Basic angle/positioning of elements
-- Example Autons using DogeCV
 - Port Old detectors to new systems
 - Better Safety checks
-- Move to our own OpenCV System
-- Add to JCenter
 - New Frame Input System
 - ML detectors
 
@@ -81,24 +76,43 @@ and resync the project.
 
 
 # Detectors Status
-- **Gold Align Detector** - Implemented. Unstable (Memory Leak)
+- **Gold Detector** - Implemented. Stable. Competition Ready.
+- **Silver Detector** - Implemented. Stable. Competition Ready.
+- **Gold Align Detector** - Implemented. Unstable (Memory Leak).
 - **Sampling Detector** - Implemented. Stable. Not Competition Ready.
-- **Gold Detector** - Implemented Base (Needs more).Stable. Not Competition Ready.
-- **Silver Detector** - Implemented Base (Needs more).Stable. Not Competition Ready.
+- **Hough Silver Detector** - Implemented. Unstable. Not Competition Ready.
 - **MultiMineral Detector** - Not Yet Implemented
 **See Wiki For More Info
 
 ## FAQ
-- **If I use dogeCV can I still use Vuforia?**
-    With the 2018 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, while using the same camera and viewing both data on the RC at the same time! This is done by using DogeCV's Vuforia class `DogeForia`. See more in the wiki.
-    (Current Unstable)
+- **If I use DogeCV can I still use Vuforia?**
+    With the 2019 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, all from one detector! See the VuMark Example class and the wiki for more information on how to do this.
+    (Currently Unstable)
 - **Can I still use classic OpenCV?**
-    Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV lib.
-- **`Dogeforia` is getting import errors:**
-    This is a current bug that I am investigating, for right now simply move the Dogeforia class to your `TeamCode` package.
-
+    Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV library.
+- **Can I use a webcam?**
+    Once more, yes! See the WebcamExample OpMode and the wiki for an explanation of how to this.
 
 ## Changelogs
+**2019.1**:
+ - Complete re-work of the `Dogeforia` system. It is now integrated within the `OpenCVPipeline` class, and is much simpler.
+ - Implemented image cropping, see `CroppingExample`
+ - Fixed miss-rotation in Vuforia display. The image should now be correctly oriented on the RC display
+ - Added `VuMarkExample` OpMode to demonstrate the basics of the new system
+ - Added `WebcamGoldExample` OpMode to demonstrate how to use a webcam with a detector under the new system
+ - Added `GoldAndVuMarks
+ - Added `CroppingExample` OpMode, intended to ease image cropping and to showcase functionality
+ - Added `GoldExample` OpMode
+ - Added method `getYPosition()` to `GoldAlignDetector`
+ - Added `VuMarkDetector` to provide a ready-made detector for the VuMarks within DogeCV. I will have it highlight VuMarks at a later date
+ - Added enum `VuMark` to `DogeCV` to make dealing with VuMarks easier in code
+ - Added enum 'CameraMode` to `DogeCV` to make setting the camera between `FRONT`, `BACK`, and `WEBCAM` easier
+ - Added wiki entries for VuMarks and Webcams
+ - Reworked code comments
+ - Removed camera index as a constructor argument in `OpenCVPipeline`. This has been replaced by `DogeCV.CameraMode`
+ - Updated page banner - thanks Nathan!
+ - Updated this `README`
+
 **2018.2.1 HOTFIX**:
  - Removed `AsyncFilterRunner` import from Sampling Detector #12   
  - Fixed `Dogeforia` crash on stop #10        
@@ -121,7 +135,7 @@ and resync the project.
 
 **2018.1**:
  - Added `HSVRangeFilter` that uses classic `lower` and `upper` HSV ranges
- - `HSVColorFilter` now devides the range by 2 on each side of the perfect color value. (Now range acts as expected) (Issue #9)
+ - `HSVColorFilter` now divides the range by 2 on each side of the perfect color value. (Now range acts as expected) (Issue #9)
  - Added `SilverDetector` (Same as Gold but for silver)
  - Moved `SamplingOrderDetector` to use `HSVRangeFilter` for silver
  - Tuned Sampling (Still not competition ready)
@@ -166,12 +180,12 @@ and resync the project.
  - Removed Multiple Mat returning
 
 **0.5**:
- - Fixed rotated preview on protrait mode.
+ - Fixed rotated preview on portrait mode.
  - Detectors return an array of images. You can cycle through them by tapping on the preview screen
 ## Contact
 If you have any suggestions or questions feel free to contact us at:    
-**VictoryForPhil@gmail.com**
+**levi.gershon@outlook.com**
 or 
-**VictoryForPhil#4759 or Levi -12897** on Discord
+**Levi -12897 or VictoryForPhil#4759** on Discord
 
 You can also usually spot us on the FTC Discord.

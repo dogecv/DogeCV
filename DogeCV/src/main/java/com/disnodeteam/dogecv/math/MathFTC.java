@@ -1,9 +1,23 @@
 package com.disnodeteam.dogecv.math;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MathFTC {
+
+    public static final float mmPerInch        = 25.4f;
+    public static final float mmFTCFieldWidth  = (12*6) * mmPerInch;       // the width of the FTC field (from the center point to the outer panels)
+    public static final float mmTargetHeight   = (6) * mmPerInch;          // the height of the center of the target image above the floor
 
     /**
      * A simple clamp function, which assumes a valid range.
@@ -103,5 +117,38 @@ public class MathFTC {
         angle = angle % 180;
         if (angle > 0) return angle;
         else return angle+180;
+    }
+
+    /**
+     * Crops an image to two specified corners
+     * @param image The image to be cropped
+     * @param topLeftCorner The top-left corner of the desired final image, in pixel coordinates
+     * @param bottomRightCorner The bottom-right corner of the desired final image, in pixel coordinates
+     * @return The cropped image
+     */
+    public static Mat crop(Mat image, Point topLeftCorner, Point bottomRightCorner) {
+        if (topLeftCorner != null) {
+            if(topLeftCorner.y > 0 && topLeftCorner.y < image.height()-1 && topLeftCorner.x > 0 && topLeftCorner.x < image.width()) {
+                Imgproc.rectangle(image, new Point(0,0), new Point(image.width(),topLeftCorner.y), new Scalar(0), -1);
+                Imgproc.rectangle(image, new Point(0,0), new Point(topLeftCorner.x, image.height()), new Scalar(0), -1);
+            }
+        }
+        if(bottomRightCorner != null) {
+            if(bottomRightCorner.y > 0 && bottomRightCorner.y < image.height()-1 && bottomRightCorner.x > 0 && bottomRightCorner.x < image.width()) {
+                Imgproc.rectangle(image, new Point(image.width(),image.height()), new Point(bottomRightCorner.x,0), new Scalar(0), -1);
+                Imgproc.rectangle(image, new Point(image.width(),image.height()), new Point(0, bottomRightCorner.y), new Scalar(0), -1);
+            }
+        }
+        return image;
+    }
+
+    public static Size fullscreen(Size originalSize, Size maxSize) {
+        double adjustedHeight = maxSize.width*originalSize.height/originalSize.width;
+        if(adjustedHeight > maxSize.height) {
+            double adjustedWidth= maxSize.height*originalSize.width/originalSize.height;
+            return new Size(adjustedWidth, maxSize.height);
+        } else {
+            return new Size(maxSize.width, adjustedHeight);
+        }
     }
 }

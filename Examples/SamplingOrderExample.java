@@ -34,6 +34,7 @@ import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.roverrukus.GoldDetector;
 import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
 import com.disnodeteam.dogecv.filters.HSVColorFilter;
+import com.disnodeteam.dogecv.filters.LeviColorFilter;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -48,7 +49,7 @@ public class SamplingOrderExample extends OpMode {
 
     @Override
     public void init() {
-        telemetry.addData("Status", "DogeCV 2018.0 - Sampling Order Example");
+        telemetry.addData("Status", "DogeCV 2019.1 - Sampling Order Example");
 
         // Setup detector
         detector = new SamplingOrderDetector(); // Create the detector
@@ -56,7 +57,7 @@ public class SamplingOrderExample extends OpMode {
         detector.useDefaults(); // Set detector to use default settings
 
         detector.downscale = 0.4; // How much to downscale the input frames
-
+        detector.whiteFilter = new LeviColorFilter(LeviColorFilter.ColorPreset.WHITE);
         // Optional tuning
         detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
         //detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
@@ -98,7 +99,7 @@ public class SamplingOrderExample extends OpMode {
      */
     @Override
     public void stop() {
-        detector.disable();
+        if(detector != null) detector.disable();
     }
 
 }

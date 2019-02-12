@@ -45,10 +45,9 @@ public class SilverExample extends OpMode {
     // Detector object
     private SilverDetector detector;
 
-
     @Override
     public void init() {
-        telemetry.addData("Status", "DogeCV 2018.0 - Gold SilverDetector Example");
+        telemetry.addData("Status", "DogeCV 2019.1 - Silver Detector Example");
 
         // Setup detector
         detector = new SilverDetector(); // Create detector
@@ -96,7 +95,7 @@ public class SilverExample extends OpMode {
      */
     @Override
     public void stop() {
-        detector.disable();
+        if(detector != null) detector.disable(); //Make sure to run this on stop!
     }
 
 }

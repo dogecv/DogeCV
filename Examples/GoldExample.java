@@ -32,31 +32,30 @@ package org.firstinspires.ftc.teamcode.dogecv;
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.roverrukus.GoldAlignDetector;
-import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
+import com.disnodeteam.dogecv.detectors.roverrukus.GoldDetector;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.opencv.core.Rect;
 
-@TeleOp(name="Gold Align Example", group="DogeCV")
 
-public class GoldAlignExample extends OpMode
+@TeleOp(name="Gold Example", group="DogeCV")
+
+public class GoldExample extends OpMode
 {
     // Detector object
-    private GoldAlignDetector detector;
+    private GoldDetector detector;
 
 
     @Override
     public void init() {
-        telemetry.addData("Status", "DogeCV 2019.1 - Gold Align Example");
-
+        telemetry.addData("Status", "DogeCV 2019.1 - Gold Example");
         // Set up detector
-        detector = new GoldAlignDetector(); // Create detector
+        detector = new GoldDetector(); // Create detector
         detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); // Initialize it with the app context and camera
         detector.useDefaults(); // Set detector to use default settings
 
         // Optional tuning
-        detector.alignSize = 100; // How wide (in pixels) is the range in which the gold object will be aligned. (Represented by green bars in the preview)
-        detector.alignPosOffset = 0; // How far from center frame to offset this alignment zone.
         detector.downscale = 0.4; // How much to downscale the input frames
 
         detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
@@ -91,8 +90,10 @@ public class GoldAlignExample extends OpMode
      */
     @Override
     public void loop() {
-        telemetry.addData("IsAligned" , detector.getAligned()); // Is the bot aligned with the gold mineral?
-        telemetry.addData("X Pos" , detector.getXPosition()); // Gold X position.
+        telemetry.addData("IsFound: ", detector.isFound());
+        Rect rect = detector.getFoundRect();
+        if(detector.isFound()) telemetry.addData("Location: ", Integer.toString((int) (rect.x + rect.width*0.5)) + ", " + Integer.toString((int) (rect.y+0.5*rect.height)));
+        telemetry.update();
     }
 
     /*
@@ -100,7 +101,8 @@ public class GoldAlignExample extends OpMode
      */
     @Override
     public void stop() {
-        if(detector != null) detector.disable(); //Make sure to run this on stop!
+        // Disable the detector
+        if(detector != null) detector.disable();
     }
 
 }
