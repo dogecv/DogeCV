@@ -42,6 +42,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
 ## Known Issues
 (These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
+- All detectors have a minor memory leak. Simply don't leave them running too long and you'll be fine.
 - General Instability
 - GenericDetector not ported
 - RelicRecovery detectors not ported
