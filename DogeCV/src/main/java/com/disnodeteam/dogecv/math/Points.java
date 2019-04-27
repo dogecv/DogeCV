@@ -6,6 +6,9 @@ import org.opencv.core.Size;
 
 import java.util.List;
 
+/**
+ * Useful methods for Points
+ */
 public class Points {
     /**
      * Checks if a given point is within the bounds (size) of an image

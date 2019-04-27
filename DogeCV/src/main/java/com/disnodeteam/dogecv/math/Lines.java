@@ -16,6 +16,9 @@ import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.LineSegmentDetector;
 
+/**
+ * Useful methods for lines
+ */
 
 public class Lines {
 

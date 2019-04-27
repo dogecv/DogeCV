@@ -6,6 +6,8 @@ import org.opencv.imgproc.Imgproc;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * Scores based on the difference from the ideal area
  */
 
 public class PerfectAreaScorer extends DogeCVScorer {

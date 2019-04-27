@@ -20,6 +20,9 @@ import java.util.List;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * A generic detector that works on many situations with many configuration
+ * options
  */
 
 public class GenericDetector extends DogeCVDetector {
@@ -35,13 +38,31 @@ public class GenericDetector extends DogeCVDetector {
     private Point   screenPosition = new Point(); // Screen position of the mineral
     private Rect    foundRect = new Rect(); // Found rect
 
+    /**
+     * The AreaScoringMethod to use (defaults to MAX_AREA)
+     */
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
     //Create the default filters and scorers
+    /**
+     * The DogeCVColorFilter to use (defaults to LeviColorFilter on RED)
+     */
     public DogeCVColorFilter colorFilter       = new LeviColorFilter(LeviColorFilter.ColorPreset.RED); //Default Yellow filter
 
+    /**
+     * The default RatioScorer which finds perfect squares
+     */
     public RatioScorer       ratioScorer       = new RatioScorer(1.0, 3);          // Used to find perfect squares
+
+    /**
+     * The default MaxAreaScorer which finds perfect squares
+     */
     public MaxAreaScorer     maxAreaScorer     = new MaxAreaScorer( 0.01);                    // Used to find largest objects
+
+    /**
+     * The default RatioScorer which finds objects that have an area closest to
+     * 5000 pixels
+     */
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05); // Used to find objects near a tuned area value
 
     /**
@@ -52,7 +73,11 @@ public class GenericDetector extends DogeCVDetector {
         detectorName = "Generic Detector"; // Set the detector name
     }
 
-
+    /**
+     * Processes the frame by using the specified options
+     * @param input the Mat to process
+     * @return the processed Mat
+     */
     @Override
     public Mat process(Mat input) {
 
@@ -112,6 +137,9 @@ public class GenericDetector extends DogeCVDetector {
 
     }
 
+    /**
+     * Runs the appropriate scorer, based on areaScoringMethod
+     */
     @Override
     public void useDefaults() {
         addScorer(ratioScorer);

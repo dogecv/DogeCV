@@ -8,6 +8,8 @@ import org.opencv.imgproc.Imgproc;
 
 /**
  * Created by Victo on 1/1/2018.
+ *
+ * Filters out colors that are not within two specified HSV values
  */
 
 public class HSVRangeFilter extends DogeCVColorFilter{

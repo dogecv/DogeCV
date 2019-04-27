@@ -2,6 +2,9 @@ package com.disnodeteam.dogecv.math;
 
 import org.opencv.core.Point;
 
+/**
+ * Represents a Line
+ */
 public class Line implements Comparable<Line> {
 
     public Point point1;

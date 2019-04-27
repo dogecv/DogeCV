@@ -9,6 +9,8 @@ import org.opencv.core.MatOfPoint;
 
 /**
  * Created by LeviG on 10/7/2018.
+ *
+ * Scores based on difference from perfect color
  */
 
 public class ColorDevScorer extends DogeCVScorer{

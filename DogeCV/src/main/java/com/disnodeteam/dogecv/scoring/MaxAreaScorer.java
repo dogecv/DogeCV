@@ -8,6 +8,8 @@ import org.opencv.imgproc.Imgproc;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * Scores the largest contours the highest
  */
 
 public class MaxAreaScorer extends DogeCVScorer{
@@ -18,7 +20,6 @@ public class MaxAreaScorer extends DogeCVScorer{
      */
     public MaxAreaScorer( double weight){
         this.weight = weight;
-
     }
 
     /**
