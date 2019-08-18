@@ -64,17 +64,17 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 3. Navigate to **File** -> **New** -> **Import Module** from the title bar.
 4. When the a dialog comes up, asking for the module source directory, navigate to this repo and select the **openCVLibrary3** folder, and then hit **Finish**
 5. Repeat steps 3 and 4 except instead of selecting the **openCVLibrary3** folder, select the **DogeCV** folder instead. If Android Studio fails to import modules because it sucks sometimes, open `settings.gradle` and add these two lines: 
-```
+```groovy
 include ':openCVLibrary3'
 include ':DogeCV'
 ```
 and resync the project.    
-6. In the left hand side project explorer in Android Studio, right-click **TeamCode**, and click on **Open Module Settings**.    
-7. A **Project Structure** dialog should come up. Click the **Dependencies** tab.     
-8. Click the green plus sign on the right hand side, then **Module dependency**, and then **:openCVLibrary3**, then press OK.     
-9. Repeat step 8, except substitute **:openCVLibrary3** with **:DogeCV**.   
-10. Click **OK** to exit the **Project Structure** dialog.    
-
+6. Add the lines to TeamCode's `build.release.gradle`:
+```groovy
+implementation project(':openCVLibrary3')
+implementation project(':DogeCV')
+```
+7. Press the `Sync Now` button that should appear in the top right
 
 # Detectors Status
 - **Gold Detector** - Implemented. Stable. Competition Ready.
