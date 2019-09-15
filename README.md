@@ -33,6 +33,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - Arnav Komaragiri FTC 8719 Quantum Leap
 - Frank Portman FTC 8581 Aedificatores
 - Daniel Goz FTC 7026 JDroids
+- Ben Loan FTC 3795 JagWired
 
 ## Other Contributors
 - Robert Iridon and Prodaniuc Pavel FTC 15994 CSH (Webcam testing)
