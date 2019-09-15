@@ -28,6 +28,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
 
 ## Development Team
+- Levi Gershon FTC 12897 Newton's Law of Mass
 - Alex Carter FTC 7195 Mechanical Memes
 - Arnav Komaragiri FTC 8719 Quantum Leap
 - Frank Portman FTC 8581 Aedificatores
