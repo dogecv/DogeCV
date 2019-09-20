@@ -28,21 +28,21 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
 
 ## Active Development Team
-- Aditya Mangalampalli FTC 9614 Hyperion
-- Alex Carter FTC 7195 Mechanical Memes
-- Arnav Komaragiri FTC 8719 Quantum Leap
-- Ben Loan FTC 3795 JagWired
-- Daniel Goz FTC 7026 JDroids
-- Frank Portman FTC 8581 Aedificatores
+- Aditya Mangalampalli FTC 9614 Hyperion @Λlpheron#2162
+- Alex Carter FTC 7195 Mechanical Memes @VictoryForPhil#0001
+- Arnav Komaragiri FTC 8719 Quantum Leap @-----#9037
+- Ben Loan FTC 3795 JagWired @Ben6501#0094
+- Daniel Goz FTC 7026 JDroids @dansman805#5805
+- Frank Portman FTC 8581 Aedificatores @Something Disposable#9622
 
 ## Active Contributors
-- Adhit Siripurapu FTC 9614 Hyperion (Testing)
-- Ishaan Oberoi FTC 9794 Wizards.exe (Publicity)
-- Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Logos)
-- Sarthak Bhatnagar FTC 9794 Wizards.exe (Odometry & Tutorials)
+- Adhit Siripurapu FTC 9614 Hyperion (Testing) @Prickles#0203
+- Ishaan Oberoi FTC 9794 Wizards.exe (Publicity) @RollerCoaster45#0637
+- Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Logos) 
+- Sarthak Bhatnagar FTC 9794 Wizards.exe (Odometry & Tutorials) @s.bhatnag#0906
 
 ## Doge Alumni
-- Levi Gershon FTC 12897 Newton's Law of Mass
+- Levi Gershon FTC 12897 Newton's Law of Mass @LegoF4#2372
 
 ## Other Past Contributors
 - Robert Iridon and Prodaniuc Pavel FTC 15994 CSH (Webcam testing)
@@ -195,10 +195,7 @@ implementation project(':DogeCV')
 **0.5**:
  - Fixed rotated preview on portrait mode.
  - Detectors return an array of images. You can cycle through them by tapping on the preview screen
-## Contact
-If you have any suggestions or questions feel free to contact us at:    
-**levi.gershon@outlook.com**
-or 
-**Levi -12897 or VictoryForPhil#4759** on Discord
 
-You can also usually spot us on the FTC Discord.
+## Contact
+Please feel free to message us on Discord with the usernames that we have listed above.
+You can also usually spot us on the FTC Discord and feel free to ask us if you have any questions.
