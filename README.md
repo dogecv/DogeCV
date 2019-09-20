@@ -22,20 +22,29 @@ An easy to use computer vision library used for FTC Games to detect game objects
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
 
 ## Videos
-Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV.
+Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV. 
 
- - [Wizards.exe Tutorial](https://www.youtube.com/watch?v=_i-EU3v9CRc)
+ - [Wizards.exe Tutorial](https://www.youtube.com/playlist?list=PLICNg-rquuraBSqMOeW_hqf9O-Cct1jJw)
 
 
-## Development Team
-- Levi Gershon FTC 12897 Newton's Law of Mass
+## Active Development Team
+- Aditya Mangalampalli FTC 9614 Hyperion
 - Alex Carter FTC 7195 Mechanical Memes
 - Arnav Komaragiri FTC 8719 Quantum Leap
-- Frank Portman FTC 8581 Aedificatores
-- Daniel Goz FTC 7026 JDroids
 - Ben Loan FTC 3795 JagWired
+- Daniel Goz FTC 7026 JDroids
+- Frank Portman FTC 8581 Aedificatores
 
-## Other Contributors
+## Active Contributors
+- Adhit Siripurapu FTC 9614 Hyperion (Testing)
+- Ishaan Oberoi FTC 9794 Wizards.exe (Publicity)
+- Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Logos)
+- Sarthak Bhatnagar FTC 9794 Wizards.exe (Odometry & Tutorials)
+
+## Doge Alumni
+- Levi Gershon FTC 12897 Newton's Law of Mass
+
+## Other Past Contributors
 - Robert Iridon and Prodaniuc Pavel FTC 15994 CSH (Webcam testing)
 - Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Banner art)
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
