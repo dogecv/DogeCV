@@ -1,7 +1,5 @@
 package com.disnodeteam.dogecv.detectors.relicrecovery;
 
-import com.disnodeteam.dogecv.OpenCVPipeline;
-
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -11,6 +9,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import java.util.List;
  * Created by Victo on 11/25/2017.
  */
 
-public class GlyphDetector extends OpenCVPipeline {
+public class GlyphDetector extends OpenCvPipeline {
 
 
     public enum GlyphDetectionMode {
@@ -59,13 +58,14 @@ public class GlyphDetector extends OpenCVPipeline {
     private Mat processed = new Mat();
     private Mat structure = new Mat();
     private Size newSize  = new Size();
-    @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
 
-        Size initSize = rgba.size();
+    @Override
+    public Mat processFrame(Mat input) {
+
+        Size initSize = input.size();
         newSize = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
 
-        rgba.copyTo(workingMat);
+        input.copyTo(workingMat);
         Imgproc.resize(workingMat,workingMat, newSize);
 
         if(rotateMat){

@@ -1,7 +1,5 @@
 package com.disnodeteam.dogecv.detectors.relicrecovery;
 
-
-import com.disnodeteam.dogecv.OpenCVPipeline;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.LeviColorFilter;
 
@@ -15,6 +13,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +22,13 @@ import java.util.List;
  * Created by Victo on 11/5/2017.
  */
 
-public class JewelDetector extends OpenCVPipeline {
+public class JewelDetector extends OpenCvPipeline {
 
     public enum JewelOrder {
         RED_BLUE,
         BLUE_RED,
         UNKNOWN
     }
-
-
-
 
     public enum JewelDetectionMode {
         PERFECT_AREA, MAX_AREA
@@ -72,11 +68,11 @@ public class JewelDetector extends OpenCVPipeline {
     private Size newSize = new Size();
 
     @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
+    public Mat processFrame(Mat input) {
 
-        Size initSize= rgba.size();
+        Size initSize= input.size();
         newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
-        rgba.copyTo(workingMat);
+        input.copyTo(workingMat);
 
         Imgproc.resize(workingMat, workingMat,newSize);
 
@@ -152,7 +148,7 @@ public class JewelDetector extends OpenCVPipeline {
             // Optional to ALWAYS return a result.
 
             // Update the chosen rect if the diffrence is lower then the curreny chosen
-            // Also can add a condition for min diffrence to filter out VERY wrong answers
+            // Also can add a condition for min diffrence to blackFilter out VERY wrong answers
             // Think of diffrence as score. 0 = perfect
             if(finalDiffrence < chosenRedScore && finalDiffrence < maxDiffrence && area > minArea){
                 chosenRedScore = finalDiffrence;
@@ -219,7 +215,7 @@ public class JewelDetector extends OpenCVPipeline {
 
 
             // Update the chosen rect if the diffrence is lower then the curreny chosen
-            // Also can add a condition for min diffrence to filter out VERY wrong answers
+            // Also can add a condition for min diffrence to blackFilter out VERY wrong answers
             // Think of diffrence as score. 0 = perfect
             if(finalDiffrence < chosenBlueScore && finalDiffrence < maxDiffrence && area > minArea){
                 chosenBlueScore = finalDiffrence;
@@ -242,7 +238,7 @@ public class JewelDetector extends OpenCVPipeline {
             Imgproc.putText(workingMat,
                     "Red: " + String.format("%.2f", chosenRedScore),
                     new Point(chosenRedRect.x - 5, chosenRedRect.y - 10),
-                    Core.FONT_HERSHEY_PLAIN,
+                    Imgproc.FONT_HERSHEY_PLAIN,
                     1.3,
                     new Scalar(255, 0, 0),
                     2);
@@ -257,7 +253,7 @@ public class JewelDetector extends OpenCVPipeline {
             Imgproc.putText(workingMat,
                     "Blue: " + String.format("%.2f", chosenBlueScore),
                     new Point(chosenBlueRect.x - 5, chosenBlueRect.y - 10),
-                    Core.FONT_HERSHEY_PLAIN,
+                    Imgproc.FONT_HERSHEY_PLAIN,
                     1.3,
                     new Scalar(0, 0, 255),
                     2);

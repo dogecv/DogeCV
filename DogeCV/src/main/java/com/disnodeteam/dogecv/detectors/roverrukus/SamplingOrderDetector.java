@@ -1,7 +1,5 @@
 package com.disnodeteam.dogecv.detectors.roverrukus;
 
-import android.util.Log;
-
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
@@ -11,7 +9,6 @@ import com.disnodeteam.dogecv.scoring.MaxAreaScorer;
 import com.disnodeteam.dogecv.scoring.PerfectAreaScorer;
 import com.disnodeteam.dogecv.scoring.RatioScorer;
 
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
@@ -63,7 +60,7 @@ public class SamplingOrderDetector extends DogeCVDetector {
     private Mat displayMat  = new Mat();
     private Mat yellowMask  = new Mat();
     private Mat whiteMask   = new Mat();
-    private Mat hiarchy     = new Mat();
+    private Mat hierarchy = new Mat();
 
     public SamplingOrderDetector() {
         super();
@@ -90,10 +87,10 @@ public class SamplingOrderDetector extends DogeCVDetector {
         Imgproc.blur(whiteMask,whiteMask,new Size(2,2));
         Imgproc.blur(yellowMask,yellowMask,new Size(2,2));
 
-        Imgproc.findContours(yellowMask, contoursYellow, hiarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+        Imgproc.findContours(yellowMask, contoursYellow, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(displayMat,contoursYellow,-1,new Scalar(230,70,70),2);
 
-        Imgproc.findContours(whiteMask, contoursWhite, hiarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+        Imgproc.findContours(whiteMask, contoursWhite, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(displayMat,contoursWhite,-1,new Scalar(230,70,70),2);
 
 
@@ -197,7 +194,7 @@ public class SamplingOrderDetector extends DogeCVDetector {
             Imgproc.putText(displayMat,
                     "Gold: " + String.format("%.2f X=%.2f", chosenYellowScore, (double)chosenYellowRect.x),
                     new Point(chosenYellowRect.x - 5, chosenYellowRect.y - 10),
-                    Core.FONT_HERSHEY_PLAIN,
+                    Imgproc.FONT_HERSHEY_PLAIN,
                     1.3,
                     new Scalar(0, 255, 255),
                     2);
@@ -215,7 +212,7 @@ public class SamplingOrderDetector extends DogeCVDetector {
                 Imgproc.putText(displayMat,
                         "Silver: " + String.format("Score %.2f ", score) ,
                         new Point(rect.x - 5, rect.y - 10),
-                        Core.FONT_HERSHEY_PLAIN,
+                        Imgproc.FONT_HERSHEY_PLAIN,
                         1.3,
                         new Scalar(255, 255, 255),
                         2);
@@ -253,8 +250,8 @@ public class SamplingOrderDetector extends DogeCVDetector {
         }
 
         //Display Debug Information
-        Imgproc.putText(displayMat,"Gold Position: " + lastOrder.toString(),new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
-        Imgproc.putText(displayMat,"Current Track: " + currentOrder.toString(),new Point(10,getAdjustedSize().height - 10),0,0.5, new Scalar(255,255,255),1);
+        Imgproc.putText(displayMat,"Gold Position: " + lastOrder.toString(),new Point(10, getSize().height - 30),0,1, new Scalar(255,255,0),1);
+        Imgproc.putText(displayMat,"Current Track: " + currentOrder.toString(),new Point(10, getSize().height - 10),0,0.5, new Scalar(255,255,255),1);
 
         return displayMat;
     }

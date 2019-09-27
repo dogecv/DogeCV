@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: org.openftc:robotcore-stock:5.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/gson-2.8.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/slf4j-api-1.7.26.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/Vuforia.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/gson-extras-0.2.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/slf4j-handroid-1.7.27.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openftc/robotcore-stock/5.1/931bb9299744bec3153c568876ea059f7d2b8767/robotcore-stock-5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

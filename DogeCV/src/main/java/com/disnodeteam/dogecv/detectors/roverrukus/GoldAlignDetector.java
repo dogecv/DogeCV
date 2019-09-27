@@ -28,7 +28,7 @@ public class GoldAlignDetector extends DogeCVDetector {
     // Defining Mats to be used.
     private Mat displayMat = new Mat(); // Display debug info to the screen (this is what is returned)
     private Mat workingMat = new Mat(); // Used for pre-processing and working with (blurring as an example)
-    private Mat maskYellow = new Mat(); // Yellow Mask returned by color filter
+    private Mat maskYellow = new Mat(); // Yellow Mask returned by color blackFilter
     private Mat hierarchy  = new Mat(); // hierarchy used by contours
 
     // Results of the detector
@@ -46,7 +46,7 @@ public class GoldAlignDetector extends DogeCVDetector {
 
 
     //Create the default filters and scorers
-    public DogeCVColorFilter yellowFilter      = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW); //Default Yellow filter
+    public DogeCVColorFilter yellowFilter      = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW); //Default Yellow blackFilter
 
     public RatioScorer       ratioScorer       = new RatioScorer(1.0, 3);          // Used to find perfect squares
     public MaxAreaScorer     maxAreaScorer     = new MaxAreaScorer( 0.01);                    // Used to find largest objects
@@ -70,7 +70,7 @@ public class GoldAlignDetector extends DogeCVDetector {
         input.release();
 
 
-        //Preprocess the working Mat (blur it then apply a yellow filter)
+        //Preprocess the working Mat (blur it then apply a yellow blackFilter)
         Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
         yellowFilter.process(workingMat.clone(),maskYellow);
 
@@ -100,7 +100,7 @@ public class GoldAlignDetector extends DogeCVDetector {
         }
 
         // Vars to calculate the alignment logic.
-        double alignX    = (getAdjustedSize().width / 2) + alignPosOffset; // Center point in X Pixels
+        double alignX    = (getSize().width / 2) + alignPosOffset; // Center point in X Pixels
         double alignXMin = alignX - (alignSize / 2); // Min X Pos in pixels
         double alignXMax = alignX +(alignSize / 2); // Max X pos in pixels
         double xPos; // Current Gold X Pos
@@ -128,7 +128,7 @@ public class GoldAlignDetector extends DogeCVDetector {
             }
 
             // Draw Current X
-            Imgproc.putText(displayMat,"Current X: " + bestRect.x,new Point(10,getAdjustedSize().height - 10),0,0.5, new Scalar(255,255,255),1);
+            Imgproc.putText(displayMat,"Current X: " + bestRect.x,new Point(10, getSize().height - 10),0,0.5, new Scalar(255,255,255),1);
             found = true;
         }else{
             found = false;
@@ -138,15 +138,15 @@ public class GoldAlignDetector extends DogeCVDetector {
 
             //Draw debug alignment info
             if(isFound()){
-                Imgproc.line(displayMat,new Point(goldXPos, getAdjustedSize().height), new Point(goldXPos, getAdjustedSize().height - 30),new Scalar(255,255,0), 2);
+                Imgproc.line(displayMat,new Point(goldXPos, getSize().height), new Point(goldXPos, getSize().height - 30),new Scalar(255,255,0), 2);
             }
 
-            Imgproc.line(displayMat,new Point(alignXMin, getAdjustedSize().height), new Point(alignXMin, getAdjustedSize().height - 40),new Scalar(0,255,0), 2);
-            Imgproc.line(displayMat,new Point(alignXMax, getAdjustedSize().height), new Point(alignXMax,getAdjustedSize().height - 40),new Scalar(0,255,0), 2);
+            Imgproc.line(displayMat,new Point(alignXMin, getSize().height), new Point(alignXMin, getSize().height - 40),new Scalar(0,255,0), 2);
+            Imgproc.line(displayMat,new Point(alignXMax, getSize().height), new Point(alignXMax, getSize().height - 40),new Scalar(0,255,0), 2);
         }
 
         //Print result
-        Imgproc.putText(displayMat,"Result: " + aligned,new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
+        Imgproc.putText(displayMat,"Result: " + aligned,new Point(10, getSize().height - 30),0,1, new Scalar(255,255,0),1);
 
 
         return displayMat;

@@ -1,9 +1,5 @@
 package com.disnodeteam.dogecv.detectors;
 
-import com.disnodeteam.dogecv.OpenCVPipeline;
-import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
-import com.disnodeteam.dogecv.filters.LeviColorFilter;
-
 import org.opencv.core.Mat;
 
 /**

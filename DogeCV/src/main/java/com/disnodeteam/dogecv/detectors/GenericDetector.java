@@ -27,7 +27,7 @@ public class GenericDetector extends DogeCVDetector {
     // Defining Mats to be used.
     private Mat displayMat = new Mat(); // Display debug info to the screen (this is what is returned)
     private Mat workingMat = new Mat(); // Used for preprocessing and working with (blurring as an example)
-    private Mat mask       = new Mat(); // Mask returned by color filter
+    private Mat mask       = new Mat(); // Mask returned by color blackFilter
     private Mat hierarchy  = new Mat(); // hierarchy used by coutnours
 
     // Results of the detector
@@ -38,7 +38,7 @@ public class GenericDetector extends DogeCVDetector {
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
     //Create the default filters and scorers
-    public DogeCVColorFilter colorFilter       = new LeviColorFilter(LeviColorFilter.ColorPreset.RED); //Default Yellow filter
+    public DogeCVColorFilter colorFilter       = new LeviColorFilter(LeviColorFilter.ColorPreset.RED); //Default Yellow blackFilter
 
     public RatioScorer       ratioScorer       = new RatioScorer(1.0, 3);          // Used to find perfect squares
     public MaxAreaScorer     maxAreaScorer     = new MaxAreaScorer( 0.01);                    // Used to find largest objects
@@ -62,7 +62,7 @@ public class GenericDetector extends DogeCVDetector {
         input.release();
 
 
-        //Preprocess the working Mat (blur it then apply a color filter)
+        //Preprocess the working Mat (blur it then apply a color blackFilter)
         Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
         colorFilter.process(workingMat.clone(),mask      );
 
@@ -105,7 +105,7 @@ public class GenericDetector extends DogeCVDetector {
 
 
         //Print result
-        Imgproc.putText(displayMat,"Result: " + screenPosition.x +"/"+screenPosition.y,new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
+        Imgproc.putText(displayMat,"Result: " + screenPosition.x +"/"+screenPosition.y,new Point(10, getSize().height - 30),0,1, new Scalar(255,255,0),1);
 
 
         return displayMat;
@@ -116,7 +116,7 @@ public class GenericDetector extends DogeCVDetector {
     public void useDefaults() {
         addScorer(ratioScorer);
 
-        // Add diffrent scoreres depending on the selected mode
+        // Add different scoreres depending on the selected mode
         if(areaScoringMethod == DogeCV.AreaScoringMethod.MAX_AREA){
             addScorer(maxAreaScorer);
         }

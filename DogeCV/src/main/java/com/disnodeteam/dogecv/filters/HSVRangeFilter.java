@@ -25,7 +25,7 @@ public class HSVRangeFilter extends DogeCVColorFilter{
     }
 
     /**
-     * Update the filter settings
+     * Update the blackFilter settings
      * @param lower - Lower Color
      * @param upper - Upper Color
      */

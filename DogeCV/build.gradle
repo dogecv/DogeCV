@@ -19,13 +19,8 @@ android {
         }
     }
 }
-repositories {
-    flatDir {
-        dirs '../libs'
-    }
-}
+
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':openCVLibrary3')
-    implementation (name: 'RobotCore-release', ext: 'aar')
+    api 'org.openftc:easyopencv:1.1'
+    compileOnly 'org.openftc:robotcore-stock:5.1'
 }

@@ -2,7 +2,6 @@ package com.disnodeteam.dogecv.detectors.roverrukus;
 
 import android.util.Log;
 
-import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
 import com.disnodeteam.dogecv.math.Circle;
 import com.disnodeteam.dogecv.scoring.ColorDevScorer;
@@ -75,7 +74,7 @@ public class HoughSilverDetector extends DogeCVDetector {
             Circle circle = new Circle(circles.get(0,i)[0],circles.get(0,i)[1],circles.get(0,i)[2]); //Retrieves circle object from matrix
             Mat mask = Mat.zeros(workingMat.size(), CvType.CV_8UC1); //Creates an empty image to contain the mask of the circle
             Imgproc.circle(mask, new Point((int) circle.x, (int) circle.y), (int) circle.radius, new Scalar(255), -1); //Draws a filled-in circle on the mask
-            Mat masked = new Mat((int) getAdjustedSize().height, (int) getAdjustedSize().width, CvType.CV_8UC3); //Creates a blank matrix of the appropriate type to receive the sections of the input image
+            Mat masked = new Mat((int) getSize().height, (int) getSize().width, CvType.CV_8UC3); //Creates a blank matrix of the appropriate type to receive the sections of the input image
             workingMat.copyTo(masked, mask); //Copies only the regions of the input image contained in the mask, and therefore the circle drawn in the mask
             double score = calculateScore(masked); //Calculates the score of the circle
             //Releases undeeded matrices to avoid memory leak

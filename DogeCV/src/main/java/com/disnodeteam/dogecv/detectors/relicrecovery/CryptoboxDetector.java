@@ -3,7 +3,7 @@ package com.disnodeteam.dogecv.detectors.relicrecovery;
 import android.util.Log;
 
 
-import com.disnodeteam.dogecv.OpenCVPipeline;
+import org.openftc.easyopencv.OpenCvPipeline;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.LeviColorFilter;
 import com.disnodeteam.dogecv.math.Line;
@@ -26,7 +26,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class CryptoboxDetector extends OpenCVPipeline {
+public class CryptoboxDetector extends OpenCvPipeline {
 
     public enum CryptoboxDetectionMode {
         RED, BLUE
@@ -61,11 +61,11 @@ public class CryptoboxDetector extends OpenCVPipeline {
     Point fullAvgPoint = new Point();
 
     @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
+    public Mat processFrame(Mat input) {
         downScaleFactor    = 0.5;
-        Size initSize= rgba.size();
+        Size initSize= input.size();
         newSize  = new Size(initSize.width * downScaleFactor, initSize.height * downScaleFactor);
-        rgba.copyTo(workingMat);
+        input.copyTo(workingMat);
 
         avgPoints = new ArrayList<>();
 
@@ -119,7 +119,7 @@ public class CryptoboxDetector extends OpenCVPipeline {
             CryptoBoxDetected = false;
             ColumnDetected = false;
 
-            return rgba;
+            return input;
         }
 
         Line left = linesVertical.get(0);
@@ -232,21 +232,21 @@ public class CryptoboxDetector extends OpenCVPipeline {
 
         for (Line line : columns) {
             line.resize(1/downScaleFactor);
-            Imgproc.line(rgba, line.point1, line.point2, new Scalar(20,165,240), 20);
+            Imgproc.line(input, line.point1, line.point2, new Scalar(20,165,240), 20);
         }
         if(columns.size() < 3){
             trackables = new ArrayList<>();
             CryptoBoxDetected = false;
             ColumnDetected = false;
 
-            return rgba;
+            return input;
         }
 
 
 
         for(int i=0;i<columns.size() - 1; i++) {
 
-            Line conec = Lines.getPerpindicularConnector(columns.get(i), columns.get(i+1), rgba.size());
+            Line conec = Lines.getPerpindicularConnector(columns.get(i), columns.get(i+1), input.size());
             //Imgproc.line(rgba, conec.point1, conec.point2, new Scalar(210, 30, 40), 7);
 
             Point centerPoint = conec.center();
@@ -275,9 +275,9 @@ public class CryptoboxDetector extends OpenCVPipeline {
             }
 
             Point avgPoint = Points.getMeanPoint(trackables.get(i));
-            Imgproc.putText(rgba,"Col #" + i, new Point(avgPoint.x, avgPoint.y - 15), 0, 1.5, new Scalar(0,255,255), 2);
+            Imgproc.putText(input,"Col #" + i, new Point(avgPoint.x, avgPoint.y - 15), 0, 1.5, new Scalar(0,255,255), 2);
             //DogeLogger.LogVar("Col-"+i, avgPoint.toString());
-            Imgproc.circle(rgba,avgPoint, 15,new Scalar(0,255,0),6);
+            Imgproc.circle(input,avgPoint, 15,new Scalar(0,255,0),6);
             avgPoints.add(avgPoint);
 
             CryptoBoxPositions[i] = (int)avgPoint.x;
@@ -298,11 +298,11 @@ public class CryptoboxDetector extends OpenCVPipeline {
         //  Imgproc.cvtColor(white, white, Imgproc.COLOR_RGB2HSV);
 
 
-        Imgproc.putText(rgba,"DogeCV 1.1 Crypto: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,30),0,1.2,new Scalar(0,255,255),2);
+        Imgproc.putText(input,"DogeCV 1.1 Crypto: " + newSize.toString() + " - " + speed.toString() + " - " + detectionMode.toString() ,new Point(5,30),0,1.2,new Scalar(0,255,255),2);
 
 
 
-        return rgba;
+        return input;
 
 
 

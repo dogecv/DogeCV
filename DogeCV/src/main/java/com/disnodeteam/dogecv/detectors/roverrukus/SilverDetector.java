@@ -1,19 +1,15 @@
 package com.disnodeteam.dogecv.detectors.roverrukus;
 
-import android.util.Log;
-
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.HSVRangeFilter;
-import com.disnodeteam.dogecv.filters.LeviColorFilter;
 import com.disnodeteam.dogecv.scoring.MaxAreaScorer;
 import com.disnodeteam.dogecv.scoring.PerfectAreaScorer;
 import com.disnodeteam.dogecv.scoring.RatioScorer;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
@@ -32,7 +28,7 @@ public class SilverDetector extends DogeCVDetector {
     // Defining Mats to be used.
     private Mat displayMat = new Mat(); // Display debug info to the screen (this is what is returned)
     private Mat workingMat = new Mat(); // Used for preprocessing and working with (blurring as an example)
-    private Mat maskWhite  = new Mat(); // White Mask returned by color filter
+    private Mat maskWhite  = new Mat(); // White Mask returned by color blackFilter
     private Mat hierarchy  = new Mat(); // hierarchy used by coutnours
 
     // Results of the detector
@@ -67,7 +63,7 @@ public class SilverDetector extends DogeCVDetector {
         input.release();
 
 
-        //Preprocess the working Mat (blur it then apply a white filter)
+        //Preprocess the working Mat (blur it then apply a white blackFilter)
         Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
         whiteFilter.process(workingMat.clone(),maskWhite);
 
@@ -110,7 +106,7 @@ public class SilverDetector extends DogeCVDetector {
 
 
         //Print result
-        Imgproc.putText(displayMat,"Result: " + screenPosition.x +"/"+screenPosition.y,new Point(10,getAdjustedSize().height - 30),0,1, new Scalar(255,255,0),1);
+        Imgproc.putText(displayMat,"Result: " + screenPosition.x +"/"+screenPosition.y,new Point(10, getSize().height - 30),0,1, new Scalar(255,255,0),1);
 
 
         return displayMat;

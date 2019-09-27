@@ -1,47 +1,49 @@
 package com.disnodeteam.dogecv.detectors;
 
+import android.util.Log;
+
 import com.disnodeteam.dogecv.DogeCV;
-import com.disnodeteam.dogecv.OpenCVPipeline;
-import com.disnodeteam.dogecv.math.MathFTC;
 import com.disnodeteam.dogecv.scoring.DogeCVScorer;
 
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvPipeline;
+
 
 /**
  * Created by Victo on 9/10/2018.
  */
 
-public abstract class DogeCVDetector extends OpenCVPipeline{
+public abstract class DogeCVDetector extends OpenCvPipeline {
 
     public abstract Mat process(Mat input);
     public abstract void useDefaults();
 
     private List<DogeCVScorer> scorers = new ArrayList<>();
-    private Size initSize;
-    private Size adjustedSize;
     private Mat workingMat = new Mat();
     public double maxDifference = 10;
 
-    public Point cropTLCorner = null; //The top left corner of the image used for processing
-    public Point cropBRCorner = null; //The bottom right corner of the image used for processing
-
     public DogeCV.DetectionSpeed speed = DogeCV.DetectionSpeed.BALANCED;
-    public double downscale = 0.5;
-    public Size   downscaleResolution = new Size(640, 480);
-    public boolean useFixedDownscale = true;
     protected String detectorName = "DogeCV Detector";
 
-    public DogeCVDetector(){
+    private Size size;
 
+    protected enum Stage {
+        FINAL_DISPLAY,
+        THRESHOLD,
+        CONTOURS,
+        RAW_IMAGE
     }
+
+    protected Stage stageToRenderToViewport = Stage.FINAL_DISPLAY;
+    private Stage[] stages = Stage.values();
 
     public void setSpeed(DogeCV.DetectionSpeed speed){
         this.speed = speed;
@@ -62,39 +64,46 @@ public abstract class DogeCVDetector extends OpenCVPipeline{
     }
 
 
-
     @Override
-    public Mat processFrame(Mat rgba, Mat gray) {
-        initSize = rgba.size();
+    public final Mat processFrame(Mat input) {
+        size = input.size();
 
-        if(useFixedDownscale){
-            adjustedSize = downscaleResolution;
-        }else{
-            adjustedSize = new Size(initSize.width * downscale, initSize.height * downscale);
-        }
-
-        rgba.copyTo(workingMat);
+        Log.d("DogeCVDetector", "Input mat size:" + input.size());
+        input.copyTo(workingMat);
 
         if(workingMat.empty()){
-            return rgba;
+            return input;
         }
-        Imgproc.resize(workingMat, workingMat,adjustedSize); // Downscale
-        workingMat = MathFTC.crop(workingMat, cropTLCorner, cropBRCorner);
 
-        Imgproc.resize(process(workingMat),workingMat,getInitSize()); // Process and scale back to original size for viewing
+        workingMat = process(workingMat);
+
         //Print Info
-        Imgproc.putText(workingMat,"DogeCV 2019.1 " + detectorName + ": " + getAdjustedSize().toString() + " - " + speed.toString() ,new Point(5,30),0,0.5,new Scalar(0,255,255),2);
+        Imgproc.putText(workingMat,"DogeCV 2020.1 " + detectorName + ": " + stageToRenderToViewport.toString(), new Point(5,30),0,0.5,new Scalar(0,255,255),2);
 
         return workingMat;
     }
 
-    public Size getInitSize() {
-        return initSize;
+    @Override
+    public void onViewportTapped()
+    {
+        /*
+         * Note that this method is invoked from the UI thread
+         * so whatever we do here, we must do quickly.
+         */
+
+        int currentStageNum = stageToRenderToViewport.ordinal();
+
+        int nextStageNum = currentStageNum + 1;
+
+        if(nextStageNum >= stages.length)
+        {
+            nextStageNum = 0;
+        }
+
+        stageToRenderToViewport = stages[nextStageNum];
     }
 
-    public Size getAdjustedSize() {
-        return adjustedSize;
+    public Size getSize() {
+        return size;
     }
-
-    public void setAdjustedSize(Size size) { this.adjustedSize = size; }
 }
