@@ -13,6 +13,9 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains many useful math methods for FTC
+ */
 public class MathFTC {
 
     public static final float mmPerInch        = 25.4f;

@@ -17,11 +17,21 @@ import java.util.List;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * A base class for detectors
  */
 
 public abstract class DogeCVDetector extends OpenCVPipeline{
-
+    /**
+     * Processes the input mat
+     * @param input the mat to be processed
+     * @return the processed mat
+     */
     public abstract Mat process(Mat input);
+
+    /**
+     * Should set the defaults, typically just the scorer
+     */
     public abstract void useDefaults();
 
     private List<DogeCVScorer> scorers = new ArrayList<>();
@@ -43,14 +53,28 @@ public abstract class DogeCVDetector extends OpenCVPipeline{
 
     }
 
+    /**
+     * Sets the speed of the detector
+     * @param speed the speed to set
+     */
     public void setSpeed(DogeCV.DetectionSpeed speed){
         this.speed = speed;
     }
 
+    /**
+     * Gives the detector a new scorer
+     *
+     * @param newScorer
+     */
     public void addScorer(DogeCVScorer newScorer){
         scorers.add(newScorer);
     }
 
+    /**
+     * Calculates the score for a given input mat
+     * @param input the mat to calculate the score for
+     * @return the score of the input mat
+     */
     public double calculateScore(Mat input){
         double totalScore = 0;
 
@@ -62,7 +86,10 @@ public abstract class DogeCVDetector extends OpenCVPipeline{
     }
 
 
-
+    /**
+     * Returns a frame to display on the RC phone
+     * @return the altered frame with version, speed, etc
+     */
     @Override
     public Mat processFrame(Mat rgba, Mat gray) {
         initSize = rgba.size();

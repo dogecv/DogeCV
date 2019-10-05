@@ -33,6 +33,10 @@ import java.util.List;
 public class SamplingOrderDetector extends DogeCVDetector {
 
     // Enum to describe gold location
+
+    /**
+     * The possible locations for gold on the sampling field
+     */
     public enum GoldLocation {
         UNKNOWN,
         LEFT,
@@ -41,15 +45,38 @@ public class SamplingOrderDetector extends DogeCVDetector {
     }
 
     // Which area scoring method to use
+
+    /**
+     * The wanted AreaScoringMethod
+     */
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA;
 
     //Create the scorers used for the detector
+
+    /**
+     * The wanted RatioScorer
+     */
     public RatioScorer ratioScorer             = new RatioScorer(1.0,5);
+
+    /**
+     * The wanted MaxAreaScorer
+     */
     public MaxAreaScorer maxAreaScorer         = new MaxAreaScorer(0.01);
+
+    /**
+     * The wanted PerfectAreaScorer
+     */
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05);
 
     //Create the filters used
+    /**
+     * The color filter for yellow
+     */
     public DogeCVColorFilter yellowFilter = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW,100);
+
+    /**
+     * The color filter for white
+     */
     public DogeCVColorFilter whiteFilter  = new HSVRangeFilter(new Scalar(0,0,200), new Scalar(50,40,255));
 
 
@@ -65,11 +92,19 @@ public class SamplingOrderDetector extends DogeCVDetector {
     private Mat whiteMask   = new Mat();
     private Mat hiarchy     = new Mat();
 
+    /**
+     * A simple constructor
+     */
     public SamplingOrderDetector() {
         super();
         this.detectorName = "Sampling Order Detector";
     }
 
+    /**
+     * Processes the input mat
+     * @param input the mat to process
+     * @return the processed mat
+     */
     @Override
     public Mat process(Mat input) {
 
@@ -259,6 +294,9 @@ public class SamplingOrderDetector extends DogeCVDetector {
         return displayMat;
     }
 
+    /**
+     * Sets the scorer based on areaScoringMethod
+     */
     @Override
     public void useDefaults() {
         if(areaScoringMethod == DogeCV.AreaScoringMethod.MAX_AREA){

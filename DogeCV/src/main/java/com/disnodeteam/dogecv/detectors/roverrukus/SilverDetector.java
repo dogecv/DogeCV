@@ -25,6 +25,8 @@ import java.util.List;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * Detects silber
  */
 
 public class SilverDetector extends DogeCVDetector {
@@ -40,13 +42,30 @@ public class SilverDetector extends DogeCVDetector {
     private Point   screenPosition = new Point(); // Screen position of the mineral
     private Rect    foundRect = new Rect(); // Found rect
 
+    /**
+     * The wanted AreaScoringMethod
+     */
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
     //Create the default filters and scorers
+    /**
+     * The white color filter
+     */
     public DogeCVColorFilter whiteFilter  = new HSVRangeFilter(new Scalar(0,0,200), new Scalar(50,40,255));
 
+    /**
+     * The wanted RatioScorer
+     */
     public RatioScorer       ratioScorer       = new RatioScorer(1.0, 3);          // Used to find perfect squares
+
+    /**
+     * The wanted MaxAreaScorer
+     */
     public MaxAreaScorer     maxAreaScorer     = new MaxAreaScorer( 0.01);                    // Used to find largest objects
+
+    /**
+     * The wanted PerfectAreaScorer
+     */
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05); // Used to find objects near a tuned area value
 
     /**
@@ -57,7 +76,11 @@ public class SilverDetector extends DogeCVDetector {
         detectorName = "Silver Detector"; // Set the detector name
     }
 
-
+    /**
+     * Processes the input mat
+     * @param input the mat to process
+     * @return the processed mat
+     */
     @Override
     public Mat process(Mat input) {
 
@@ -117,6 +140,9 @@ public class SilverDetector extends DogeCVDetector {
 
     }
 
+    /**
+     * Sets the scorer based on areaScoringMethod
+     */
     @Override
     public void useDefaults() {
         addScorer(ratioScorer);

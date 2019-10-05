@@ -2,6 +2,8 @@ package com.disnodeteam.dogecv.math;
 
 /**
  * Created by LeviG on 10/7/2018.
+ *
+ * Represents a circle
  */
 
 public class Circle {

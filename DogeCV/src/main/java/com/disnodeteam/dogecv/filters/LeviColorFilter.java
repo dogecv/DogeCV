@@ -14,10 +14,19 @@ import java.util.List;
 
 /**
  * Created by Victo on 1/1/2018.
+ *
+ * Levi's fancy color filtering:
+ *
+ * 1. Converts to CIELAB color space
+ * 2. Blurs the image
+ * 3. Retrieves the alpha component
+ * 4. Filters between a certain threshold and the maximum on the alpha component
  */
 
 public class LeviColorFilter extends DogeCVColorFilter {
-    // Color presets
+    /**
+     * Color presets
+     */
     public enum ColorPreset{
         RED,
         BLUE,

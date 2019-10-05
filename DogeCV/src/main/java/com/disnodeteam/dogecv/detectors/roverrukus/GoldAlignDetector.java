@@ -38,18 +38,46 @@ public class GoldAlignDetector extends DogeCVDetector {
     private double  goldYPos = 0;     // Y Position (in pixels) of the gold element
 
     // Detector settings
+    /**
+     * Determines whether or not debug lines should be shown
+     */
     public boolean debugAlignment = true; // Show debug lines to show alignment settings
+
+    /**
+     * How far from the center frame the gold is
+     */
     public double alignPosOffset  = 0;    // How far from center frame is aligned
+
+    /**
+     * The margin for error on alignment
+     */
     public double alignSize       = 100;  // How wide is the margin of error for alignment
 
+    /**
+     * The wanted AreaScoringMethod
+     */
     public DogeCV.AreaScoringMethod areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Setting to decide to use MaxAreaScorer or PerfectAreaScorer
 
 
     //Create the default filters and scorers
+    /**
+     * The wanted DogeCVColorFilter
+     */
     public DogeCVColorFilter yellowFilter      = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW); //Default Yellow filter
 
+    /**
+     * The wanted RatioScorer
+     */
     public RatioScorer       ratioScorer       = new RatioScorer(1.0, 3);          // Used to find perfect squares
+
+    /**
+     * The wanted MaxAreaScorer
+     */
     public MaxAreaScorer     maxAreaScorer     = new MaxAreaScorer( 0.01);                    // Used to find largest objects
+
+    /**
+     * The wanted PerfectAreaScorer
+     */
     public PerfectAreaScorer perfectAreaScorer = new PerfectAreaScorer(5000,0.05); // Used to find objects near a tuned area value
 
     /**
@@ -60,7 +88,11 @@ public class GoldAlignDetector extends DogeCVDetector {
         detectorName = "Gold Align Detector"; // Set the detector name
     }
 
-
+    /**
+     * Processes the input mat
+     * @param input the mat to process
+     * @return the processed mat
+     */
     @Override
     public Mat process(Mat input) {
 
@@ -153,6 +185,9 @@ public class GoldAlignDetector extends DogeCVDetector {
 
     }
 
+    /**
+     * Sets the scorer based on areaScoringMethod
+     */
     @Override
     public void useDefaults() {
         addScorer(ratioScorer);

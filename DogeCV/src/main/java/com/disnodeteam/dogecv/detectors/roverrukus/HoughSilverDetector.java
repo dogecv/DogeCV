@@ -27,9 +27,19 @@ public class HoughSilverDetector extends DogeCVDetector {
 
     //The scorer used for this class. Based upon minimizing the standard deviation of color within each mineral,
     //I.e, if the region is actually a mineral it should be fairly flat. (Levi is op AF - Alex)
+    /**
+     * The scorer, defaulted to ColorDevScorer
+     */
     public DogeCVScorer stdDevScorer = new ColorDevScorer();
 
+    /**
+     * The sensitivity of the circle detector
+     */
     public double sensitivity = 1.4; //Sensitivity of circle detector; between about 1.2 and 2.1;
+
+    /**
+     * The minimum distance between circles
+     */
     public double minDistance = 60; //Adjust with frame size! This is the minimum distance between circles
 
     private Mat workingMat = new Mat(); //The working mat used for internal calculations, single object to avoid memory leak
@@ -46,6 +56,11 @@ public class HoughSilverDetector extends DogeCVDetector {
         this.detectorName = "Hough Silver Detector";
     }
 
+    /**
+     * Processes the input mat
+     * @param input the mat to process
+     * @return the processed mat
+     */
     @Override
     public Mat process(Mat input) {
         if(input.channels() < 0 || input.cols() <= 0){
@@ -105,6 +120,9 @@ public class HoughSilverDetector extends DogeCVDetector {
         return displayMat;
     }
 
+    /**
+     * Adds a ColorDevScorer as a scorer
+     */
     @Override
     public void useDefaults() {
         addScorer(stdDevScorer);

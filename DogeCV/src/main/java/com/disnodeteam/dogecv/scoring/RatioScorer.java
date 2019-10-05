@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by Victo on 9/10/2018.
+ *
+ * Scores based on the h/w and w/h ratio of the input contour
  */
 
 public class RatioScorer extends DogeCVScorer{

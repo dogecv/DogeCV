@@ -8,6 +8,9 @@ import org.opencv.imgproc.Imgproc;
 
 /**
  * Created by Victo on 1/1/2018.
+ *
+ * Filters out only colors that are within a certain range on the HSV color
+ * space
  */
 
 public class HSVColorFilter extends DogeCVColorFilter{
