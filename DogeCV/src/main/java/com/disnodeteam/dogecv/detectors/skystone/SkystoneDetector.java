@@ -56,14 +56,9 @@ public class SkystoneDetector extends DogeCVDetector {
         input.copyTo(blackMask);
 
         // Imgproc.GaussianBlur(workingMat,workingMat,new Size(5,5),0);
-        blackFilter.process(workingMat.clone(), blackMask);
         yellowFilter.process(workingMat.clone(), yellowMask);
 
-        List<MatOfPoint> contoursBlack = new ArrayList<>();
         List<MatOfPoint> contoursYellow = new ArrayList<>();
-
-        Imgproc.findContours(blackMask, contoursBlack, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
-        Imgproc.drawContours(displayMat,contoursBlack,-1,new Scalar(40,40,40),2);
 
         Imgproc.findContours(yellowMask, contoursYellow, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(displayMat,contoursYellow,-1,new Scalar(255,30,30),2);
@@ -74,6 +69,25 @@ public class SkystoneDetector extends DogeCVDetector {
         double bestDifference = Double.MAX_VALUE; // MAX_VALUE since less difference = better
 
         // Loop through the contours and score them, searching for the best result
+        for(MatOfPoint cont : contoursYellow){
+            double score = calculateScore(cont); // Get the difference score using the scoring API
+
+            // Get bounding rect of contour
+            Rect rect = Imgproc.boundingRect(cont);
+            Imgproc.rectangle(displayMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
+
+            // If the result is better then the previously tracked one, set this rect as the new best
+            if(score < bestDifference){
+                bestDifference = score;
+                bestRect = rect;
+            }
+        }
+        Imgproc.rectangle(blackMask, bestRect.tl(), bestRect.br(), new Scalar(255,255,255), 1, -1, 0);
+        blackFilter.process(workingMat.clone(), blackMask);
+        List<MatOfPoint> contoursBlack = new ArrayList<>();      
+        Imgproc.findContours(blackMask, contoursBlack, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+        Imgproc.drawContours(displayMat,contoursBlack,-1,new Scalar(40,40,40),2);
+
         for(MatOfPoint cont : contoursBlack){
             double score = calculateScore(cont); // Get the difference score using the scoring API
 
@@ -87,7 +101,6 @@ public class SkystoneDetector extends DogeCVDetector {
                 bestRect = rect;
             }
         }
-
         if(bestRect != null) {
             // Show chosen result
             Imgproc.rectangle(displayMat, bestRect.tl(), bestRect.br(), new Scalar(255,0,0),4);
