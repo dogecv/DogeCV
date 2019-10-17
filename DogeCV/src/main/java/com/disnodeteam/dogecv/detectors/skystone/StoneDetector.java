@@ -50,7 +50,7 @@ public class StoneDetector extends DogeCVDetector {
         return screenPositions;
     }
    
-    public List<Point> foundRectangles() {
+    public List<Rect> foundRectangles() {
         return foundRects;
     }
 
