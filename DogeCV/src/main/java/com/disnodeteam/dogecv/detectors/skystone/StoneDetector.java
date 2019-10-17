@@ -45,7 +45,14 @@ public class StoneDetector extends DogeCVDetector {
     private Mat displayMat = new Mat();
     private Mat yellowMask = new Mat();
     private Mat hierarchy  = new Mat();
-
+    
+    public List<Point> foundScreenPositions() {
+        return screenPositions;
+    }
+   
+    public List<Point> foundRectangles() {
+        return foundRects;
+    }
 
     public StoneDetector() {
         detectorName = "Stone Detector";
@@ -53,6 +60,9 @@ public class StoneDetector extends DogeCVDetector {
 
     @Override
     public Mat process(Mat input) {
+        screenPositions.clear();
+        foundRects.clear();
+        
         input.copyTo(rawImage);
         input.copyTo(workingMat);
         input.copyTo(displayMat);
