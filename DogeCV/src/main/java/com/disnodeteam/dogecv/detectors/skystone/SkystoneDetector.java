@@ -44,6 +44,14 @@ public class SkystoneDetector extends DogeCVDetector {
     private Mat blackMask = new Mat();
     private Mat yellowMask = new Mat();
     private Mat hierarchy  = new Mat();
+    
+    public Point getScreenPosition() {
+        return screenPosition;
+    }
+    
+    public Rect foundRectangle() {
+        return foundRect;
+    }
 
 
     public SkystoneDetector() {
