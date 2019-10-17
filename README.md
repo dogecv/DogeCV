@@ -68,7 +68,7 @@ allprojects {
   }
 }
 ```
-3. Add the line `implementation 'com.github.dogecv:dogecommander:2020.1-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
+3. Add the line `implementation 'com.github.dogecv:dogecv:2020.1-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
 7. Press the `Sync Now` button that should appear in the top right
 
 # Detectors Status
