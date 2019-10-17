@@ -17,7 +17,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
 
 ## Active Development Team
-- Aditya Mangalampalli FTC 9614 Hyperion @Λlpheron#2162
+- Aditya Mangalampalli FTC 9614 Hyperion @Alpheron#2162
 - Alex Carter FTC 7195 Mechanical Memes @VictoryForPhil#0001
 - Arnav Komaragiri FTC 8719 Quantum Leap @-----#9037
 - Ben Loan FTC 3795 JagWired @Ben6501#0094
