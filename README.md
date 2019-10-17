@@ -88,6 +88,7 @@ allprojects {
  - Added `SkystoneDetector`
  - Removed legacy detectors (may be added back later)
  - Added `DigitalCamera` class for localization
+ 
 **2019.1**:
  - Complete re-work of the `Dogeforia` system. It is now integrated within the `OpenCVPipeline` class, and is much simpler.
  - Implemented image cropping, see `CroppingExample`
