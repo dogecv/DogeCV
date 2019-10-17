@@ -59,7 +59,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
 ## Install (Credit to EasyOpenCV)
 1. Pull up Android Studio, with the FTC application SDK open
-2. Go to the application's `build.gradle`
+2. Go to the root `build.gradle`
 3. To the repositories section, add the lines 
 ```groovy
 allprojects {
@@ -68,7 +68,7 @@ allprojects {
   }
 }
 ```
-3. Add the line `implementation 'com.github.dogecv:dogecommander:2020.1-alpha'` to TeamCode's `build.gradle`, inside the dependencies block
+3. Add the line `implementation 'com.github.dogecv:dogecommander:2020.1-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
 7. Press the `Sync Now` button that should appear in the top right
 
 # Detectors Status
