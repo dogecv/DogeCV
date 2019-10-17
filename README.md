@@ -70,6 +70,7 @@ allprojects {
 ```
 3. Add the line `implementation 'com.github.dogecv:dogecv:2020.1-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
 7. Press the `Sync Now` button that should appear in the top right
+8. Because EasyOpenCv depends on OpenCV-Repackaged, you will also need to copy [libOpenCvNative.so](https://github.com/OpenFTC/OpenCV-Repackaged/blob/master/doc/libOpenCvNative.so) from the `/doc` folder of that repo into the `FIRST` folder on the internal storage of the Robot Controller.
 
 # Detectors Status
 - **Stone Detector** - Implemented. Stable(ish). Competition Ready(ish).
