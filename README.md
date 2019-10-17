@@ -9,6 +9,8 @@ Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV.
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
+### To run this library, you need an SDK version of at least 5.1
+### Unforunately, this library will not work on the ZTE phones, as OpenCV does not work on KitKat.
 
 ## Videos
 Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV. 
@@ -29,6 +31,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - Ishaan Oberoi FTC 9794 Wizards.exe (Publicity) @RollerCoaster45#0637
 - Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Logos) 
 - Sarthak Bhatnagar FTC 9794 Wizards.exe (Odometry & Tutorials) @s.bhatnag#0906
+- [OpenFTC](https://github.com/OpenFTC) Team for [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) which this library is based on
 
 ## Doge Alumni
 - Levi Gershon FTC 12897 Newton's Law of Mass @LegoF4#2372
@@ -68,7 +71,7 @@ allprojects {
   }
 }
 ```
-3. Add the line `implementation 'com.github.dogecv:dogecv:2020.1-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
+3. Add the line `implementation 'com.github.dogecv:dogecv:2020.2-alpha'` to TeamCode's `build.release.gradle`, inside the dependencies block
 7. Press the `Sync Now` button that should appear in the top right
 8. Because EasyOpenCv depends on OpenCV-Repackaged, you will also need to copy [libOpenCvNative.so](https://github.com/OpenFTC/OpenCV-Repackaged/blob/master/doc/libOpenCvNative.so) from the `/doc` folder of that repo into the `FIRST` folder on the internal storage of the Robot Controller.
 
@@ -78,7 +81,7 @@ allprojects {
 
 ## FAQ
 - **Can I still use classic OpenCV?**
-    Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV library.
+    Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCvPipepline introduced in the EasyOpenCV library.
 - **Can I use a webcam?**
     Once more, yes! See the DogeQuickStart and the wiki for an explanation of how to this.
 
