@@ -1,22 +1,11 @@
-
-
-<div align="center">
-    <img src="https://i.imgur.com/umLIEix.jpg" width="100%"/>
-    <br></br>
-  <p>
-    <a href="https://discord.gg/colton"><img src="https://discordapp.com/api/guilds/345404637374971907/embed.png" alt="Discord server" /></a>
-  </p>
-  <b>Developed by Levi Gershon of Newton's Law and Alex Carter of Disnode Robotics</b>
-    <br/>
-     <i>Version 2019.1 | Updated 02/12/2019 </i>
-
-</div>
+Version 2020.1
 
 # DogeCV
-An easy to use computer vision library used for FTC Games to detect game objects. Based on Ender CV and OpenCV. 
+An easy to use computer vision library used for FTC Games to detect game objects. 
+Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV. 
 
 ## Project Status:
-**MOSTLY COMPETITION READY.**
+**~~SOMEWHAT~~ MOSTLY COMPETITION READY.**
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
@@ -53,11 +42,9 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - Kwon Paradigm Break (Testing)
 
 ## Known Issues
-(These issues are referring to the 2018-2019 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- All detectors have a minor memory leak. Simply don't leave them running too long and you'll be fine.
-- General Instability
-- GenericDetector not ported
+(These issues are referring to the 2019-2020 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
 - RelicRecovery detectors not ported
+- RoverRuckus detectors not ported
 
 ## Planned Features / TODO
 - Expand Wiki
@@ -70,43 +57,37 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - ML detectors
 
 
-## Install (Credit to EnderCV)
-1. Download this repo, either by cloning from Git or using the zip download. 
-2. Pull up Android Studio, with the FTC application SDK open
-3. Navigate to **File** -> **New** -> **Import Module** from the title bar.
-4. When the a dialog comes up, asking for the module source directory, navigate to this repo and select the **openCVLibrary3** folder, and then hit **Finish**
-5. Repeat steps 3 and 4 except instead of selecting the **openCVLibrary3** folder, select the **DogeCV** folder instead. If Android Studio fails to import modules because it sucks sometimes, open `settings.gradle` and add these two lines: 
+## Install (Credit to EasyOpenCV)
+1. Pull up Android Studio, with the FTC application SDK open
+2. Go to the application's `build.gradle`
+3. To the repositories section, add the lines 
 ```groovy
-include ':openCVLibrary3'
-include ':DogeCV'
+allprojects {
+  repositories {
+    maven { url 'https://jitpack.io' } // this line!
+  }
+}
 ```
-and resync the project.    
-6. Add the lines to TeamCode's `build.release.gradle`:
-```groovy
-implementation project(':openCVLibrary3')
-implementation project(':DogeCV')
-```
+3. Add the line `implementation 'com.github.dogecv:dogecommander:2020.1-alpha'` to TeamCode's `build.gradle`, inside the dependencies block
 7. Press the `Sync Now` button that should appear in the top right
 
 # Detectors Status
-- **Gold Detector** - Implemented. Stable. Competition Ready.
-- **Silver Detector** - Implemented. Stable. Competition Ready.
-- **Gold Align Detector** - Implemented. Unstable (Memory Leak).
-- **Sampling Detector** - Implemented. Stable. Not Competition Ready.
-- **Hough Silver Detector** - Implemented. Unstable. Not Competition Ready.
-- **MultiMineral Detector** - Not Yet Implemented
-**See Wiki For More Info
+- **Stone Detector** - Implemented. Stable(ish). Competition Ready(ish).
+- **Skystone Detector** - Implemented. Stable(ish). Competition Ready.
 
 ## FAQ
-- **If I use DogeCV can I still use Vuforia?**
-    With the 2019 edition of DogeCV we have enabled the option to use Vuforia and DogeCV at the same time, all from one detector! See the VuMark Example class and the wiki for more information on how to do this.
-    (Currently Unstable)
 - **Can I still use classic OpenCV?**
     Yes! We want teams to use DogeCV to learn about vision and start to create their own vision systems. That's why OpenCV is open in all layers of DogeCV, and we keep the classic OpenCVPipepline introduced in the EnderCV library.
 - **Can I use a webcam?**
-    Once more, yes! See the WebcamExample OpMode and the wiki for an explanation of how to this.
+    Once more, yes! See the DogeQuickStart and the wiki for an explanation of how to this.
 
 ## Changelogs
+**2020.1-alpha**:
+ - Changed to EasyOpenCV from EnderCV (thanks OpenFTC team!)
+ - Added `StoneDetector`
+ - Added `SkystoneDetector`
+ - Removed legacy detectors (may be added back later)
+ - Added `DigitalCamera` class for localization
 **2019.1**:
  - Complete re-work of the `Dogeforia` system. It is now integrated within the `OpenCVPipeline` class, and is much simpler.
  - Implemented image cropping, see `CroppingExample`
