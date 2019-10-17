@@ -1,6 +1,6 @@
-Version 2020.1
-
 # DogeCV
+[![](https://jitpack.io/v/dogecv/dogecv.svg)](https://jitpack.io/#dogecv/dogecv)
+
 An easy to use computer vision library used for FTC Games to detect game objects. 
 Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV. 
 
