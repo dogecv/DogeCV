@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '29.0.1'
 
     defaultConfig {
         minSdkVersion 19
@@ -21,6 +21,6 @@ android {
 }
 
 dependencies {
-    api 'org.openftc:easyopencv:1.1'
+    api 'org.openftc:easyopencv:1.2'
     compileOnly 'org.openftc:robotcore-stock:5.1'
 }

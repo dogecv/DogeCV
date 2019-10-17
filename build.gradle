@@ -21,7 +21,7 @@ allprojects {
         jcenter()
 
         maven {
-            url 'https://dl.bintray.com/openftc/maven';
+            url 'https://dl.bintray.com/openftc/maven'
         }
     }
 }

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: org.openftc:robotcore-stock:5.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/gson-2.8.0.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/slf4j-api-1.7.26.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/Vuforia.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/gson-extras-0.2.1.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/e02b69f4349e365d64e1138a58dbd66e/jars/libs/slf4j-handroid-1.7.27.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/libs/Vuforia.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/libs/gson-2.8.0.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/libs/gson-extras-0.2.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/libs/slf4j-handroid-1.7.27.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/libs/slf4j-api-1.7.26.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/robotcore-stock-5.1.aar/fe6f18eb6ff47e9b8946a3b305022710/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

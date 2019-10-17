@@ -16,6 +16,8 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class StoneDetector extends DogeCVDetector {
@@ -24,7 +26,7 @@ public class StoneDetector extends DogeCVDetector {
     //Create the default filters and scorers
     public DogeCVColorFilter filter = new LeviColorFilter(LeviColorFilter.ColorPreset.YELLOW, 70); //Default Yellow blackFilter
 
-    public int stonesToFind = 6;
+    public int stonesToFind = 2;
 
 
     public RatioScorer ratioScorerForShortFace = new RatioScorer(1.25, 3); // Used to find the short face of the stone
@@ -34,9 +36,9 @@ public class StoneDetector extends DogeCVDetector {
 
 
     // Results of the detector
-    private boolean found = false; // Is the gold mineral found
-    private Point screenPosition = new Point(); // Screen position of the mineral
-    private Rect foundRect = new Rect(); // Found rect
+    private boolean found = false; // Is the stone found
+    private ArrayList<Point> screenPositions = new ArrayList<>(); // Screen positions of the stones
+    private ArrayList<Rect> foundRects = new ArrayList<>(); // Found rect
 
     private Mat rawImage = new Mat();
     private Mat workingMat = new Mat();
@@ -64,31 +66,34 @@ public class StoneDetector extends DogeCVDetector {
         Imgproc.drawContours(displayMat,contoursYellow,-1,new Scalar(230,70,70),2);
 
         // Current result
-        Rect bestRect = null;
+        ArrayList<Rect> bestRects = new ArrayList<>();
         double bestDifference = Double.MAX_VALUE; // MAX_VALUE since less difference = better
 
-        // Loop through the contours and score them, searching for the best result
-        for(MatOfPoint cont : contoursYellow){
-            double score = calculateScore(cont); // Get the difference score using the scoring API
-
-            // Get bounding rect of contour
-            Rect rect = Imgproc.boundingRect(cont);
-            Imgproc.rectangle(displayMat, rect.tl(), rect.br(), new Scalar(0,0,255),2); // Draw rect
-
-            // If the result is better then the previously tracked one, set this rect as the new best
-            if(score < bestDifference){
-                bestDifference = score;
-                bestRect = rect;
+        Collections.sort(contoursYellow, new Comparator<MatOfPoint>() {
+            @Override
+            public int compare(MatOfPoint matOfPoint, MatOfPoint t1) {
+                return calculateScore(matOfPoint) > calculateScore(t1) ? 1 : 0;
             }
+        });
+
+        List<MatOfPoint> subList = contoursYellow;
+
+        if (contoursYellow.size() > stonesToFind) {
+            subList = contoursYellow.subList(0, stonesToFind);
         }
 
-        if(bestRect != null) {
-            // Show chosen result
-            Imgproc.rectangle(displayMat, bestRect.tl(), bestRect.br(), new Scalar(255,0,0),4);
-            Imgproc.putText(displayMat, "Chosen", bestRect.tl(),0,1,new Scalar(255,255,255));
+        for (MatOfPoint contour : subList) {
+            Rect rect = Imgproc.boundingRect(contour);
 
-            screenPosition = new Point(bestRect.x, bestRect.y);
-            foundRect = bestRect;
+            // Show chosen result
+            Imgproc.rectangle(displayMat, rect.tl(), rect.br(), new Scalar(255, 0, 0), 4);
+            Imgproc.putText(displayMat, "Chosen", rect.tl(), 0, 1, new Scalar(255, 255, 255));
+
+            screenPositions.add(new Point(rect.x, rect.y));
+            foundRects.add(rect);
+        }
+
+        if (foundRects.size() > 0) {
             found = true;
         }
         else {

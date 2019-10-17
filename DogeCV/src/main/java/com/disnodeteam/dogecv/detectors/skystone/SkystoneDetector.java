@@ -1,7 +1,9 @@
 package com.disnodeteam.dogecv.detectors.skystone;
 
+import android.util.Log;
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
+import com.disnodeteam.dogecv.filters.CbColorFilter;
 import com.disnodeteam.dogecv.filters.DogeCVColorFilter;
 import com.disnodeteam.dogecv.filters.GrayscaleFilter;
 import com.disnodeteam.dogecv.filters.LeviColorFilter;
@@ -65,7 +67,7 @@ public class SkystoneDetector extends DogeCVDetector {
 
 
         // Current result
-        Rect bestRect = null;
+        Rect bestRect = foundRect;
         double bestDifference = Double.MAX_VALUE; // MAX_VALUE since less difference = better
 
         // Loop through the contours and score them, searching for the best result
@@ -82,9 +84,11 @@ public class SkystoneDetector extends DogeCVDetector {
                 bestRect = rect;
             }
         }
-        Imgproc.rectangle(blackMask, bestRect.tl(), bestRect.br(), new Scalar(255,255,255), 1, -1, 0);
+
+        Imgproc.rectangle(blackMask, bestRect.tl(), bestRect.br(), new Scalar(255,255,255), 1, Imgproc.LINE_4, 0);
         blackFilter.process(workingMat.clone(), blackMask);
-        List<MatOfPoint> contoursBlack = new ArrayList<>();      
+        List<MatOfPoint> contoursBlack = new ArrayList<>();
+
         Imgproc.findContours(blackMask, contoursBlack, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         Imgproc.drawContours(displayMat,contoursBlack,-1,new Scalar(40,40,40),2);
 
