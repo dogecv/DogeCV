@@ -36,7 +36,6 @@ public class StoneDetector extends DogeCVDetector {
 
 
     // Results of the detector
-    private boolean found = false; // Is the stone found
     private ArrayList<Point> screenPositions = new ArrayList<>(); // Screen positions of the stones
     private ArrayList<Rect> foundRects = new ArrayList<>(); // Found rect
 
