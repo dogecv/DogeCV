@@ -34,7 +34,6 @@ public class SkystoneDetector extends DogeCVDetector {
 
 
     // Results of the detector
-    private boolean found = false; // Is the gold mineral found
     private Point screenPosition = new Point(); // Screen position of the mineral
     private Rect foundRect = new Rect(); // Found rect
 
