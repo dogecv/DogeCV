@@ -29,6 +29,8 @@ public abstract class DogeCVDetector extends OpenCvPipeline {
     private List<DogeCVScorer> scorers = new ArrayList<>();
     private Mat workingMat = new Mat();
     public double maxDifference = 10;
+    
+    private boolean found = false;
 
     public DogeCV.DetectionSpeed speed = DogeCV.DetectionSpeed.BALANCED;
     protected String detectorName = "DogeCV Detector";
@@ -47,6 +49,10 @@ public abstract class DogeCVDetector extends OpenCvPipeline {
 
     public void setSpeed(DogeCV.DetectionSpeed speed){
         this.speed = speed;
+    }
+    
+    public boolean isDetected(){
+        return found;
     }
 
     public void addScorer(DogeCVScorer newScorer){
