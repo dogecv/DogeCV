@@ -30,7 +30,7 @@ public abstract class DogeCVDetector extends OpenCvPipeline {
     private Mat workingMat = new Mat();
     public double maxDifference = 10;
     
-    private boolean found = false;
+    protected boolean found = false;
 
     public DogeCV.DetectionSpeed speed = DogeCV.DetectionSpeed.BALANCED;
     protected String detectorName = "DogeCV Detector";
