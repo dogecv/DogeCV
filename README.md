@@ -5,7 +5,7 @@ An easy to use computer vision library used for FTC Games to detect game objects
 Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV. 
 
 ## Project Status:
-**~~SOMEWHAT~~ MOSTLY COMPETITION READY.**
+**In Development**
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
@@ -76,8 +76,8 @@ allprojects {
 8. Because EasyOpenCv depends on OpenCV-Repackaged, you will also need to copy [libOpenCvNative.so](https://github.com/OpenFTC/OpenCV-Repackaged/blob/master/doc/libOpenCvNative.so) from the `/doc` folder of that repo into the `FIRST` folder on the internal storage of the Robot Controller.
 
 # Detectors Status
-- **Stone Detector** - Implemented. Stable(ish). Competition Ready(ish).
-- **Skystone Detector** - Implemented. Stable(ish). Competition Ready.
+- **Stone Detector** - Implemented. Needs improvement.
+- **Skystone Detector** - Implemented. Not Reliable, Under rewrite.
 
 ## FAQ
 - **Can I still use classic OpenCV?**
