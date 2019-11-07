@@ -18,6 +18,9 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 
  - [Wizards.exe Tutorial](https://www.youtube.com/playlist?list=PLICNg-rquuraBSqMOeW_hqf9O-Cct1jJw)
 
+# Detectors Status
+- **Stone Detector** - Implemented. Needs improvement.
+- **Skystone Detector** - Implemented. Not Reliable, Under rewrite.
 
 ## Active Development Team
 - Aditya Mangalampalli FTC 9614 Hyperion @Alpheron#2162
@@ -45,22 +48,6 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - Owen Gonzalez (Testing)
 - Kwon Paradigm Break (Testing)
 
-## Known Issues
-(These issues are referring to the 2019-2020 FTC Year Detectors, and not the Relic Recovery ones as those are no longer supported)
-- RelicRecovery detectors not ported
-- RoverRuckus detectors not ported
-
-## Planned Features / TODO
-- Expand Wiki
-- Add in distance scoring between samples to increase accuracy
-- General Code Clean up
-- Basic angle/positioning of elements
-- Port Old detectors to new systems
-- Better Safety checks
-- New Frame Input System
-- ML detectors
-
-
 ## Install (Credit to EasyOpenCV)
 1. Pull up Android Studio, with the FTC application SDK open
 2. Go to the root `build.gradle`
@@ -76,9 +63,21 @@ allprojects {
 7. Press the `Sync Now` button that should appear in the top right
 8. Because EasyOpenCv depends on OpenCV-Repackaged, you will also need to copy [libOpenCvNative.so](https://github.com/OpenFTC/OpenCV-Repackaged/blob/master/doc/libOpenCvNative.so) from the `/doc` folder of that repo into the `FIRST` folder on the internal storage of the Robot Controller.
 
-# Detectors Status
-- **Stone Detector** - Implemented. Needs improvement.
-- **Skystone Detector** - Implemented. Not Reliable, Under rewrite.
+
+## Known Issues
+(These issues are referring to the 2019-2020 FTC Year Detectors, and not the Relic Recovery or Rover Ruckus ones as those are no longer supported)
+- Skystone detectors aren't accurate 
+- Stone detectors aren't accurate
+
+## Planned Features / TODO
+- Expand Wiki
+- Add in distance scoring between samples to increase accuracy
+- General Code Clean up
+- Basic angle/positioning of elements
+- Port Old detectors to new systems
+- Better Safety checks
+- New Frame Input System
+- ML detectors
 
 ## FAQ
 - **Can I still use classic OpenCV?**
