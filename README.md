@@ -10,10 +10,11 @@ Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV.
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
 ### To run this library, you need an SDK version of at least 5.1
-### Unforunately, this library will not work on the ZTE phones, as OpenCV does not work on KitKat.
+### Unfortunately, this library will not work on the ZTE phones, as OpenCV does not work on KitKat.
+### Unfortunately, the video tutorials, are outdated and will be updated soon. Please read the installation directions and be check out the examples inside the code. Please contact any of the developed if you need help!
 
-## Videos
-Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for peopling who want to learn DogeCV. 
+## Videos (OUTDATED!!!)
+Wizards.exe have been amazing with their DogeCV coverage, so please check them out and give your support, the videos are easy to understand and well made, great for people who want to learn DogeCV for past versions. Please do keep in mind that these tutorials are for older versions of DogeCV and will not work for the newest version.  
 
  - [Wizards.exe Tutorial](https://www.youtube.com/playlist?list=PLICNg-rquuraBSqMOeW_hqf9O-Cct1jJw)
 
