@@ -1,3 +1,6 @@
+# THIS PROJECT IS NO LONGER SUPPORTED. PLEASE CHECK OUT [EASYOPENCV](https://github.com/OpenFTC/EasyOpenCV), WHICH LETS YOU USE OPENCV IN FTC.
+# IT HAS GREAT EXPLANATORY EXAMPLES THAT CAN BE ADAPTED TO WHATEVER THE CURRENT SEASON IS.
+
 # DogeCV
 [![](https://jitpack.io/v/dogecv/dogecv.svg)](https://jitpack.io/#dogecv/dogecv)
 
