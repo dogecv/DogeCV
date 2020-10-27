@@ -9,7 +9,7 @@ An easy to use computer vision library used for FTC Games to detect game objects
 Based on [EasyOpenCV](https://github.com/OpenFTC/EasyOpenCV) and OpenCV. 
 
 ## Project Status:
-**In Development**
+**No Longer Developed**
 
 # DISCLAIMER
 ### THIS REPO IS STILL UNDER CONTINUOUS DEVELOPMENT. WE WILL BE ADDING FURTHER DOCUMENTATION, BUG FIXES, AND NEW FEATURES
