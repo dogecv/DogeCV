@@ -26,15 +26,15 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - **Stone Detector** - Implemented. Needs improvement.
 - **Skystone Detector** - Implemented. Not Reliable, Under rewrite.
 
-## Active Development Team
+## (In)active Development Team
 - Aditya Mangalampalli FTC 9614 Hyperion @Alpheron#2162
 - Alex Carter FTC 7195 Mechanical Memes @VictoryForPhil#0001
 - Arnav Komaragiri FTC 8719 Quantum Leap @-----#9037
 - Ben Loan FTC 3795 JagWired @Ben6501#0094
-- Daniel Goz FTC 7026 JDroids @dansman805#5805
+- Abigail FTC 7026 JDroids @abidingabi#5805
 - Frank Portman FTC 8581 Aedificatores @Something Disposable#9622
 
-## Active Contributors
+## (In)active Contributors
 - Adhit Siripurapu FTC 9614 Hyperion (Testing) @Prickles#0203
 - Ishaan Oberoi FTC 9794 Wizards.exe (Publicity) @RollerCoaster45#0637
 - Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Logos) 
@@ -48,7 +48,7 @@ Wizards.exe have been amazing with their DogeCV coverage, so please check them o
 - Robert Iridon and Prodaniuc Pavel FTC 15994 CSH (Webcam testing)
 - Nathaniel Lesser FTC 12897 Newton's Law of Mass' (Banner art)
 - Karter FTC 5975 Cybots (Brainstorming for Jewel Detector)
-- Derek FTC 5484 Enderbots (EnderCV Classes)
+- Guineawheek (EnderCV Classes)
 - Owen Gonzalez (Testing)
 - Kwon Paradigm Break (Testing)
 
